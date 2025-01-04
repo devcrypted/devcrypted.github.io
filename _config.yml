@@ -58,7 +58,7 @@ toc: true
 comments:
   active: giscus
   giscus:
-    repo: aworkaround/aworkaround.github.io
+    repo: devcrypted/devcrypted.github.io
     repo_id: 843727717
     category: Comments
     category_id: 42399003

@@ -12,7 +12,7 @@ youtube_logo: <i class="fa-brands fa-youtube"></i>
 published: true
 title: "Getting Started With Flask Web Framework"
 permalink: getting-started-with-flask
-date: 2024-01-17 00:00 +0530
+date: 2024-01-17 00:00 +0530 
 categories: ["Python Web Development"]
 tags: ["Python", "Flask"]
 image: https://img.youtube.com/vi/jSiWuY24Ho8/maxresdefault.jpg
