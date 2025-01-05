@@ -22,10 +22,6 @@ github_repo: dotfiles
 ### **RESOURCES**
 
 - [GitHub Repository]({{page.github_prefix}}{{page.github_repo}})
-- [Watch on YouTube]({{page.video_prefix}}{{page.video_id}})
-- [YouTube Playlist]({{page.playlist_prefix}}{{page.playlist_id}})
-
-{% include embed/youtube.html id=page.video_id %}
 
 ---
 
