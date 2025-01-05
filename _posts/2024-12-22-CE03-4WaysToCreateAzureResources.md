@@ -14,9 +14,9 @@ categories: ["Terraform", "Azure CLI", "Cloud Engineering", "PowerShell"]
 tags: ["Terraform", "Azure CLI", "Cloud Engineering", "PowerShell"]
 image: headers/CE03.png
 description: "This blog will showcase four methods for creating resources in Azure: Azure Portal, Azure CLI, Azure PowerShell, and Terraform."
-video_id: randomVideoID
+video_id: g3D0SJ8uBIg
 playlist_id: PL2JBbPWIA_Tq6oI8hAkJVR6Uhg5wLx9AM
-github_repo: dotfiles
+github_repo: ""
 ---
 
 ### **RESOURCES**
