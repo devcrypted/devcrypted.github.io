@@ -12,16 +12,20 @@ media_subpath: /assets/img
 date: 2024-12-22 00:00 +0530
 categories: ["Windows 11", "Desktop Setup", "WSL", "Cloud Engineering"]
 tags: ["Windows 11", "Desktop Setup", "WSL"]
-image: headers/desktop-setup.png
+image:  https://img.youtube.com/vi/U7XDWpxPpdM/maxresdefault.jpg
 description: This blog will help you to configure your Windows 11 and WSL without having to manually do a lot of things. We have scripts for setting Windows 11 and WSL. Please follow the document.
-video_id: randomVideoID
-playlist_id: PL2JBbPWIA_Tq6oI8hAkJVR6Uhg5wLx9AM
+video_id: U7XDWpxPpdM
+playlist_id: PL2JBbPWIA_TqZwCLtd6wi6A5-Q8U9QlHT
 github_repo: dotfiles
 ---
 
 ### **RESOURCES**
 
 - [GitHub Repository]({{page.github_prefix}}{{page.github_repo}})
+- [Watch on YouTube]({{page.video_prefix}}{{page.video_id}})
+- [YouTube Playlist]({{page.playlist_prefix}}{{page.playlist_id}})
+
+{% include embed/youtube.html id=page.video_id %}
 
 ---
 
