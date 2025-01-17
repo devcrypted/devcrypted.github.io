@@ -10,7 +10,7 @@ title: 4 Ways To Create Azure Resources
 permalink: 4-ways-to-create-azure-resource
 media_subpath: /assets/img
 date: 2024-12-22 00:00 +0530
-categories: ["Terraform", "Azure CLI", "Cloud Engineering", "PowerShell"]
+categories: ["Microsoft Azure"]
 tags: ["Terraform", "Azure CLI", "Cloud Engineering", "PowerShell"]
 image: headers/CE03.png
 description: "This blog will showcase four methods for creating resources in Azure: Azure Portal, Azure CLI, Azure PowerShell, and Terraform."

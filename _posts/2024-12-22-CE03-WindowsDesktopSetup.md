@@ -10,7 +10,7 @@ title: Windows 11 Setup - Clean & Minimal
 permalink: desktop-setup
 media_subpath: /assets/img
 date: 2024-12-22 00:00 +0530
-categories: ["Windows 11", "Desktop Setup", "WSL", "Cloud Engineering"]
+categories: ["Desktop Configuration"]
 tags: ["Windows 11", "Desktop Setup", "WSL"]
 image:  https://img.youtube.com/vi/U7XDWpxPpdM/maxresdefault.jpg
 description: This blog will help you to configure your Windows 11 and WSL without having to manually do a lot of things. We have scripts for setting Windows 11 and WSL. Please follow the document.
