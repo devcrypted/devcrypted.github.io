@@ -81,12 +81,10 @@ winget search firefox
 ## Installing Applications
 
 ```bash
+# Install with App Name
 winget install <app-name>
-```
 
-If multiple results show up, specify the app ID:
-
-```bash
+# If multiple results show up, specify the app ID:
 winget install <app-id>
 ```
 
@@ -104,15 +102,11 @@ winget list
 
 ## Updating Applications
 
-Update a specific app:
-
 ```bash
+# Update a specific app:
 winget upgrade <app-name>
-```
 
-Update all apps at once:
-
-```bash
+# Update all apps at once:
 winget upgrade --all
 ```
 
@@ -162,7 +156,7 @@ List current sources:
 winget source list
 ```
 
-## Running Scripts with Winget
+# Running Scripts with Winget
 
 ```bash
 winget install vscode && winget install git
