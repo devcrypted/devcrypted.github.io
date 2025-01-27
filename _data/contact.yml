@@ -26,7 +26,7 @@
   type: email
   icon: 'fas fa-envelope'
   noblank: false
-  url: 'https://decrypted.in/mail'
+  url: 'devcrypted@yahoo.com'
 # -
 #   type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
