@@ -4,7 +4,6 @@ lang: en
 plugins:
   - jekyll-target-blank
 
-
 prefer_datetime_locale:
 
 # timezone: Asia/Calcutta
@@ -33,10 +32,10 @@ social:
   name: Devcrypted
   email: devcrypted@yahoo.com
   links:
-    - https://decrypted.in/github
-    - https://decrypted.in/twitter
-    - https://decrypted.in/channel
-    - https://decrypted.in/linkedin
+    - https://decr.in/github
+    - https://decr.in/twitter
+    - https://decr.in/channel
+    - https://decr.in/linkedin
 
 # Web Analytics Settings
 analytics:

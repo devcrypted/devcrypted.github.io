@@ -1,33 +1,29 @@
 # -
 #   type: twitter
 #   icon: 'fa-brands fa-x-twitter'
-#   url: 'https://decrypted.in/twitter'
--
-  type: youtube
-  icon: 'fab fa-youtube'
-  url: 'https://decrypted.in/youtube'
--
-  type: github
-  icon: 'fab fa-github'
-  url: 'https://decrypted.in/github'
--
-  type: linkedin
-  icon: 'fab fa-linkedin'
-  url:  'https://decrypted.in/linkedin'
+#   url: 'https://decr.in/twitter'
+- type: youtube
+  icon: "fab fa-youtube"
+  url: "https://decr.in/youtube"
+- type: github
+  icon: "fab fa-github"
+  url: "https://decr.in/github"
+- type: linkedin
+  icon: "fab fa-linkedin"
+  url: "https://decr.in/linkedin"
 # -
 #   type: patreon
 #   icon: 'fab fa-patreon'
-#   url: 'https://decrypted.in/patreon'
+#   url: 'https://decr.in/patreon'
 # -
 #   type: rss
 #   icon: 'fas fa-rss'
 #   noblank: true
--
-  type: email
-  icon: 'fas fa-envelope'
+- type: email
+  icon: "fas fa-envelope"
   noblank: false
-  url: 'devcrypted@yahoo.com'
+  url: "devcrypted@yahoo.com"
 # -
 #   type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
-#   url:  'https://decrypted.in/stack'
+#   url:  'https://decr.in/stack'

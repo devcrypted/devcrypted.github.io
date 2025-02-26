@@ -10,12 +10,12 @@ Hi, I’m Kamal Kumar 👋 — Tech enthusiast 🧑‍💻, YouTube creator 📽
 Visit my Portfolio 🚀 [@Engineeer.in](https://engineeer.in) to know more about me 😊
 
 <!--Markdownlint-Disable MD033-->
-<a href='https://decrypted.in/subscribe'><i class='fa-brands fa-youtube'></i> Subscribe me</a> on YouTube 🙌
+<a href='https://decr.in/subscribe'><i class='fa-brands fa-youtube'></i> Subscribe me</a> on YouTube 🙌
 
 <!--Markdownlint-Disable MD025-->
 # Hire Me
 
-📝 [My Resume](https://decrypted.in/cv) — I typically respond to emails within 2 hours 📩
+📝 [My Resume](https://decr.in/cv) — I typically respond to emails within 2 hours 📩
 
 <!--Markdownlint-Disable MD025-->
 # Contact Me
