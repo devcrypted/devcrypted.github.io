@@ -21,8 +21,8 @@
 #   noblank: true
 - type: email
   icon: "fas fa-envelope"
-  noblank: false
-  url: "devcrypted@yahoo.com"
+  noblank: true
+  url: "mailto:devcrypted@yahoo.com"
 # -
 #   type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
