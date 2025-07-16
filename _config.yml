@@ -55,7 +55,7 @@ avatar: https://avatars.githubusercontent.com/u/177287932?s=400&u=e777516f3dcc75
 toc: true
 
 comments:
-  active: giscus
+  provider: giscus
   giscus:
     repo: devcrypted/devcrypted.github.io
     repo_id: R_kgDOMkpDZQ
