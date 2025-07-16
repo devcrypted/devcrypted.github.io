@@ -1,32 +1,67 @@
 ---
-# the default layout is 'page'
 icon: fas fa-info-circle
 order: 4
-title: About Me
+title: Hi 👋 I'm Kamal.
 ---
 
-Hi, I’m Kamal Kumar 👋 — Tech enthusiast 🧑‍💻, YouTube creator 📽️, and Lead Platform Engineer. I’m passionate about code optimization, security, and automation. I’d happily spend 2 hours automating a 10-minute reoccurring task 😅!
+<span style="display: inline-flex; align-items: center; gap: 12px;">
+  <i class="fas fa-microchip" aria-hidden="true"></i> <strong>Tech Enthusiast</strong>
+  <i class="fab fa-youtube" aria-hidden="true"></i> <strong>YouTube Creator</strong>
+  <i class="fas fa-server" aria-hidden="true"></i> <strong>Platform Engineer</strong>
+</span>
 
-Visit my Portfolio 🚀 [@Engineeer.in](https://engineeer.in) to know more about me 😊
+I'm passionate about making complex technology simple and accessible. I love automating processes, optimizing systems, and sharing knowledge through tutorials and practical examples.
 
-<!--Markdownlint-Disable MD033-->
-<a href='https://decr.in/subscribe'><i class='fa-brands fa-youtube'></i> Subscribe me</a> on YouTube 🙌
+---
 
-<!--Markdownlint-Disable MD025-->
-# Hire Me
+## Connect With Me
 
-📝 [My Resume](https://decr.in/cv) — I typically respond to emails within 2 hours 📩
+<span style="display: inline-flex; align-items: center; gap: 32px; margin: 16.8px 0;">
+  <a href="https://decr.in/subscribe" target="_blank" rel="noopener" title="YouTube" style="text-decoration: none; border: none;">
+    <span style="display: inline-flex; align-items: center; gap: 12px;">
+      <i class="fab fa-youtube" aria-hidden="true"></i> <strong>YouTube</strong>
+    </span>
+  </a>
+  <a href="https://decr.in/portfolio" target="_blank" rel="noopener" title="Portfolio" style="text-decoration: none; border: none;">
+    <span style="display: inline-flex; align-items: center; gap: 12px;">
+      <i class="fas fa-briefcase" aria-hidden="true"></i> <strong>Portfolio</strong>
+    </span>
+  </a>
+  <a href="https://decr.in/cv" target="_blank" rel="noopener" title="Resume" style="text-decoration: none; border: none;">
+    <span style="display: inline-flex; align-items: center; gap: 12px;">
+      <i class="fas fa-download" aria-hidden="true"></i> <strong>Resume</strong>
+    </span>
+  </a>
+</span>
 
-<!--Markdownlint-Disable MD025-->
-# Contact Me
+*I typically respond to emails within 2 hours* 📩
 
-<!--Markdownlint-Disable MD033-->
-<form style="display: grid; max-width: 500px" action="https://api.web3forms.com/submit" method="POST">
+---
+
+## Get In Touch
+
+<form action="https://api.web3forms.com/submit" method="POST" style="max-width: 500px; margin: 0;">
     <input type="hidden" name="access_key" value="__FORMKEY__">
-    <input type="text" name="name" placeholder="Your Name" style="margin: 7px 0; padding: 8px; background-color: transparent; border: 1px solid #a9a9a9; border-radius: 10px; outline: none" required />
-    <input type="email" name="email" placeholder="Email Address" style="margin: 7px 0; padding: 8px; background-color: transparent; border: 1px solid #a9a9a9; border-radius: 10px; outline: none" required />
-    <input type="text" name="subject" placeholder="Subject" style="margin: 7px 0; padding: 8px; background-color: transparent; border: 1px solid #a9a9a9; border-radius: 10px; outline: none" required />
-    <label for="name" style="margin-top: 8px">Your Message</label>
-    <textarea name="message" placeholder="Your Message" rows="7" style="margin: 7px 0; padding: 8px; background-color: transparent; border: 1px solid #a9a9a9; border-radius: 10px; outline: none" required></textarea>
-    <input type="submit" value="Send Message 🚀" style="margin: 8px 0; padding: 10px; background-color: #1e1e1e; border-color: #a9a9a9; border-radius: 10px; outline: none; color: white"/>
+    <p>
+        <input type="text" name="name" placeholder="Your Name" required 
+               style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; background: transparent; box-sizing: border-box;">
+    </p>
+    <p>
+        <input type="email" name="email" placeholder="Email Address" required 
+               style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; background: transparent; box-sizing: border-box;">
+    </p>
+    <p>
+        <input type="text" name="subject" placeholder="Subject" required 
+               style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; background: transparent; box-sizing: border-box;">
+    </p>
+    <p>
+        <textarea name="message" placeholder="Your Message" rows="5" required 
+                  style="width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 6px; background: transparent; resize: vertical; box-sizing: border-box;"></textarea>
+    </p>
+    <p>
+        <button type="submit" 
+                style="padding: 12px 24px; margin: 8px 0; background: #007acc; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px;">
+            Send Message
+        </button>
+    </p>
 </form>
