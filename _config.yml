@@ -58,13 +58,14 @@ comments:
   active: giscus
   giscus:
     repo: devcrypted/devcrypted.github.io
-    repo_id: 843727717
-    category: Comments
-    category_id: 42399003
+    repo_id: R_kgDOMkpDZQ
+    category: Announcements
+    category_id: DIC_kwDOMkpDZc4ChvUD
     mapping: pathname
     input_position: bottom
     lang: en
     reactions_enabled: 1
+    theme: preferred_color_scheme
 
 assets:
   self_host:
