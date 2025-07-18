@@ -1,10 +1,12 @@
 ---
 icon: fas fa-info-circle
 order: 4
-title: Hi 👋 I'm Kamal.
+title: About
 ---
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=500&color=008080&width=400&lines=Lead+Cloud+Platform+Engineer;Cloud+Migration+%26+DevOps+Lead;Azure+%26+Kubernetes+Expert;Microsoft+Certified+Trainer;8%2B+Years+Experience)](https://git.io/typing-svg)
+# Hi, I'm Kamal.
+
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=500&color=008080&width=300&lines=Lead+Cloud+Platform+Engineer;Cloud+Migration+%26+DevOps+Lead;Azure+%26+Kubernetes+Expert;Microsoft+Certified+Trainer;8%2B+Years+Experience)](https://git.io/typing-svg)
 
 I'm passionate about making complex technology simple and accessible. I love automating processes, optimizing systems, and sharing knowledge through tutorials and practical examples.
 
