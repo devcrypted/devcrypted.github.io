@@ -4,7 +4,7 @@ order: 4
 title: Hi 👋 I'm Kamal.
 ---
 
-<span style="display: inline-flex; align-items: center; gap: 12px;">
+<span style="display: inline-flex; align-items: center; gap: 4px;">
   <i class="fas fa-microchip" aria-hidden="true"></i> <strong>Tech Enthusiast</strong>
   <i class="fab fa-youtube" aria-hidden="true"></i> <strong>YouTube Creator</strong>
   <i class="fas fa-server" aria-hidden="true"></i> <strong>Platform Engineer</strong>
