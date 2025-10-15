@@ -73,6 +73,41 @@ def generate_specific_subtopic(topic, config):
     return subtopic_prompts.get(content_type, f"practical guide about {topic}")
 
 
+def fix_nested_lists(content):
+    """Remove nested list indentation, keep only flat lists"""
+    lines = content.split("\n")
+    fixed_lines = []
+    in_code_block = False
+
+    for line in lines:
+        # Track code blocks to avoid modifying them
+        if line.strip().startswith("```"):
+            in_code_block = not in_code_block
+            fixed_lines.append(line)
+            continue
+
+        if in_code_block:
+            fixed_lines.append(line)
+            continue
+
+        # Check if line is a bullet point with indentation
+        stripped = line.lstrip()
+        if stripped.startswith(("-", "*", "•")):
+            # Count leading spaces/tabs
+            indent = len(line) - len(stripped)
+
+            # If indented more than 4 spaces (nested), reduce to flat
+            if indent > 4:
+                # Keep it as a flat list item
+                fixed_lines.append("- " + stripped[2:].strip())
+            else:
+                fixed_lines.append(line)
+        else:
+            fixed_lines.append(line)
+
+    return "\n".join(fixed_lines)
+
+
 def generate_blog_content(topic, config):
     """Generate blog content using Gemini API"""
     if not API_KEY:
@@ -96,6 +131,9 @@ def generate_blog_content(topic, config):
     # Generate content
     response = model.generate_content(full_prompt)
     content = response.text.strip()
+
+    # Fix any nested lists (remove extra indentation)
+    content = fix_nested_lists(content)
 
     # Generate title - must be specific, accurate, and well-written
     title_prompt = f"""Generate a specific, accurate, and descriptive title for this blog topic: {specific_topic}

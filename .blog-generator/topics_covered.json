@@ -3,8 +3,11 @@
     "Microsoft Azure",
     "Kubernetes",
     "Networking Fundamentals",
-    "Monitoring and Observability"
+    "Monitoring and Observability",
+    "Git and Version Control",
+    "Cloud Engineering",
+    "PowerShell Scripting"
   ],
-  "last_generated": "2025-10-15T18:58:24.640418",
-  "total_generated": 4
+  "last_generated": "2025-10-16T00:41:35.907624",
+  "total_generated": 7
 }

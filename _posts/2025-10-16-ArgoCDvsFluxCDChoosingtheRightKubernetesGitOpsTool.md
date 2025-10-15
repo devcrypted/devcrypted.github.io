@@ -33,21 +33,21 @@ Kubernetes Ingress Controllers manage external access to cluster services, routi
 
 ### Key Aspects
 
-*   **Nginx Ingress Controller**
-    *   Robust, widely adopted.
-    *   Extensive features, mature.
-    *   Annotation-driven ingress behavior.
+* **Nginx Ingress Controller**
+  * Robust, widely adopted.
+  * Extensive features, mature.
+  * Annotation-driven ingress behavior.
 
-*   **Traefik**
-    *   Dynamic configuration from K8s API.
-    *   Auto-discovery of services.
-    *   User-friendly dashboard for visibility.
+* **Traefik**
+  * Dynamic configuration from K8s API.
+  * Auto-discovery of services.
+  * User-friendly dashboard for visibility.
 
-*   **Istio Gateway**
-    *   Edge component of Istio Service Mesh.
-    *   Leverages Envoy proxy.
-    *   Advanced traffic routing, fault injection.
-    *   Integrated security, mTLS, authorization.
+* **Istio Gateway**
+  * Edge component of Istio Service Mesh.
+  * Leverages Envoy proxy.
+  * Advanced traffic routing, fault injection.
+  * Integrated security, mTLS, authorization.
 
 ## Example: Basic Ingress Object
 
