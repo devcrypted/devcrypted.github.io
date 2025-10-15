@@ -1,9 +1,9 @@
 name: Auto Generate Daily Blog
 
 on:
-    schedule:
+   # schedule:
         # Runs every day at 9:00 AM UTC (adjust as needed)
-        - cron: "0 9 * * *"
+      #  - cron: "0 9 * * *"
     workflow_dispatch: # Allows manual trigger
 
 jobs:
