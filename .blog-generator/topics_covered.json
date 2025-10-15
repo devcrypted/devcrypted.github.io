@@ -2,8 +2,9 @@
   "covered_topics": [
     "Microsoft Azure",
     "Kubernetes",
-    "Networking Fundamentals"
+    "Networking Fundamentals",
+    "Monitoring and Observability"
   ],
-  "last_generated": "2025-10-16T00:17:43.159729",
-  "total_generated": 3
+  "last_generated": "2025-10-15T18:58:24.640418",
+  "total_generated": 4
 }
