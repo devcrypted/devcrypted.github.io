@@ -1,0 +1,56 @@
+name: Auto Generate Daily Blog
+
+on:
+    schedule:
+        # Runs every day at 9:00 AM UTC (adjust as needed)
+        - cron: "0 9 * * *"
+    workflow_dispatch: # Allows manual trigger
+
+jobs:
+    generate-blog:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Set up Python
+              uses: actions/setup-python@v5
+              with:
+                  python-version: "3.11"
+                  cache: "pip"
+
+            - name: Install dependencies
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r .blog-generator/requirements.txt
+
+            - name: Generate blog post
+              env:
+                  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+              run: |
+                  cd .blog-generator
+                  python generate_blog.py
+
+            - name: Configure Git
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+
+            - name: Commit and push changes
+              run: |
+                  git add _posts/*.md
+                  git add .blog-generator/topics_covered.json
+
+                  # Check if there are changes to commit
+                  if git diff --staged --quiet; then
+                    echo "No changes to commit"
+                  else
+                    git commit -m "🤖 Auto-generated blog post - $(date +'%Y-%m-%d')"
+                    git push
+                  fi
