@@ -6,8 +6,9 @@
     "Monitoring and Observability",
     "Git and Version Control",
     "Cloud Engineering",
-    "PowerShell Scripting"
+    "PowerShell Scripting",
+    "Terraform"
   ],
-  "last_generated": "2025-10-16T00:41:35.907624",
-  "total_generated": 7
+  "last_generated": "2025-10-15T19:14:14.237371",
+  "total_generated": 8
 }
