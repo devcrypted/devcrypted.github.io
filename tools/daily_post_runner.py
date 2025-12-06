@@ -11,6 +11,7 @@ import os
 import re
 import sys
 import uuid
+import requests
 from datetime import datetime, date
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -18,12 +19,165 @@ from typing import Any, Dict, List, Tuple
 import yaml
 from google import genai
 from PIL import Image
+from google.genai import types
 
-TEXT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-2.5-pro")
-IMAGE_MODEL = os.environ.get("GEMINI_IMAGE_MODEL", "gemini-2.5-flash-image")
+BLOG_MODEL_PRIMARY = os.environ.get("GEMINI_BLOG_MODEL_PRIMARY", "gemini-3-pro")
+BLOG_MODEL_FALLBACK = os.environ.get("GEMINI_BLOG_MODEL_FALLBACK", "gemini-2.5-pro")
+KEYWORD_MODEL = os.environ.get("GEMINI_KEYWORD_MODEL", "gemini-2.5-flash")
+IMAGE_MODEL = os.environ.get("GEMINI_IMAGE_MODEL", "imagen-3.0-generate-002")
+IMAGE_MODEL_FALLBACKS = [
+    m.strip()
+    for m in os.environ.get(
+        "GEMINI_IMAGE_MODEL_FALLBACKS",
+        "imagen-3.0-fast-generate-001,imagen-3.0-generate-001,imagen-2.0-fast-generate-001",
+    ).split(",")
+    if m.strip()
+]
 POSTS_DIR = Path(__file__).resolve().parent.parent / "_posts"
 ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "img"
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
+PEXELS_API_KEY = os.environ.get("PEXELS_API_KEY")
+UNSPLASH_ACCESS_KEY = os.environ.get("UNSPLASH_ACCESS_KEY")
+IMAGE_MAX_KB = int(os.environ.get("IMAGE_MAX_KB", "60"))
+MAX_DIMENSIONS = (1280, 720)
+
+
+def placeholder_image_bytes(color: tuple[int, int, int] = (220, 225, 230)) -> bytes:
+    placeholder = Image.new("RGB", MAX_DIMENSIONS, color=color)
+    return compress_image_to_webp_bytes(placeholder)
+
+
+def fetch_image(url: str, headers: Dict[str, str] | None = None, timeout: int = 20) -> bytes | None:
+    try:
+        resp = requests.get(url, headers=headers or {}, timeout=timeout)
+        resp.raise_for_status()
+        return resp.content
+    except Exception as exc:
+        print(f"Download failed for {url}: {exc}")
+        return None
+
+
+def compress_image_to_webp_bytes(image: Image.Image, target_kb: int = IMAGE_MAX_KB) -> bytes:
+    # Resize to max dimensions while preserving aspect ratio
+    img = image.copy()
+    img.thumbnail(MAX_DIMENSIONS)
+    best_bytes = None
+    for quality in (80, 70, 60, 50, 40, 30):
+        buffer = io.BytesIO()
+        img.save(buffer, format="WEBP", quality=quality, method=6)
+        data = buffer.getvalue()
+        best_bytes = data
+        if len(data) <= target_kb * 1024:
+            break
+    return best_bytes or b""
+
+
+def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, Any]]:
+    """Return a small list of candidate images (metadata + download url) from Pexels."""
+    if not PEXELS_API_KEY:
+        return []
+    headers = {"Authorization": PEXELS_API_KEY}
+    params = {"query": prompt, "per_page": per_page, "orientation": "landscape"}
+    try:
+        resp = requests.get("https://api.pexels.com/v1/search", headers=headers, params=params, timeout=20)
+        resp.raise_for_status()
+        data = resp.json()
+        photos = data.get("photos") or []
+        results = []
+        for photo in photos:
+            src = photo.get("src", {})
+            # Prefer a ~1k-1.5k wide asset; fallback to anything available
+            url = src.get("large2x") or src.get("large") or src.get("original") or src.get("medium") or src.get("small")
+            if not url:
+                continue
+            results.append(
+                {
+                    "id": photo.get("id"),
+                    "alt": photo.get("alt") or "",
+                    "photographer": photo.get("photographer") or "",
+                    "url": url,
+                }
+            )
+        return results
+    except Exception as exc:
+        print(f"Pexels search failed: {exc}")
+        return []
+
+
+def unsplash_search(prompt: str) -> bytes | None:
+    # Disabled per user request; keep placeholder function for compatibility.
+    return None
+
+
+def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: str) -> Tuple[int | None, str | None]:
+    """Ask the text model to pick the best candidate or suggest a better query."""
+    if not candidates:
+        return None, None
+    try:
+        text_client = genai.Client(api_key=load_text_key())
+        options = [f"{idx}: alt='{c.get('alt','')}' by {c.get('photographer','')}" for idx, c in enumerate(candidates)]
+        prompt = (
+            "You rank stock photos for a tech blog thumbnail."
+            f"\nBlog title: {title}"
+            f"\nSearch query used: {query}"
+            "\nCandidates (index: alt by photographer):\n" + "\n".join(options) +
+            "\nRespond as JSON: {\"choice\": <index or null>, \"new_query\": <string or null>}"
+            "\nChoose the best tech-relevant image. If none fit, set choice=null and suggest a better concise query."
+        )
+        resp = text_client.models.generate_content(
+            model=KEYWORD_MODEL,
+            contents=prompt,
+            config={"response_mime_type": "application/json"},
+        )
+        raw = getattr(resp, "text", None)
+        if not raw and getattr(resp, "candidates", None):
+            parts = getattr(resp.candidates[0].content, "parts", []) if resp.candidates[0].content else []
+            if parts and getattr(parts[0], "text", None):
+                raw = parts[0].text
+        if not raw:
+            raise RuntimeError("No JSON response from text model for image ranking.")
+        data = json.loads(raw)
+        return data.get("choice"), data.get("new_query")
+    except Exception as exc:
+        print(f"AI ranking failed: {exc}; defaulting to first candidate.")
+        return 0, None
+
+
+def pexels_select_image(prompt: str, title: str) -> bytes | None:
+    """Search Pexels, let AI pick/iterate up to 3 tries, and return image bytes if found."""
+    if not PEXELS_API_KEY:
+        return None
+    query = f"{prompt} technology illustration"
+    fallback_candidate: Dict[str, Any] | None = None
+    for attempt in range(3):
+        candidates = pexels_search_candidates(query)
+        if candidates:
+            if fallback_candidate is None:
+                fallback_candidate = candidates[0]
+            choice, new_query = choose_image_with_ai(candidates, query, title)
+            candidate = None
+            if choice is not None and 0 <= choice < len(candidates):
+                candidate = candidates[choice]
+            elif new_query and attempt < 2:
+                query = new_query
+                continue
+            else:
+                candidate = candidates[0]
+
+            data = fetch_image(candidate["url"], headers={"Authorization": PEXELS_API_KEY})
+            if data:
+                return data
+            if new_query and attempt < 2:
+                query = new_query
+                continue
+        elif attempt < 2:
+            continue
+
+    if fallback_candidate:
+        data = fetch_image(fallback_candidate["url"], headers={"Authorization": PEXELS_API_KEY})
+        if data:
+            return data
+    return None
 
 
 def load_text_key() -> str:
@@ -102,47 +256,75 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
 
 
 def request_markdown(client: genai.Client, prompt: str) -> str:
-    response = client.models.generate_content(
-        model=TEXT_MODEL,
-        contents=prompt,
-        config={"response_mime_type": "text/plain"},
-    )
+    try:
+        response = client.models.generate_content(
+            model=BLOG_MODEL_PRIMARY,
+            contents=prompt,
+            config={"response_mime_type": "text/plain"},
+        )
+    except Exception as primary_exc:
+        print(f"Primary blog model '{BLOG_MODEL_PRIMARY}' failed ({primary_exc}); using fallback '{BLOG_MODEL_FALLBACK}'.")
+        response = client.models.generate_content(
+            model=BLOG_MODEL_FALLBACK,
+            contents=prompt,
+            config={"response_mime_type": "text/plain"},
+        )
     if hasattr(response, "text") and response.text:
         return str(response.text)
     raise RuntimeError("No text response from model.")
 
 
-def request_image(client: genai.Client, prompt: str) -> bytes:
-    try:
-        response = client.models.generate_content(
-            model=IMAGE_MODEL,
-            contents=prompt,
-        )
-        if hasattr(response, "binary") and response.binary:
-            return bytes(response.binary)
-        if hasattr(response, "data") and response.data:
-            return bytes(response.data)
-        for candidate in getattr(response, "candidates", []) or []:
-            content = getattr(candidate, "content", None)
-            parts = getattr(content, "parts", []) if content else []
-            for part in parts:
-                inline_data = getattr(part, "inline_data", None)
-                if inline_data and getattr(inline_data, "data", None):
-                    return bytes(inline_data.data)
-        raise RuntimeError("No image bytes returned from model.")
-    except Exception as exc:  # Fallback if quota or image model fails
-        print(f"Image generation failed ({exc}); using placeholder.")
-        buffer = io.BytesIO()
-        placeholder = Image.new("RGB", (1280, 720), color=(30, 30, 30))
-        placeholder.save(buffer, format="WEBP", quality=80)
-        return buffer.getvalue()
+def pick_image_model(client: genai.Client) -> Tuple[str | None, List[str]]:
+    """Return the first available generateImages-capable model and the full list."""
+    available = []
+    for model_info in client.models.list():
+        methods = getattr(model_info, "supported_generation_methods", []) or []
+        if "generateImages" in methods:
+            available.append(model_info.name)
 
+    candidates = [IMAGE_MODEL] + [m for m in IMAGE_MODEL_FALLBACKS if m != IMAGE_MODEL]
+    for name in candidates:
+        if name in available:
+            return name, available
+    if available:
+        return available[0], available
+    return None, available
+
+
+def request_image(client: genai.Client, prompt: str, title: str) -> bytes:
+    model_name, available = pick_image_model(client)
+    if model_name:
+        print(f"Requesting image from {model_name}...")
+        try:
+            response = client.models.generate_images(
+                model=model_name,
+                prompt=prompt,
+                config=types.GenerateImagesConfig(number_of_images=1),
+            )
+            for image_entry in getattr(response, "generated_images", []) or []:
+                image_obj = getattr(image_entry, "image", None)
+                if image_obj and getattr(image_obj, "image_bytes", None):
+                    return bytes(image_obj.image_bytes)
+            print("Model call succeeded but no image bytes returned; falling back to stock search.")
+        except Exception as exc:
+            print(f"Image model '{model_name}' failed ({exc}); falling back to stock search.")
+    else:
+        print("No image-capable models available on this key; using Pexels search.")
+
+    # Stock photo fallback via Pexels with AI ranking/iteration
+    stock_bytes = pexels_select_image(prompt, title)
+    if stock_bytes:
+        return stock_bytes
+
+    print("Stock photo search failed; using placeholder.")
+    return placeholder_image_bytes()
 
 def save_webp(image_bytes: bytes, destination: Path) -> str:
     destination.parent.mkdir(parents=True, exist_ok=True)
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
-    image.save(destination, format="WEBP", quality=85)
-    return f"/assets/img/{destination.name}"
+    data = compress_image_to_webp_bytes(image)
+    destination.write_bytes(data)
+    return destination.name
 
 
 def build_front_matter(title: str, permalink: str, category: str, tags: List[str], image_path: str, description_prompt: str, timestamp: str) -> Dict[str, Any]:
@@ -209,7 +391,7 @@ def main() -> None:
     # Generate image first with image-specific key/quota
     image_api_key = load_image_key()
     image_client = genai.Client(api_key=image_api_key)
-    image_bytes = request_image(image_client, image_prompt)
+    image_bytes = request_image(image_client, image_prompt, title)
     image_name = f"{uuid.uuid4().hex}.webp"
     image_path = save_webp(image_bytes, ASSETS_DIR / image_name)
 

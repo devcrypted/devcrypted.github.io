@@ -1,662 +1,554 @@
 [
   {
-    "title": "The State of AI in DevOps: 2025 Year in Review",
-    "description_prompt": "Write a blog post analyzing the impact of AI on DevOps throughout 2025. Start with the hype vs. reality of November's trends. Cover three key areas: 1) AI-powered observability and AIOps platforms (like Dynatrace, Datadog). 2) The evolution of code generation and debugging assistants (Copilot, Gemini Code Assist). 3) The rise of AI in security testing (SAST/DAST) within CI/CD pipelines. Conclude with a bold prediction for AI in DevOps for 2026. Use a reflective but critical tone. Ask readers to share their biggest AI win or challenge of the year in the comments.",
-    "image_prompt": "1280x720, a futuristic digital art depiction of a CI/CD pipeline represented as a flowing river of light, with glowing neuron-like AI nodes branching off to inspect and optimize the flow, set against a dark, server-rack background. Style: cinematic, neon accents, high detail.",
+    "title": "Beyond Chatbots: The Economics of Deploying Agent Fleets on AWS Trainium3",
+    "description_prompt": "Write a technical analysis of how AWS Trainium3 chips reduce the inference costs for persistent AI agents. Contrast the 'burst' compute of chatbots with the 'sustained' compute of agents like Kiro. Use data points about the 4.4x performance boost and 50% cost reduction to argue that 2026 will be the year of the 'Agent Fleet.'",
+    "image_prompt": "A futuristic server rack glowing with amber light, focusing on a custom silicon chip labeled 'Trainium3', integrated into a vast network of digital neural pathways representing autonomous agents, cinematic 8k render, isometric view.",
     "tags": [
-      "ai",
-      "devops",
-      "platform engineering",
-      "2025 review",
-      "generative ai",
-      "aiops"
+      "aws",
+      "trainium3",
+      "ai agents",
+      "cloud economics",
+      "hardware"
     ],
-    "category": "AI DevOps",
-    "permalink": "the-state-of-ai-in-devops-2025-year-in-review",
+    "category": "AWS",
+    "permalink": "aws-trainium3-agent-fleets-economics-2025",
     "resources": [
-      "https://www.dynatrace.com/platform/aiops/",
-      "https://github.com/features/copilot",
-      "https://cloud.google.com/gemini/code-assist",
-      "https://www.gartner.com/en/information-technology/glossary/aiops-platforms"
+      "https://www.webpronews.com/aws-ceo-unveils-ai-agents-at-reinvent-2025-amid-enterprise-push/",
+      "https://www.techi.com/amazon-stock-growth-forecast-aws-reinvent/"
     ]
   },
   {
-    "title": "OpenTofu vs. Terraform: The Post-Fork Reality Check",
-    "description_prompt": "Create a comprehensive comparison between OpenTofu and Terraform as of December 2025. Avoid a simple feature list. Instead, focus on the real-world impact since the fork. Address: 1) Community health and contribution velocity for both. 2) Provider ecosystem compatibility and divergence. 3) Key feature differences that have emerged in the past year. 4) Enterprise support options and pricing models. Provide a decision framework for teams choosing between them now. End with the question: 'Has the fork ultimately benefited the IaC community?'",
-    "image_prompt": "1280x720, a symbolic image of a path splitting into two distinct roads, one labeled 'Terraform' leading to a corporate skyscraper, the other labeled 'OpenTofu' leading to a bustling open-source community bazaar. The sky above is a digital matrix pattern. Style: metaphorical, vibrant colors, clean vector art.",
+    "title": "Meet Kiro and Nova: Inside AWS's New Frontier Agent Ecosystem",
+    "description_prompt": "Create a detailed guide to the AWS 'Frontier Agents' announced at re:Invent 2025. Detail the capabilities of Kiro (the developer agent) and the Nova 2 Omni/Sonic models. Explain how 'Nova Forge' allows enterprises to fine-tune these agents with proprietary data while keeping them within the Bedrock ecosystem.",
+    "image_prompt": "A digital representation of a virtual assistant named 'Kiro' writing code on a holographic interface, surrounded by floating modules representing security, devops, and data analysis, set against a dark AWS-themed background.",
     "tags": [
-      "opentofu",
-      "terraform",
-      "iac",
-      "devops",
-      "cloud infrastructure",
-      "linux foundation"
+      "aws",
+      "kiro",
+      "nova",
+      "ai agents",
+      "bedrock"
     ],
-    "category": "Infrastructure as Code",
-    "permalink": "opentofu-vs-terraform-post-fork-reality-check-2025",
+    "category": "AI",
+    "permalink": "aws-frontier-agents-kiro-nova-explained",
     "resources": [
-      "https://opentofu.org/",
-      "https://www.hashicorp.com/products/terraform",
-      "https://www.linuxfoundation.org/projects",
-      "https://www.infoworld.com/article/3705399/opentofu-forks-terraform-and-the-earth-does-not-swallow-hashicorp.html"
+      "https://www.eweek.com/news/aws-reinvent-2025-roundup-neuron/",
+      "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/"
     ]
   },
   {
-    "title": "Kubernetes Networking in 2026: Beyond Ingress and Service Mesh",
-    "description_prompt": "Write a forward-looking article on the future of Kubernetes networking. Start by briefly recapping the state of Ingress (Gateway API maturity) and Service Mesh (Istio, Linkerd) in late 2025. Then, explore emerging trends: 1) The role of eBPF and Cilium in revolutionizing pod-to-pod communication and security. 2) The concept of multi-cluster networking and how tools are evolving to manage it seamlessly. 3) The integration of AI for traffic analysis and anomaly detection in the mesh. Conclude by advising platform engineers on what skills to develop now. Ask readers which networking technology they are betting on for the future.",
-    "image_prompt": "1280x720, an abstract visualization of a complex neural network made of glowing blue and gold lines, representing Kubernetes clusters. Data packets, depicted as light particles, flow seamlessly between the nodes, bypassing old-fashioned gateways. Style: abstract tech, glowing elements, dark background.",
+    "title": "Orchestrating the Enterprise: A Deep Dive into Azure AI Agent Service",
+    "description_prompt": "Analyze the architecture of the Azure AI Agent Service introduced at Ignite 2025. Focus on the 'agent-to-agent' messaging capabilities and the 'Foundry' control plane. Explain how this service solves the orchestration problem for enterprise AI, differentiating it from standalone LLM deployments.",
+    "image_prompt": "A complex network diagram showing multiple AI agents labeled 'Planner', 'Coder', and 'Reviewer' communicating via glowing blue data streams within a Microsoft Azure cloud environment, high-tech visualization.",
     "tags": [
-      "kubernetes",
-      "networking",
-      "ebpf",
-      "cilium",
-      "service mesh",
-      "gateway api"
+      "Azure",
+      "AI Agents",
+      "Microsoft Ignite",
+      "Agent Orchestration",
+      "Copilot"
     ],
-    "category": "Cloud Native",
-    "permalink": "kubernetes-networking-2026-beyond-ingress-service-mesh",
+    "category": "Azure",
+    "permalink": "azure-ai-agent-service-enterprise-orchestration",
     "resources": [
-      "https://kubernetes.io/docs/concepts/services-networking/gateway/",
-      "https://istio.io/",
-      "https://cilium.io/",
-      "https://ebpf.io/"
+      "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/overview?view=foundry-classic",
+      "https://azure.microsoft.com/en-us/blog/announcing-azure-copilot-agents-and-ai-infrastructure-innovations/"
     ]
   },
   {
-    "title": "Is Your VSCode Setup Ready for 2026? 7 Must-Have Extensions",
-    "description_prompt": "Create a listicle blog post showcasing 7 essential VSCode extensions for modern developers and platform engineers, based on late 2025 trends. For each extension, provide: 1) What it is and the problem it solves. 2) Why it's particularly relevant now (e.g., supports a new language, integrates with AI, enhances platform engineering workflows). 3) A short GIF or screenshot description. Include extensions for AI code assistance, OpenTofu/Terraform, Docker/Kubernetes management, and DevSecOps. End with a call to action asking readers to share their own favorite, underrated extensions.",
-    "image_prompt": "1280x720, a stylized overhead shot of a developer's futuristic desk with a holographic VSCode interface floating above it. The interface shows glowing icons of various extensions being installed. Style: sleek, futuristic, cyberpunk aesthetic.",
-    "tags": [
-      "vscode",
-      "developer tools",
-      "extensions",
-      "productivity",
-      "ai",
-      "platform engineering"
-    ],
-    "category": "Developer Tools",
-    "permalink": "vscode-setup-2026-7-must-have-extensions",
-    "resources": [
-      "https://marketplace.visualstudio.com/vscode",
-      "https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker",
-      "https://marketplace.visualstudio.com/items?itemName=GitHub.copilot",
-      "https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools"
-    ]
-  },
-  {
-    "title": "Ansible in a Kubernetes World: Still Relevant or Legacy?",
-    "description_prompt": "Write a thought-provoking piece that examines the role of Ansible in a cloud-native ecosystem dominated by Kubernetes and Terraform/OpenTofu. Argue that Ansible is not dead, but its role has shifted. Discuss three key modern use cases: 1) Configuring the underlying nodes (the control plane and workers) before Kubernetes is installed. 2) Automating tasks outside the cluster, like database provisioning or external DNS updates. 3) Acting as a 'glue' layer in complex GitOps workflows via Ansible Runner in CI/CD. Use a balanced tone, acknowledging the declarative power of K8s while highlighting Ansible's imperative strengths. Ask for reader opinions on Ansible's future.",
-    "image_prompt": "1280x720, a dramatic image of an old, sturdy stone bridge (representing Ansible) connecting a traditional landscape to a futuristic, floating city (representing Kubernetes). The bridge is still in active use, with light trails of data flowing across it. Style: fantasy meets sci-fi, realistic rendering.",
-    "tags": [
-      "ansible",
-      "kubernetes",
-      "devops",
-      "automation",
-      "iac",
-      "gitops"
-    ],
-    "category": "Automation",
-    "permalink": "ansible-in-a-kubernetes-world-still-relevant-or-legacy",
-    "resources": [
-      "https://www.ansible.com/",
-      "https://docs.ansible.com/ansible/latest/collections/community/kubernetes/k8s_module.html",
-      "https://www.redhat.com/en/technologies/management/ansible/automation-platform",
-      "https://github.com/ansible/ansible-runner"
-    ]
-  },
-  {
-    "title": "Azure's Latest AI Services: A Deep Dive for AWS Architects",
-    "description_prompt": "Write a technical analysis of Azure's newest AI and ML services released in the second half of 2025, specifically for an audience of experienced AWS architects. Avoid marketing fluff. Instead, create direct comparisons: 1) Compare Azure's new flagship LLM offering to Amazon Bedrock. 2) Analyze Azure's latest data/vector database service against AWS options like OpenSearch or RDS with pgvector. 3) Detail Azure's ML a a service platform and how its workflow differs from SageMaker. Use tables for side-by-side feature comparisons. Conclude with a scenario where an AWS-native team might genuinely prefer the Azure service.",
-    "image_prompt": "1280x720, an architect's drafting table with two competing blueprints. One, in AWS orange, shows a familiar city layout. The other, in Azure blue, shows a new, radically different but efficient city design. A magnifying glass hovers over the Azure blueprint, highlighting a specific AI-driven building. Style: blueprint schematic, clean lines, corporate colors.",
+    "title": "ARM in the Cloud: Migrating Workloads to Azure Cobalt 100 VMs",
+    "description_prompt": "Write a migration guide for Azure Cobalt 100 VMs. Explain the benefits of Microsoft's custom silicon for general-purpose and AI-support workloads. Include a comparison of performance-per-watt against traditional x86 instances and discuss the 'GreenOps' implications of using energy-efficient ARM chips.",
+    "image_prompt": "A macro shot of a sleek, blue-tinted microprocessor chip labeled 'Cobalt 100', resting on a circuit board with Microsoft Azure branding, symbolizing power and efficiency.",
     "tags": [
       "azure",
-      "aws",
-      "ai",
-      "cloud computing",
-      "machine learning",
-      "cloud comparison"
+      "cobalt 100",
+      "arm",
+      "cloud migration",
+      "greenops"
     ],
-    "category": "Cloud AI",
-    "permalink": "azures-latest-ai-services-deep-dive-for-aws-architects",
+    "category": "Azure",
+    "permalink": "migrating-to-azure-cobalt-100-arm-vms",
     "resources": [
-      "https://azure.microsoft.com/en-us/solutions/ai",
-      "https://aws.amazon.com/bedrock/",
-      "https://aws.amazon.com/sagemaker/",
-      "https://learn.microsoft.com/en-us/azure/architecture/"
+      "https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/",
+      "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview"
     ]
   },
   {
-    "title": "The Antigravity Module in Linux Kernel 6.7: A Satirical Explainer",
-    "description_prompt": "Write a humorous, satirical blog post pretending that the new Linux Kernel 6.7 (hypothetically released in Dec 2025) includes a long-rumored 'antigravity' module. The tone should be highly technical but completely absurd. 'Explain' how to enable it via `make menuconfig` (CONFIG_ANTIGRAVITY_SUPPORT=y). Detail the new `/proc/antigravity` interface and how to use `echo '0.9' > /proc/antigravity/leviation_factor` to reduce a server rack's weight by 10%. Include fake `dmesg` outputs like '[AG] Registered device ag0: a potential violation of Newtonian physics'. Warn about the dangers of setting the factor to >1.0. This is pure fun, referencing the famous xkcd comic. End with 'Happy Holidays and don't float away your data centers!'",
-    "image_prompt": "1280x720, a Linux penguin (Tux) wearing a lab coat and safety goggles, joyfully floating a few inches above the ground next to a humming server rack in a data center. A terminal screen in the background shows nonsensical kernel logs about antigravity. Style: fun, cartoonish, playful, inspired by xkcd.",
+    "title": "Gemini 3 Pro vs. GPT-5.1: Choosing the Right Model for Agentic Workflows",
+    "description_prompt": "Compare Google's Gemini 3 Pro and OpenAI's GPT-5.1 based on late 2025 benchmarks. Highlight Gemini's superiority in multimodal reasoning and video understanding versus GPT-5.1's 'adaptive reasoning' and developer tooling. Provide a decision matrix for CTOs choosing a foundation model for their agents.",
+    "image_prompt": "A split-screen comparison visual showing a glowing brain representing 'Reasoning' (Gemini) on one side and a complex code structure representing 'Logic' (GPT-5.1) on the other, balanced on a digital scale.",
     "tags": [
-      "linux",
-      "kernel",
-      "humor",
-      "sysadmin",
-      "xkcd",
-      "antigravity",
-      "tech humor"
-    ],
-    "category": "Sysadmin Humor",
-    "permalink": "antigravity-module-linux-kernel-6-7-satirical-explainer",
-    "resources": [
-      "https://xkcd.com/353/",
-      "https://www.kernel.org/",
-      "https://en.wikipedia.org/wiki/Linux_kernel",
-      "https://man7.org/linux/man-pages/man1/dmesg.1.html"
-    ]
-  },
-  {
-    "title": "Platform Engineering Is Not 'DevOps with a Product Manager'",
-    "description_prompt": "Write a strong opinion piece that clarifies the distinction between advanced DevOps and true Platform Engineering. Start by addressing the common misconception that platform engineering is just a rebranding. Argue that the core differentiator is a 'product mindset'. Elaborate on three key aspects: 1) Treating the internal platform as a product with users (developers), a roadmap, and SLAs. 2) The importance of user research and feedback loops with developer teams. 3) How platform teams measure success (e.g., developer velocity, cognitive load reduction) vs. traditional ops metrics (uptime, latency). Conclude by challenging organizations to assess if their 'platform team' is truly building a product or just a fancier operations team.",
-    "image_prompt": "1280x720, an assembly line where confused workers (representing developers) are struggling with complex, messy tools. In the foreground, a platform engineer is handing a developer a single, elegant, well-designed power tool that replaces all the messy ones, making their job instantly easier. Style: allegorical, clean illustration, corporate art style.",
-    "tags": [
-      "platform engineering",
-      "devops",
-      "product management",
-      "developer experience",
-      "idp"
-    ],
-    "category": "Platform Engineering",
-    "permalink": "platform-engineering-is-not-devops-with-a-product-manager",
-    "resources": [
-      "https://martinfowler.com/articles/internal-platform.html",
-      "https://platformengineering.org/",
-      "https://humanitec.com/blog/what-is-platform-engineering",
-      "https://thenewstack.io/platform-engineering-is-devops-evolved/"
-    ]
-  },
-  {
-    "title": "Supply Chain Security: A Practical Guide with Sigstore and Kyverno",
-    "description_prompt": "Create a practical, tutorial-style blog post on securing the software supply chain in Kubernetes. Focus on two key open-source tools. Part 1: Explain Sigstore for signing container images. Walk through a simple example of signing an image with Cosign during a GitHub Actions build. Part 2: Explain Kyverno for admission control. Show how to write a simple Kyverno policy that blocks any unsigned images from being deployed to a Kubernetes cluster. Keep the examples clear and copy-paste friendly. Conclude by explaining how these two tools form a powerful combination for improving DevSecOps posture.",
-    "image_prompt": "1280x720, a digital illustration of a fortified supply chain. A container ship (the CI/CD pipeline) is moving containers (software artifacts). A glowing digital signature is being stamped on each container by a robotic arm (Sigstore). At the port (Kubernetes cluster), a powerful laser grid (Kyverno) scans each container, only allowing the signed ones through. Style: tech-forward, isometric view, security theme.",
-    "tags": [
-      "devsecops",
-      "security",
-      "kubernetes",
-      "sigstore",
-      "kyverno",
-      "supply chain"
-    ],
-    "category": "DevSecOps",
-    "permalink": "supply-chain-security-guide-sigstore-and-kyverno",
-    "resources": [
-      "https://www.sigstore.dev/",
-      "https://kyverno.io/",
-      "https://slsa.dev/",
-      "https://www.cisa.gov/securing-software-supply-chain"
-    ]
-  },
-  {
-    "title": "Docker's Endgame: What the Latest Features Tell Us About Their Strategy",
-    "description_prompt": "Write an analytical piece about Docker's strategy as of late 2025. Move beyond the 'Docker is just a container runtime' narrative. Analyze recent feature releases and announcements (hypothetical, but based on trends like AI integration, WebAssembly, and developer collaboration). Argue that Docker is focusing on the 'inner loop' of developer experience. Discuss: 1) Docker Desktop's evolution into a comprehensive local development environment. 2) Their investments in AI-powered tools for Dockerfile optimization. 3) Their stance on Wasm as a complement/alternative to containers. 4) How Docker Hub is becoming more than just a registry. Conclude with a prediction on Docker's role versus orchestrators like Kubernetes in the coming years.",
-    "image_prompt": "1280x720, a close-up of a detailed blueprint for a complex engine. The central, powerful gear is labeled 'Docker Engine', but the blueprint also shows intricate connected systems for 'AI Optimization', 'Wasm Integration', and 'Developer Collaboration'. Style: detailed schematic, blue and white, technical illustration.",
-    "tags": [
-      "docker",
-      "containers",
-      "developer tools",
-      "wasm",
-      "docker desktop",
-      "strategy"
-    ],
-    "category": "Containers",
-    "permalink": "dockers-endgame-latest-features-strategy-analysis",
-    "resources": [
-      "https://www.docker.com/blog/",
-      "https://www.docker.com/products/docker-desktop/",
-      "https://docs.docker.com/",
-      "https://wasmedge.org/docs/"
-    ]
-  },
-  {
-    "title": "Cost Optimization in AWS: 3 Unconventional Tricks for 2026",
-    "description_prompt": "Write a practical guide to AWS cost optimization that goes beyond the obvious advice ('use Reserved Instances'). Focus on three advanced or unconventional techniques that are relevant now. 1) 'Graviton Gold Rush': Detail the process and potential savings of migrating workloads (RDS, EC2, Lambda) to ARM-based Graviton processors, including potential code compatibility issues. 2) 'Intelligent Tiering Mastery': Explain how to aggressively use S3 Intelligent-Tiering and how to analyze access patterns to maximize savings. 3) 'Lambda Power Tuning': Introduce the AWS Lambda Power Tuning tool and show how to use it to find the most cost-effective memory allocation for a function, not just the fastest.",
-    "image_prompt": "1280x720, an image of a gold miner panning for gold in a river of data streams. Instead of gold nuggets, they are finding glowing AWS service icons (Graviton, S3, Lambda). The miner looks clever and satisfied. Style: metaphorical, slightly stylized realism, warm lighting.",
-    "tags": [
-      "aws",
-      "cloud cost",
-      "finops",
-      "graviton",
-      "s3",
-      "lambda",
-      "optimization"
-    ],
-    "category": "AWS Cloud",
-    "permalink": "aws-cost-optimization-3-unconventional-tricks-2026",
-    "resources": [
-      "https://aws.amazon.com/graviton/",
-      "https://aws.amazon.com/s3/storage-classes/intelligent-tiering/",
-      "https://github.com/alexcasalboni/aws-lambda-power-tuning",
-      "https://aws.amazon.com/well-architected-tool/"
-    ]
-  },
-  {
-    "title": "The Gemini vs. GPT-5 Showdown: A Developer's Perspective",
-    "description_prompt": "Write a deep, comparative analysis of the latest flagship LLMs from Google (Gemini's next iteration) and OpenAI (hypothetical GPT-5), from a software developer's point of view. Move beyond generic benchmarks. Focus on practical use cases: 1) Code Generation: Compare their ability to generate boilerplate, complex algorithms, and tests in Python and Go. 2) Debugging and Refactoring: Present both models with a buggy piece of legacy code and analyze their suggestions for fixing and modernizing it. 3) API Integration and Tool Use: Compare the ease of use, reliability, and cost of their respective APIs for building AI-powered applications. Use code snippets and side-by-side comparisons. Conclude with a nuanced verdict on which model is better for which type of development task.",
-    "image_prompt": "1280x720, two futuristic robots, one with Google's colorful 'G' logo and the other with OpenAI's swirling logo, are sitting at opposite ends of a chessboard. Instead of chess pieces, the board has glowing icons representing coding languages and development tasks. Style: high-tech, cinematic, focused on the intellectual battle.",
-    "tags": [
-      "ai",
-      "llm",
+      "generative ai",
       "gemini",
-      "gpt",
-      "openai",
-      "generative ai",
-      "code generation"
+      "gpt-5",
+      "llm",
+      "benchmarks"
     ],
-    "category": "Generative AI",
-    "permalink": "gemini-vs-gpt-5-showdown-developer-perspective",
+    "category": "AI",
+    "permalink": "gemini-3-pro-vs-gpt-5-1-benchmark-comparison",
     "resources": [
-      "https://deepmind.google/technologies/gemini/",
-      "https://openai.com/blog",
-      "https://huggingface.co/blog/llm-leaderboard",
-      "https://www.semianalysis.com/"
+      "https://www.cometapi.com/gemini-3-pro-vs-gpt-5-1-which-is-better-a-complete-comparison/",
+      "https://composio.dev/blog/gemini-3-pro-vs-gpt-5-1"
     ]
   },
   {
-    "title": "Linux Hardening in the Age of AI: A 2026 Checklist",
-    "description_prompt": "Create an updated security hardening checklist for a modern Linux server (e.g., running Ubuntu 24.04 LTS). The twist is to frame it within the context of new threats, some potentially AI-driven. Include classic advice (firewalls, user permissions, disabling root login) but add modern sections: 1) Securing Container Runtimes: Best practices for `containerd` or `crio`. 2) eBPF-based Security: How tools like Tetragon can provide real-time security observability. 3) Immutable Infrastructure Principles: Briefly explain how using tools like Ansible or Packer to build immutable images reduces attack surfaces. 4) Kernel Lockdown and AppArmor/SELinux profiles for AI workloads. Structure it as a scannable checklist. End by reinforcing that fundamentals are more important than ever.",
-    "image_prompt": "1280x720, a medieval knight in futuristic, glowing armor (representing a hardened Linux server) stands guard in front of a castle gate. The knight's shield has the Linux Tux penguin emblem on it. In the background, shadowy, AI-like digital phantoms are probing the defenses. Style: fantasy tech, epic, security concept.",
+    "title": "The DeepSeek Disruption: How Open Weights are Challenging Proprietary Giants",
+    "description_prompt": "Discuss the rise of DeepSeek V3.2 and its performance on coding benchmarks like CodeForces. Analyze the implications of an open-weights model challenging GPT-5 and Gemini 3. Discuss what this means for enterprise data privacy and the 'commoditization' of intelligence.",
+    "image_prompt": "A stylized illustration of a whale (DeepSeek logo concept) breaching through a digital ocean of binary code, creating waves that disrupt smaller boats labeled 'GPT' and 'Gemini'.",
     "tags": [
-      "linux",
-      "security",
-      "hardening",
-      "devsecops",
-      "ubuntu",
-      "ebpf",
-      "sysadmin"
+      "open source ai",
+      "deepseek",
+      "llm",
+      "coding assistant",
+      "ai privacy"
     ],
-    "category": "Linux Security",
-    "permalink": "linux-hardening-in-the-age-of-ai-2026-checklist",
+    "category": "AI",
+    "permalink": "deepseek-v3-vs-proprietary-models-coding",
     "resources": [
-      "https://www.cisecurity.org/cis-benchmarks/",
-      "https://ubuntu.com/security/apparmor",
-      "https://cilium.io/blog/2022/05/18/tetragon-release/",
-      "https://www.redhat.com/en/topics/linux/what-is-selinux"
+      "https://www.indiatoday.in/technology/news/story/deepseek-releases-updated-ai-that-matches-gemini-3-and-chatgpt-5-internet-says-whale-is-back-2829475-2025-12-02"
     ]
   },
   {
-    "title": "The Quiet Revolution: How eBPF is Reshaping Cloud Native",
-    "description_prompt": "Write an evangelist-style article about the transformative power of eBPF. Assume the reader knows what Kubernetes is but is new to eBPF. Explain the core concept of eBPF (safely running sandboxed programs in the kernel) without getting bogged down in kernel internals. Then, showcase its impact through three real-world domains: 1) Networking: How Cilium uses eBPF to provide high-performance networking and security. 2) Observability: How Pixie or Calico use eBPF for deep application tracing without code instrumentation. 3) Security: How tools like Tetragon or Falco use eBPF to detect and prevent runtime threats. Conclude with the bold statement that eBPF is the 'next layer' of the cloud-native stack.",
-    "image_prompt": "1280x720, an anatomical illustration of a brain, where the brainstem and core functions are the 'Linux Kernel'. A network of sophisticated, glowing fibers (eBPF) is shown connecting directly to this core, enhancing its capabilities in areas labeled 'Networking', 'Observability', and 'Security' without altering the core structure. Style: medical illustration meets tech diagram, clean, informative.",
+    "title": "Kubernetes 1.35: Key Features and Upgrade Guide for Platform Engineers",
+    "description_prompt": "Detail the new features and deprecations in Kubernetes 1.35. Discuss the roadmap for 1.36 and the lifecycle management of clusters in 2025. Focus on stability improvements and the 'production readiness' freeze cycle that defines modern K8s releases.",
+    "image_prompt": "A 3D isometric illustration of a Kubernetes ship steering wheel (logo) upgrading its components, with a calendar highlighted 'December 2025' and version '1.35' glowing.",
     "tags": [
-      "ebpf",
-      "linux",
-      "cloud native",
       "kubernetes",
-      "observability",
-      "cilium"
-    ],
-    "category": "Cloud Native",
-    "permalink": "quiet-revolution-how-ebpf-is-reshaping-cloud-native",
-    "resources": [
-      "https://ebpf.io/",
-      "https://isovalent.com/ebpf/",
-      "https://www.brendangregg.com/ebpf.html",
-      "https://github.com/iovisor/bcc"
-    ]
-  },
-  {
-    "title": "Building a Better Internal Developer Platform: 5 Common Pitfalls",
-    "description_prompt": "Write a cautionary blog post for organizations building an Internal Developer Platform (IDP). Instead of a 'how-to', focus on the 5 most common mistakes platform teams make. For each pitfall (e.g., 'Building a Cathedral, Not a Bazaar', 'Ignoring Developer Experience', 'Solving a Problem That Doesn't Exist', 'Picking Tech Before a Strategy', 'Forgetting Day 2 Operations'), explain the mistake, provide a short, anonymized story of how it fails, and offer a concrete way to avoid it. The tone should be empathetic and helpful, like advice from a seasoned practitioner. End with a call for readers to share their own 'IDP horror stories' in the comments.",
-    "image_prompt": "1280x720, a team of engineers is trying to build a complex, ornate bridge (the IDP) with overly complicated tools. The bridge doesn't actually lead to the city (production) that the people (developers) on the other side want to get to. The developers are shown building their own small, practical rafts to cross the river instead. Style: metaphorical cartoon, clear storytelling.",
-    "tags": [
+      "k8s upgrade",
       "platform engineering",
-      "idp",
-      "devops",
-      "developer experience",
-      "strategy"
+      "cloud native",
+      "release notes"
     ],
-    "category": "Platform Engineering",
-    "permalink": "building-internal-developer-platform-5-common-pitfalls",
+    "category": "Kubernetes",
+    "permalink": "kubernetes-1-35-features-upgrade-guide",
     "resources": [
-      "https://humanitec.com/blog/what-is-an-internal-developer-platform",
-      "https://teamtopologies.com/key-concepts",
-      "https://www.getport.io/blog",
-      "https://backstage.io/"
+      "https://kubernetes.io/releases/",
+      "https://www.kubernetes.dev/resources/release/"
     ]
   },
   {
-    "title": "The Weekend Project: Build a Serverless AI Summarizer with Azure Functions and OpenAI",
-    "description_prompt": "Create a step-by-step tutorial for a fun weekend project. The goal is to build a simple web service that takes a URL and returns a summary of the article. Guide the user through: 1) Setting up a simple HTTP-triggered Azure Function in Python. 2) Using the `requests` and `BeautifulSoup` libraries to scrape the text content from the provided URL. 3) Calling the OpenAI (or Azure OpenAI) API's completions endpoint with a prompt to summarize the scraped text. 4) Returning the summary as a JSON response. Provide all necessary code snippets and configuration steps. Keep it beginner-friendly but demonstrate a powerful modern stack.",
-    "image_prompt": "1280x720, a friendly robot is holding a long scroll of paper (an article) in one hand and feeding it into a sleek, modern machine. Out of the machine comes a single, neat index card with a perfect summary. The Azure and OpenAI logos are subtly visible on the machine. Style: clean 3D illustration, inviting and clear.",
+    "title": "Gateway API is GA: Why It’s Time to Deprecate Your Ingress Controller",
+    "description_prompt": "Comprehensive argument for migrating from Kubernetes Ingress to the Gateway API. Explain the technical limitations of Ingress (annotations hell) vs. the role-oriented design of Gateway API. Provide a migration strategy for teams running NGINX or Istio Ingress.",
+    "image_prompt": "A technical diagram contrasting the 'Ingress' monolithic architecture with the layered 'Gateway API' architecture (GatewayClass, Gateway, HTTPRoute), showing traffic flow.",
     "tags": [
-      "azure",
-      "serverless",
-      "python",
-      "ai",
-      "tutorial",
-      "openai"
-    ],
-    "category": "Tutorial",
-    "permalink": "project-serverless-ai-summarizer-azure-functions-openai",
-    "resources": [
-      "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview",
-      "https://platform.openai.com/docs/api-reference",
-      "https://www.crummy.com/software/BeautifulSoup/bs4/doc/",
-      "https://docs.python-requests.org/en/latest/"
-    ]
-  },
-  {
-    "title": "GitOps Beyond ArgoCD: Exploring the FluxCD Ecosystem",
-    "description_prompt": "Write an article that shines a spotlight on FluxCD as a powerful GitOps tool, especially for those who only know ArgoCD. Start by acknowledging ArgoCD's popularity, then introduce Flux as the other CNCF-graduated GitOps project. Highlight three key differentiators or strengths of the Flux ecosystem: 1) Its toolkit approach (source-controller, kustomize-controller, etc.) and composability. 2) Its deep integration with Flagger for progressive delivery. 3) Its minimalist and declarative-first philosophy. Provide a simple example of how Flux manages a repository and a Kustomization. Conclude by positioning Flux not as an 'Argo killer,' but as a robust alternative with a different philosophy.",
-    "image_prompt": "1280x720, a detailed map of the 'GitOps world'. The continent of ArgoCD is large and well-charted, but next to it is the equally rich archipelago of FluxCD, with islands labeled 'Source Controller', 'Kustomize Controller', and the prominent volcano 'Flagger'. An explorer's ship is sailing towards the Flux archipelago. Style: fantasy map, detailed, Tolkien-esque.",
-    "tags": [
-      "gitops",
-      "fluxcd",
       "kubernetes",
-      "devops",
-      "cncf",
-      "argocd",
-      "continuous delivery"
+      "gateway api",
+      "networking",
+      "ingress",
+      "istio"
     ],
-    "category": "Cloud Native",
-    "permalink": "gitops-beyond-argocd-exploring-the-fluxcd-ecosystem",
+    "category": "Cloud Networking",
+    "permalink": "kubernetes-gateway-api-vs-ingress-migration",
     "resources": [
-      "https://fluxcd.io/",
-      "https://argo-cd.readthedocs.io/en/stable/",
-      "https://opengitops.dev/",
-      "https://www.cncf.io/projects/flux/"
+      "https://blog.nginx.org/blog/kubernetes-networking-ingress-controller-to-gateway-api",
+      "https://konghq.com/blog/engineering/gateway-api-vs-ingress"
     ]
   },
   {
-    "title": "Cloud Networking's Next Frontier: The Rise of the Cloud WAN",
-    "description_prompt": "Explain the concept of Cloud WAN (Wide Area Network) as an evolution of traditional cloud networking. Start by describing the old model: hub-and-spoke VPCs/VNets connected via peering or VPN gateways. Then, introduce Cloud WAN services like AWS Cloud WAN and Azure Virtual WAN. Explain their core value proposition: a managed, centralized global network for connecting VPCs, on-prem data centers, and branch offices. Use an analogy, like upgrading from a city's messy road system to a clean, efficient subway system. Discuss the benefits: simplified management, improved security, and global performance. Target audience: network engineers and cloud architects.",
-    "image_prompt": "1280x720, a global map with glowing dots representing data centers and VPCs. In the 'before' half, they are connected by a chaotic, tangled mess of individual strings. In the 'after' half, all dots are connected to a clean, luminous central ring that orbits the globe, representing the Cloud WAN. Style: before-and-after, clear visual metaphor, global scale.",
+    "title": "Sidecar-Free Service Mesh: Understanding Cilium’s eBPF Architecture",
+    "description_prompt": "Explain the architectural shift from sidecar-based service meshes (like early Istio) to Cilium's sidecar-free eBPF model. Discuss the performance benefits (latency, memory) and the new capabilities in late 2025, such as sidecar-less mTLS and advanced L7 traffic management.",
+    "image_prompt": "A microscopic view of a Linux kernel with glowing strands of eBPF code intercepting network packets, bypassing heavy container blocks labeled 'Sidecar Proxy'.",
     "tags": [
-      "cloud networking",
-      "aws",
-      "azure",
-      "wan",
-      "cloud architecture",
+      "cilium",
+      "ebpf",
+      "service mesh",
+      "kubernetes",
       "networking"
     ],
     "category": "Cloud Networking",
-    "permalink": "cloud-networking-next-frontier-the-rise-of-cloud-wan",
+    "permalink": "cilium-ebpf-sidecar-free-service-mesh",
     "resources": [
-      "https://aws.amazon.com/cloud-wan/",
-      "https://azure.microsoft.com/en-us/products/virtual-wan",
-      "https://cloud.google.com/network-connectivity/docs/network-connectivity-center/overview",
-      "https://www.futuriom.com/articles/news/what-is-cloud-wan/2022/01"
+      "https://cilium.io/use-cases/service-mesh/",
+      "https://docs.cilium.io/en/stable/network/servicemesh/index.html"
     ]
   },
   {
-    "title": "How Claude 3's Success Is Forcing a Rethink in LLM Fine-Tuning",
-    "description_prompt": "Write an analysis of how the performance of Anthropic's Claude 3 family (and its hypothetical late-2025 successor) is challenging the 'fine-tune everything' mentality. Argue that the exceptional out-of-the-box reasoning and instruction-following abilities of these models make extensive fine-tuning less necessary for many tasks. Discuss the new paradigm: 1) 'Prompt Engineering as the New Fine-Tuning': How sophisticated prompting and few-shot learning can achieve results that previously required fine-tuning. 2) The rise of RAG (Retrieval-Augmented Generation) as the primary customization technique. 3) When fine-tuning is still essential (e.g., for domain-specific language or style). Conclude that developers should now default to RAG and advanced prompting, only considering fine-tuning as a last resort.",
-    "image_prompt": "1280x720, an artist's studio. One artist is painstakingly chiseling a marble sculpture (representing fine-tuning). Another artist, with a much more powerful and intelligent tool (representing a Claude-like model), is simply giving it precise verbal commands, and the tool is sculpting the marble perfectly on its own. Style: classical art meets futuristic tech, metaphorical.",
+    "title": "Linux Kernel 6.18 LTS: Rust Drivers and Critical Security Updates",
+    "description_prompt": "Review the features of Linux Kernel 6.18 LTS released in late 2025. Focus on the maturity of Rust for Linux, the new 'Prepatch' release cycle, and the importance of MTE (Memory Tagging Extension) for ARM-based cloud servers.",
+    "image_prompt": "A tuxedo penguin (Tux) wearing modern iron-man style armor made of rusted metal (symbolizing Rust language integration), standing on a server block labeled '6.18'.",
     "tags": [
-      "claude",
-      "anthropic",
-      "llm",
-      "ai",
-      "fine-tuning",
-      "rag",
-      "prompt engineering"
-    ],
-    "category": "Generative AI",
-    "permalink": "claude-3-success-rethinking-llm-fine-tuning",
-    "resources": [
-      "https://www.anthropic.com/news/claude-3-family",
-      "https://www.promptingguide.ai/",
-      "https://aws.amazon.com/what-is/retrieval-augmented-generation/",
-      "https://openai.com/docs/guides/fine-tuning"
-    ]
-  },
-  {
-    "title": "Mastering DevSecOps: Integrating Trivy into Your GitLab CI",
-    "description_prompt": "Create a hands-on tutorial showing how to integrate the open-source scanner Trivy into a GitLab CI/CD pipeline. The goal is to scan a container image for vulnerabilities during the build process. The tutorial should cover: 1) A brief introduction to Trivy and what it does (scans for vulnerabilities, misconfigurations, secrets). 2) How to add a new 'scan' stage to an existing `.gitlab-ci.yml` file. 3) The specific YAML syntax to call the official Trivy container image, scan the locally built app image, and fail the pipeline if critical vulnerabilities are found. 4) How to view the scan results as a job artifact in GitLab. Provide copy-paste-ready code blocks and clear explanations.",
-    "image_prompt": "1280x720, a sleek, automated factory assembly line (GitLab CI). As a product (a container image) moves along the belt, it passes through a sophisticated scanning station with laser beams and sensors. The scanner, with the Trivy logo, flags a defective product and a robotic arm removes it. Style: modern 3D illustration, industrial automation theme.",
-    "tags": [
-      "devsecops",
-      "gitlab",
-      "ci-cd",
-      "trivy",
+      "linux",
+      "kernel",
+      "rust",
       "security",
-      "vulnerability scanning"
+      "open source"
+    ],
+    "category": "Linux",
+    "permalink": "linux-kernel-6-18-lts-features-rust",
+    "resources": [
+      "https://www.theregister.com/2025/12/05/new_lts_kernel_and_alpine/",
+      "https://linuxsecurity.com/features/linux-kernel-security-2025"
+    ]
+  },
+  {
+    "title": "Terraform vs. OpenTofu in 2025: The Definitive Feature Comparison",
+    "description_prompt": "Provide a neutral, feature-by-feature comparison of Terraform and OpenTofu as of December 2025. Highlight OpenTofu's native state encryption and open-source governance versus Terraform's enterprise ecosystem. Advise on how to choose between them for new projects.",
+    "image_prompt": "A split composition showing a green stylized hexagon (Terraform) and a yellow tofu block (OpenTofu) connected by a bridge of code, symbolizing compatibility and divergence.",
+    "tags": [
+      "terraform",
+      "opentofu",
+      "iac",
+      "devops",
+      "cloud infrastructure"
+    ],
+    "category": "OpenTofu",
+    "permalink": "terraform-vs-opentofu-2025-comparison",
+    "resources": [
+      "https://spacelift.io/blog/opentofu-vs-terraform",
+      "https://medium.com/@averageguymedianow/terraform-vs-opentofu-the-complete-guide-to-infrastructure-as-code-tools-in-2025-7f1b9dccd9e7"
+    ]
+  },
+  {
+    "title": "Securing Your Infrastructure: Implementing Native State Encryption in OpenTofu",
+    "description_prompt": "A technical tutorial on using the native state encryption features introduced in OpenTofu 1.9. Explain why unencrypted state files are a security risk and walk through the configuration to encrypt state at rest without third-party tools.",
+    "image_prompt": "A digital vault door made of code blocks locking shut, with the OpenTofu logo embossed on the front, glowing with a secure green light.",
+    "tags": [
+      "opentofu",
+      "iac security",
+      "encryption",
+      "devsecops",
+      "tutorial"
+    ],
+    "category": "OpenTofu",
+    "permalink": "opentofu-native-state-encryption-tutorial",
+    "resources": [
+      "https://infisical.com/blog/terraform-vs-opentofu",
+      "https://spacelift.io/blog/opentofu-vs-terraform"
+    ]
+  },
+  {
+    "title": "The Event-Driven Enterprise: Self-Healing Infra with Ansible and AI",
+    "description_prompt": "Explore the convergence of Event-Driven Ansible (EDA) and AI agents. Describe a workflow where a monitoring alert triggers an Ansible rule, which then uses an AI agent to diagnose the issue and select the correct remediation playbook.",
+    "image_prompt": "A flow diagram showing an 'Event' (lightning bolt) hitting a 'Sensor', passing to an 'AI Brain', which triggers an 'Ansible Robot' to fix a broken server rack.",
+    "tags": [
+      "ansible",
+      "ai automation",
+      "self-healing",
+      "event-driven",
+      "operations"
+    ],
+    "category": "Ansible",
+    "permalink": "event-driven-ansible-ai-self-healing",
+    "resources": [
+      "https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content",
+      "https://tv.redhat.com/en/detail/6376346688112/the-future-of-automation-red-hat-ansible-automation-platform-roadmap"
+    ]
+  },
+  {
+    "title": "Provisioning the AI Stack: Using Ansible to Deploy GPU Clusters and Vector DBs",
+    "description_prompt": "Focus on the 'Ansible Content Collections for AI' released in 2025. Explain how DevOps teams can use Ansible to standardize the deployment of Nvidia drivers, PyTorch environments, and vector databases like Milvus or Pinecone.",
+    "image_prompt": "An Ansible robot conductor orchestrating an orchestra of GPU cards and server racks, symbolizing automated AI infrastructure deployment.",
+    "tags": [
+      "Ansible",
+      "AI Infrastructure",
+      "GPU",
+      "MLOps",
+      "Infrastructure as Code"
+    ],
+    "category": "Ansible",
+    "permalink": "ansible-provisioning-ai-gpu-infrastructure",
+    "resources": [
+      "https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content"
+    ]
+  },
+  {
+    "title": "Platform Engineering 2.0: Moving From 'Portals' to Standardized Vending Machines",
+    "description_prompt": "Analyze the shift in Platform Engineering from 2024's 'Portal Hype' to 2025's 'API Standardization'. Discuss the concept of the 'Self-Service Vending Machine' for infrastructure and how AI is accelerating the adoption of IDPs.",
+    "image_prompt": "A sleek, futuristic vending machine interface where a developer is selecting 'Kubernetes Cluster' and 'Database' as products, with backend gears visible.",
+    "tags": [
+      "platform engineering",
+      "idp",
+      "developer experience",
+      "self-service",
+      "standardization"
+    ],
+    "category": "DevOps",
+    "permalink": "platform-engineering-2-0-standardization-trends",
+    "resources": [
+      "https://platformengineering.org/blog/platform-engineering-predictions-for-2025",
+      "https://cloud.google.com/blog/products/application-modernization/new-platform-engineering-research-report"
+    ]
+  },
+  {
+    "title": "Python 3.14 Deep Dive: Free-Threading and the End of the GIL",
+    "description_prompt": "Explore the major features of Python 3.14, specifically the maturation of 'Free-threaded Python' (No-GIL). Explain what this means for CPU-bound performance in AI and data science applications. Also cover 'Deferred Annotations' and the new JIT compiler improvements.",
+    "image_prompt": "A python snake shedding its old skin (labeled 'GIL') to reveal a shiny, mechanical, high-speed metallic skin underneath, symbolizing performance.",
+    "tags": [
+      "Python",
+      "Python 3.14",
+      "Programming",
+      "Concurrency",
+      "Performance"
+    ],
+    "category": "Linux (Programming)",
+    "permalink": "python-3-14-features-gil-free-threading",
+    "resources": [
+      "https://docs.python.org/3/whatsnew/3.14.html",
+      "https://www.python.org/downloads/release/python-3140/"
+    ]
+  },
+  {
+    "title": "Go 1.25: Turbocharging Tests with the 'synctest' Package",
+    "description_prompt": "Detail the key updates in Go 1.25. Focus on the synctest package for simulated time testing and the new encoding/json/v2 package. Explain the significance of 'Container-aware GOMAXPROCS' for running Go applications in Kubernetes.",
+    "image_prompt": "A Gopher (Go mascot) holding a stopwatch that is frozen in time, while running on a hamster wheel at incredible speed, representing simulated time testing.",
+    "tags": [
+      "golang",
+      "go 1.25",
+      "testing",
+      "kubernetes",
+      "programming"
+    ],
+    "category": "Linux (Programming)",
+    "permalink": "go-1-25-features-synctest-json-v2",
+    "resources": [
+      "https://antonz.org/go-1-25/",
+      "https://go.dev/doc/go1.25"
+    ]
+  },
+  {
+    "title": "VS Code 1.106: Managing Your AI Team with Agent Sessions",
+    "description_prompt": "Review the 'Agent HQ' features in the latest VS Code release. Discuss the 'Agent Sessions' view and how it helps developers manage context across multiple AI tools. Explain 'Next Edit Suggestions' and the shift to an 'Agentic Editor'.",
+    "image_prompt": "A screen capture style visualization of the VS Code interface with a glowing side panel labeled 'Agent Sessions', showing multiple active AI bots collaborating on code.",
+    "tags": [
+      "vscode",
+      "ai coding",
+      "copilot",
+      "developer tools",
+      "ide"
+    ],
+    "category": "DevOps",
+    "permalink": "vs-code-agent-sessions-ai-features",
+    "resources": [
+      "https://code.visualstudio.com/updates",
+      "https://github.blog/changelog/2025-01-06-copilot-workspace-changelog-january-6-2025/"
+    ]
+  },
+  {
+    "title": "WebAssembly on the Server: Real-World Use Cases in 2025",
+    "description_prompt": "Analyze the adoption of WebAssembly beyond the browser. Discuss use cases in serverless functions (scale-to-zero), edge computing, and plugin architectures. Highlight why Wasm is becoming a companion to containers in the cloud-native stack.",
+    "image_prompt": "A puzzle piece labeled 'Wasm' fitting perfectly into a server rack slot, glowing with energy, distinguishing itself from larger 'Container' blocks.",
+    "tags": [
+      "webassembly",
+      "wasm",
+      "serverless",
+      "cloud native",
+      "edge computing"
+    ],
+    "category": "Cloud Networking",
+    "permalink": "webassembly-server-side-use-cases-2025",
+    "resources": [
+      "https://www.atakinteractive.com/blog/webassembly-in-2025-the-future-of-high-performance-web-applications",
+      "https://medium.com/@technologicinnovation/in-2025-cloud-native-and-edge-native-apps-will-be-built-with-webassembly-beyond-the-browser-b8a2f086f679"
+    ]
+  },
+  {
+    "title": "Running LLMs Locally: A Guide to Docker Desktop’s AI Model Runner",
+    "description_prompt": "A hands-on guide to using Docker Desktop's new AI capabilities. Explain how to pull and run open-weights models (like Llama or Mistral) locally using the Model Runner. Discuss the benefits for privacy and cost savings during the development loop.",
+    "image_prompt": "The Docker whale mascot carrying a glowing brain (AI model) on its back, swimming through a local computer circuit board.",
+    "tags": [
+      "docker",
+      "local llm",
+      "ai development",
+      "llama",
+      "mistral"
+    ],
+    "category": "Docker",
+    "permalink": "docker-desktop-ai-model-runner-guide",
+    "resources": [
+      "https://www.docker.com/blog/how-we-designed-model-runner-and-whats-next/",
+      "https://www.docker.com/solutions/docker-ai/"
+    ]
+  },
+  {
+    "title": "The AI-Optimized Dockerfile: Using Agents to Shrink Image Sizes",
+    "description_prompt": "Discuss how AI agents are being used to automatically refactor Dockerfiles. Covers multi-stage builds, distroless images, and vulnerability scanning, all automated by 'Docker for AI' features.",
+    "image_prompt": "A split image showing a bloated, messy shipping container (large image) on the left and a sleek, compact, futuristic container (optimized image) on the right, processed by a robotic arm.",
+    "tags": [
+      "docker",
+      "container optimization",
+      "ai tools",
+      "devops",
+      "security"
+    ],
+    "category": "Docker",
+    "permalink": "optimizing-docker-images-with-ai-agents",
+    "resources": [
+      "https://www.infoq.com/news/2025/11/docker-desktop-ai/"
+    ]
+  },
+  {
+    "title": "Preparing for Q-Day: The DevOps Guide to Post-Quantum Cryptography",
+    "description_prompt": "Explain the 'Harvest Now, Decrypt Later' threat and why PQC is a 2025 priority. List the steps for a 'Crypto Agility' assessment: inventorying keys, upgrading to quantum-safe algorithms (Kyber/Dilithium), and automating certificate rotation.",
+    "image_prompt": "A digital shield deflecting a beam of 'Quantum' particles, with a lock interface showing 'Quantum-Safe' verification.",
+    "tags": [
+      "post-quantum",
+      "cryptography",
+      "security",
+      "devsecops",
+      "compliance"
     ],
     "category": "DevSecOps",
-    "permalink": "devsecops-integrating-trivy-into-gitlab-ci",
+    "permalink": "post-quantum-cryptography-devops-guide",
     "resources": [
-      "https://github.com/aquasecurity/trivy",
-      "https://docs.gitlab.com/ee/ci/",
-      "https://about.gitlab.com/blog/2021/01/21/container-scanning-with-trivy/",
-      "https://owasp.org/www-community/Component_Analysis"
+      "https://www.bcg.com/publications/2025/how-quantum-computing-will-upend-cybersecurity",
+      "https://cpl.thalesgroup.com/encryption/post-quantum-crypto-agility"
     ]
   },
   {
-    "title": "A Cloud Architect's Holiday Wishlist for 2026",
-    "description_prompt": "Write a lighthearted, festive blog post framed as a 'letter to Santa' from a cloud architect. The wishlist items should be real, high-level features or changes they wish for from the major cloud providers and toolmakers. Examples: 'Dear Santa, for Christmas I'd like a single, unified IAM policy language across AWS, Azure, and GCP.' or 'Please bring me a Kubernetes that can auto-scale its own control plane to zero.' or 'All I want is a version of Terraform that can natively refactor resources.' The tone should be witty and relatable for tech professionals. End with a warm holiday greeting and ask readers what's on their cloud wishlist.",
-    "image_prompt": "1280x720, a cozy fireplace scene. A stocking with an AWS logo hangs next to one with an Azure logo. On a table nearby is a plate of cookies and a glass of milk next to a laptop displaying complex architectural diagrams. A scroll of paper, the wishlist, is resting on the laptop. Style: warm, festive, humorous, Norman Rockwell-esque.",
+    "title": "Snyk vs. Wiz in 2025: Convergence of Code and Cloud Security",
+    "description_prompt": "Compare the strengths of Snyk (Code/Developer focus) and Wiz (Cloud/Infrastructure focus) as of late 2025. Discuss the trend of 'CNAPP Convergence' and why many enterprises are choosing to integrate both rather than pick a winner.",
+    "image_prompt": "A Venn diagram visual with 'Code Security' (Snyk) on the left and 'Cloud Security' (Wiz) on the right, with the intersection labeled 'CNAPP 2025'.",
     "tags": [
-      "cloud computing",
-      "aws",
-      "azure",
-      "kubernetes",
-      "humor",
-      "holidays",
-      "architecture"
+      "snyk",
+      "wiz",
+      "cnapp",
+      "cloud security",
+      "devsecops"
     ],
-    "category": "Cloud Culture",
-    "permalink": "cloud-architects-holiday-wishlist-for-2026",
+    "category": "DevSecOps",
+    "permalink": "snyk-vs-wiz-2025-cnapp-comparison",
     "resources": [
-      "https://aws.amazon.com/architecture/",
-      "https://learn.microsoft.com/en-us/azure/architecture/",
-      "https://cloud.google.com/architecture",
-      "https://www.thecloudpod.net/"
+      "https://cycode.com/blog/snyk-vs-wiz-3-key-differences/",
+      "https://www.wiz.io/academy/wiz-vs-snyk"
     ]
   },
   {
-    "title": "A DevOps Carol: A Tale of Pipelines Past, Present, and Future",
-    "description_prompt": "Write a festive story in the style of Charles Dickens' 'A Christmas Carol'. The main character is 'Ebenezer Scroogineer,' an old-school ops manager who hates automation and developers. He is visited by three ghosts: The Ghost of Pipelines Past (shows him chaotic, manual deployments on bare metal servers), The Ghost of Pipelines Present (shows him a smooth, automated CI/CD pipeline delivering value), and The Ghost of Pipelines Future (shows him a world of AI-driven, self-healing platforms he doesn't understand). Scroogineer has a change of heart and embraces DevOps. The story should be entertaining but also subtly teach the value of DevOps principles. End with 'God bless us, every one... of our automated tests!'",
-    "image_prompt": "1280x720, a dramatic, painterly scene. An old, grumpy sysadmin in a nightgown is being shown a vision by a ghostly figure made of flowing lines of code. The vision is of a perfect, glowing CI/CD pipeline. Style: classic illustration, inspired by A Christmas Carol, with a tech twist.",
+    "title": "Securing the Agent: The Rise of Non-Human Identity Management (NHIM)",
+    "description_prompt": "Discuss the security risks posed by autonomous AI agents that possess API keys and cloud permissions. Introduce the concept of Non-Human Identity Management (NHIM) and best practices for scoping agent permissions (Least Privilege for Agents).",
+    "image_prompt": "A robotic hand holding a digital ID card, being scanned by a security laser, symbolizing the authentication of an AI agent.",
     "tags": [
-      "devops",
-      "storytelling",
-      "holidays",
-      "automation",
-      "culture",
-      "cicd"
+      "identity management",
+      "nhim",
+      "ai security",
+      "iam",
+      "zero trust"
     ],
-    "category": "DevOps Culture",
-    "permalink": "a-devops-carol-pipelines-past-present-future",
+    "category": "DevSecOps",
+    "permalink": "non-human-identity-management-ai-agents",
     "resources": [
-      "https://en.wikipedia.org/wiki/A_Christmas_Carol",
-      "https://itrevolution.com/the-devops-handbook/",
-      "https://cloud.google.com/devops",
-      "https://aws.amazon.com/devops/what-is-devops/"
+      "https://www.appviewx.com/news/appviewx-post-quantum-readiness-tools-help-enterprises-future-proof-devops-and-secops-against-new-cryptographic-threats/"
     ]
   },
   {
-    "title": "Why Your Next API Should Be Built with GraphQL: A 2026 Perspective",
-    "description_prompt": "Write a persuasive article arguing for GraphQL as a superior choice for many new API projects in 2026, compared to REST. Acknowledge REST's dominance, but present a case for 'why now is the time for GraphQL'. Focus on three key benefits: 1) Eliminating over-fetching and under-fetching, especially crucial for mobile and microservices. 2) The strongly typed schema and how it enables better developer tools and collaboration between frontend and backend. 3) The power of a single endpoint and how it simplifies API evolution and client-side logic. Address common criticisms like N+1 problems and caching, and mention modern solutions. Conclude with a clear recommendation for when to choose GraphQL.",
-    "image_prompt": "1280x720, a comparison between two restaurants. The 'RESTaurant' has a fixed menu with many dishes, and customers often get more food than they want. The 'GraphQL Pizzeria' has a single counter where customers can build their own perfect pizza slice with exactly the toppings they need, making it much more efficient. Style: infographic, clean vector art, clear metaphor.",
+    "title": "Prometheus 3.0: A New UI and Native OTLP Support",
+    "description_prompt": "Detail the major changes in Prometheus 3.0. Highlight the new user interface, the importance of UTF-8 support for internationalization, and the native support for OpenTelemetry (OTLP) which bridges the gap between the two ecosystems.",
+    "image_prompt": "The Prometheus torch logo illuminating a modern, clean dashboard interface, symbolizing the new UI and clarity.",
     "tags": [
-      "graphql",
-      "api",
-      "backend",
-      "development",
-      "rest",
-      "architecture"
+      "prometheus",
+      "observability",
+      "opentelemetry",
+      "monitoring",
+      "devops"
     ],
-    "category": "API Development",
-    "permalink": "why-your-next-api-should-be-graphql-2026",
+    "category": "Cloud Networking (Observability)",
+    "permalink": "prometheus-3-0-features-otlp-utf8",
     "resources": [
-      "https://graphql.org/",
-      "https://www.howtographql.com/",
-      "https://www.apollographql.com/docs/",
-      "https://restfulapi.net/"
+      "https://prometheus.io/blog/2024/11/14/prometheus-3-0/",
+      "https://grafana.com/events/grafanacon/2025/prometheus-3.0-everything-you-need-to-know/"
     ]
   },
   {
-    "title": "OpenCost and Kubecost: An Unbiased Guide to Kubernetes Cost Monitoring",
-    "description_prompt": "Create a clear, unbiased guide to Kubernetes cost monitoring, focusing on the OpenCost project and its commercial upstream, Kubecost. Explain the core problem: attributing cloud costs to specific Kubernetes workloads (namespaces, deployments, etc.). Introduce OpenCost as the open-source CNCF standard. Detail what you get with OpenCost 'out of the box' (e.g., cost allocation by workload, asset reports). Then, explain the value proposition of the paid Kubecost product, highlighting features like savings recommendations, alerting, and enterprise integrations. Provide a table comparing the features of OpenCost vs. Kubecost. End with guidance on which one to choose based on organizational size and maturity.",
-    "image_prompt": "1280x720, a financial dashboard for a Kubernetes cluster. The screen is split in half. The left side, labeled 'OpenCost', shows a clean, basic bar chart of costs per namespace. The right side, labeled 'Kubecost', shows a much more detailed and interactive dashboard with AI-powered savings suggestions and red warning alerts. Style: dashboard UI, data visualization, comparison.",
+    "title": "The Fourth Signal: Introduction to OpenTelemetry Profiling",
+    "description_prompt": "Explain the addition of 'Profiling' as a signal in OpenTelemetry, alongside Logs, Metrics, and Traces. Discuss how continuous profiling helps identify performance bottlenecks in AI and microservices workloads.",
+    "image_prompt": "A quadrant diagram showing 'Logs', 'Metrics', 'Traces', and 'Profiling' as four pillars holding up a roof labeled 'Full Stack Observability'.",
     "tags": [
-      "kubernetes",
+      "opentelemetry",
+      "profiling",
+      "observability",
+      "performance",
+      "tracing"
+    ],
+    "category": "Cloud Networking (Observability)",
+    "permalink": "opentelemetry-profiling-introduction-2025",
+    "resources": [
+      "https://opentelemetry.io/blog/2025/",
+      "https://medium.com/@serverwalainfra/opentelemetry-in-2025-the-backbone-of-full-stack-observability-for-container-environments-619d44135a5a"
+    ]
+  },
+  {
+    "title": "Grafana 12: SQL Expressions and Canvas Visualization",
+    "description_prompt": "Cover the release of Grafana 12. Focus on the new 'SQL Expressions' feature that allows data transformation within the dashboard, and the 'Canvas' panel for custom, diagram-like visualizations.",
+    "image_prompt": "A vibrant Grafana dashboard displaying complex data on a digital canvas, with a painter's palette icon interacting with the charts.",
+    "tags": [
+      "grafana",
+      "visualization",
+      "dashboards",
+      "observability",
+      "data analytics"
+    ],
+    "category": "Cloud Networking (Observability)",
+    "permalink": "grafana-12-features-sql-expressions",
+    "resources": [
+      "https://grafana.com/blog/2025/11/19/grafana-12-3-release-all-the-latest-features/",
+      "https://grafana.com/docs/grafana/latest/whatsnew/whats-new-in-v12-0/"
+    ]
+  },
+  {
+    "title": "FinOps for AI: Budgeting for the Variable Cost of Agents",
+    "description_prompt": "Discuss the unique challenges of managing cloud costs for AI workloads (training spikes vs. inference tails). Review new tools like 'AWS Q for Cost Optimization' and strategies for unit-economic tracking of agent tasks.",
+    "image_prompt": "A digital scale weighing a 'Brain' (AI) against a 'Dollar Sign' (Cost), balanced perfectly, set against a financial chart background.",
+    "tags": [
       "finops",
-      "cost management",
+      "cloud costs",
+      "ai economics",
+      "aws q",
+      "management"
+    ],
+    "category": "DevOps",
+    "permalink": "finops-for-ai-cost-optimization-strategies",
+    "resources": [
+      "https://www.prosperops.com/blog/finops-for-ai/",
+      "https://www.finops.org/insights/finops-x-2025-cloud-announcements/"
+    ]
+  },
+  {
+    "title": "Implementing GreenOps: Using OpenCost and Kube-green to Reduce Carbon",
+    "description_prompt": "A practical guide to GreenOps tools. Explain how to use OpenCost to measure the carbon efficiency of a cluster and Kube-green to automatically scale down non-production environments at night to save energy.",
+    "image_prompt": "A Kubernetes logo where the wheel spokes are leaves, growing out of a server block, symbolizing sustainable computing.",
+    "tags": [
+      "greenops",
+      "sustainability",
       "opencost",
-      "kubecost",
-      "cncf"
+      "kube-green",
+      "kubernetes"
     ],
-    "category": "Kubernetes FinOps",
-    "permalink": "opencost-kubecost-unbiased-guide-kubernetes-cost-monitoring",
+    "category": "Kubernetes",
+    "permalink": "greenops-kubernetes-opencost-kube-green",
     "resources": [
-      "https://www.opencost.io/",
-      "https://www.kubecost.com/",
-      "https://www.cncf.io/projects/opencost/",
-      "https://www.finops.org/"
+      "https://umbrellacost.com/blog/guide-to-greenops/",
+      "https://thenewstack.io/greenops-and-finops-a-dual-strategy-for-sustainable-ai/"
     ]
   },
   {
-    "title": "The Logfile that Saved Christmas: A Sysadmin's Holiday Tale",
-    "description_prompt": "Write a short, engaging, and slightly humorous story about a junior sysadmin or SRE working on Christmas Eve. The main plot: a critical e-commerce application goes down during the holiday shopping peak. Senior engineers are unavailable. The junior protagonist, using their knowledge of Linux tools (`grep`, `awk`, `journalctl`), methodically analyzes log files to trace a bizarre, unexpected error back to its source (e.g., a weird interaction caused by a new feature). They fix the issue just in time, saving the day. The story should celebrate the unsung heroes of IT and the power of fundamental sysadmin skills. It's a feel-good holiday story for techies.",
-    "image_prompt": "1280x720, a single sysadmin sits in a dimly lit server room, illuminated only by the glow of a terminal on their laptop. Outside the window, it's snowing. The terminal shows lines of log data, with one specific line highlighted, showing the 'aha!' moment of discovery. The admin has a look of triumph. Style: cinematic, emotional, focused lighting.",
+    "title": "ArgoCD in 2025: Integrating AI into GitOps Pipelines",
+    "description_prompt": "Analyze the roadmap of ArgoCD in 2025. Discuss how AI is being used to detect drift and automate sync policies, and the integration with 'EKS Managed Capabilities' for simplified operations.",
+    "image_prompt": "An ArgoCD octopus mascot using robotic arms to organize shipping containers (Kubernetes pods) with precision.",
     "tags": [
-      "sysadmin",
-      "linux",
-      "storytelling",
-      "sre",
-      "troubleshooting",
-      "holidays"
-    ],
-    "category": "Tech Story",
-    "permalink": "the-logfile-that-saved-christmas-sysadmin-tale",
-    "resources": [
-      "https://man7.org/linux/man-pages/man1/grep.1.html",
-      "https://man7.org/linux/man-pages/man1/awk.1.html",
-      "https://man7.org/linux/man-pages/man1/journalctl.1.html",
-      "https://www.usenix.org/publications/login"
-    ]
-  },
-  {
-    "title": "The Top 5 Security Tools That Defined DevSecOps in 2025",
-    "description_prompt": "Create a year-in-review listicle focusing on five security tools that had a major impact on the DevSecOps space in 2025. For each tool, provide a concise summary of what it is, why it was so impactful this year (e.g., new features, CNCF graduation, major adoption), and a common use case. The list should be a mix of categories. Example tools to consider: Trivy (vulnerability scanning), Sigstore (supply chain security), Kyverno/OPA (policy as code), Falco (runtime security), and a new AI-powered SAST tool. The tone should be authoritative and analytical. Ask readers which tool had the biggest impact on their work.",
-    "image_prompt": "1280x720, a powerful, multi-headed guardian beast, with each head representing a different security tool (Trivy, Sigstore, Kyverno, etc.). The beast is standing protectively in front of a CI/CD pipeline, deflecting incoming threats depicted as red digital arrows. Style: epic fantasy art, metaphorical, powerful.",
-    "tags": [
-      "devsecops",
-      "security",
-      "security tooling",
-      "trivy",
-      "sigstore",
-      "kyverno",
-      "falco"
-    ],
-    "category": "Security Tooling",
-    "permalink": "top-5-security-tools-that-defined-devsecops-in-2025",
-    "resources": [
-      "https://github.com/aquasecurity/trivy",
-      "https://www.sigstore.dev/",
-      "https://kyverno.io/",
-      "https://falco.org/",
-      "https://owasp.org/www-community/Source_Code_Analysis_Tools"
-    ]
-  },
-  {
-    "title": "Is Multi-Cloud a Trap? A Pragmatic Look at the Costs and Benefits",
-    "description_prompt": "Write a balanced and pragmatic opinion piece exploring the multi-cloud debate. Start by acknowledging the promised benefits: avoiding vendor lock-in, leveraging best-of-breed services, and improving resilience. Then, dive into the often-underestimated costs and complexities: 1) Operational Overhead: Managing disparate IAM, networking, and security models. 2) Data Egress Costs: The 'hidden tax' of moving data between clouds. 3) Lowest Common Denominator Effect: Being forced to use services that exist on all clouds, not the best ones. 4) Talent Scarcity: Finding engineers proficient in multiple clouds. Conclude with a framework for when multi-cloud makes sense (e.g., for specific acquisitions or compliance needs) versus when a single-cloud strategy is more prudent.",
-    "image_prompt": "1280x720, an engineer is trying to build a bridge using three different sets of building blocks (AWS, Azure, GCP) that don't quite fit together. The bridge looks unstable and overly complicated. In the background, a simple, strong bridge built with one type of block stands complete. Style: allegorical, clean illustration, highlighting complexity.",
-    "tags": [
-      "multi-cloud",
-      "cloud architecture",
-      "aws",
-      "azure",
-      "gcp",
-      "strategy",
-      "finops"
-    ],
-    "category": "Cloud Strategy",
-    "permalink": "is-multi-cloud-a-trap-pragmatic-costs-and-benefits",
-    "resources": [
-      "https://www.redhat.com/en/topics/cloud-computing/what-is-multicloud",
-      "https://www.flexera.com/blog/cloud/2023-state-of-the-cloud-report/",
-      "https://cloud.google.com/learn/multi-cloud-a-cheatsheet",
-      "https://azure.microsoft.com/en-us/solutions/multicloud/"
-    ]
-  },
-  {
-    "title": "The Unsung Hero of Cloud Native: A Deep Dive into etcd",
-    "description_prompt": "Write a technical deep-dive on etcd, the key-value store that powers Kubernetes. Position it as the 'unsung hero' of the cloud-native ecosystem. Explain its role as the 'brain' or 'single source of truth' for a Kubernetes cluster. Cover three key technical aspects: 1) Its data model (simple key-value store with a hierarchical key space). 2) Its consistency model, based on the Raft consensus algorithm (explain Raft in simple terms). 3) The importance of etcd for cluster health and the best practices for backing it up and monitoring it. This is for engineers who use Kubernetes daily but may not understand its core dependency. The tone should be educational and appreciative.",
-    "image_prompt": "1280x720, an anatomical illustration of a giant robot (representing a Kubernetes cluster). The chest plate is open, revealing a small, incredibly bright, and complex glowing core labeled 'etcd'. All the robot's systems are shown to be connected to and controlled by this central core. Style: technical cutaway, sci-fi, detailed.",
-    "tags": [
-      "etcd",
+      "argocd",
+      "gitops",
+      "ai operations",
       "kubernetes",
-      "cloud native",
-      "distributed systems",
-      "raft",
-      "architecture"
+      "continuous delivery"
     ],
-    "category": "Kubernetes Internals",
-    "permalink": "unsung-hero-of-cloud-native-deep-dive-into-etcd",
+    "category": "Kubernetes",
+    "permalink": "argocd-2025-ai-gitops-integration",
     "resources": [
-      "https://etcd.io/",
-      "https://kubernetes.io/docs/concepts/overview/components/#etcd",
-      "https://raft.github.io/",
-      "https://github.com/etcd-io/etcd"
+      "https://docs.aws.amazon.com/eks/latest/userguide/working-with-argocd.html"
     ]
   },
   {
-    "title": "Resolutions for a Healthier Codebase: A Developer's Guide for 2026",
-    "description_prompt": "Write a New Year's resolutions-themed article for software developers, focusing on improving code quality and personal habits. Frame it as a list of 5-7 actionable resolutions. Examples: 1) 'I will write tests first, sometimes.' (A pragmatic take on TDD). 2) 'I will delete more code than I write.' (Focusing on simplicity and removing dead code). 3) 'I will learn one new programming paradigm.' (e.g., an OOP developer learning functional programming). 4) 'I will treat my documentation as code.' (Using docs-as-code principles). 5) 'I will review PRs with empathy.' For each resolution, explain its benefits and suggest a small, concrete first step. The tone should be encouraging and motivational.",
-    "image_prompt": "1280x720, a serene, zen-like garden. A developer is neatly trimming a bonsai tree made of glowing code, carefully removing dead branches. In the background, other code-plants are growing strong and healthy. The scene evokes a sense of calm, deliberate craftsmanship. Style: peaceful, metaphorical, digital art.",
+    "title": "Customizing Intelligence: A First Look at AWS Nova Forge",
+    "description_prompt": "Deep dive into AWS Nova Forge. Explain the value proposition of fine-tuning Nova models with proprietary data for $100k/year versus training from scratch. Discuss the lock-in implications vs. the performance benefits.",
+    "image_prompt": "A digital blacksmith (AWS) forging a glowing sword (Model) on an anvil labeled 'Nova', with sparks of data flying.",
     "tags": [
-      "development",
-      "best practices",
-      "code quality",
-      "software engineering",
-      "resolutions"
-    ],
-    "category": "Software Craft",
-    "permalink": "resolutions-for-a-healthier-codebase-guide-for-2026",
-    "resources": [
-      "https://martinfowler.com/bliki/CodeSmell.html",
-      "https://testing.googleblog.com/",
-      "https://www.writethedocs.org/guide/docs-as-code/",
-      "https://pragprog.com/titles/tpp20/the-pragmatic-programmer-20th-anniversary-edition/"
-    ]
-  },
-  {
-    "title": "Cloud in 2025: The 3 Biggest Surprises and What They Mean for 2026",
-    "description_prompt": "Write a high-level retrospective of the cloud computing landscape in 2025. Instead of a broad overview, focus on the three most surprising or unexpected trends of the year. For each surprise, analyze why it happened and what its implications are for 2026. Possible topics: 1) The unexpected speed of ARM/Graviton adoption in enterprises. 2) A major cloud provider making a surprising open-source move (e.g., fully open-sourcing a key service). 3) The slowdown of FinOps hype and the rise of a more engineering-led cost optimization culture. The tone should be insightful and analytical, suitable for a senior tech audience. Ask readers for their biggest cloud surprise of the year.",
-    "image_prompt": "1280x720, a crystal ball showing a reflection of the year 2025. Inside the ball are three shocking, unexpected images: a Graviton chip glowing like a star, a major corporate logo being wrapped in an open-source logo, and a graph of cloud spending suddenly taking a sharp, efficient downturn. An analyst is looking at the ball with a surprised expression. Style: symbolic, polished, business-tech.",
-    "tags": [
-      "cloud computing",
-      "2025 review",
       "aws",
-      "azure",
-      "gcp",
-      "trends",
-      "predictions"
+      "nova forge",
+      "llm fine-tuning",
+      "generative ai",
+      "cloud strategy"
     ],
-    "category": "Cloud Trends",
-    "permalink": "cloud-in-2025-the-3-biggest-surprises-and-meaning-for-2026",
+    "category": "AWS",
+    "permalink": "aws-nova-forge-custom-model-guide",
     "resources": [
-      "https://www.protocol.com/enterprise/cloud",
-      "https://www.infoworld.com/category/cloud-computing/",
-      "https://techcrunch.com/category/enterprise/",
-      "https://news.ycombinator.com/"
-    ]
-  },
-  {
-    "title": "Beyond Generative AI: Predicting the Next Tech Tsunami of 2026",
-    "description_prompt": "Write a bold, forward-looking article for the last day of the year. Acknowledge that 2024-2025 was the era of Generative AI entering the mainstream. Now, predict the *next* major technological wave that will start gathering force in 2026. Choose one or two candidates and build a strong case. Possibilities could include: 1) The convergence of AI and robotics leading to practical, autonomous agents in logistics and manufacturing. 2) A breakthrough in quantum computing that makes it accessible for specific commercial problems. 3) The rise of decentralized physical infrastructure networks (DePIN). Explain the chosen trend, the signals that point to its emergence, and what its early impact might look like. The tone should be speculative but well-reasoned and exciting.",
-    "image_prompt": "1280x720, a massive tsunami wave is building on the ocean horizon. But the wave is not made of water; it's made of complex, glowing data and abstract technological patterns. On the shore, people who were all looking at a small 'GenAI' campfire are now turning to see the immense new wave approaching. Style: epic, metaphorical, futuristic, awe-inspiring.",
-    "tags": [
-      "predictions",
-      "technology",
-      "future",
-      "2026",
-      "ai",
-      "quantum computing",
-      "robotics"
-    ],
-    "category": "Future Tech",
-    "permalink": "beyond-generative-ai-predicting-the-next-tech-tsunami-2026",
-    "resources": [
-      "https://www.technologyreview.com/10-breakthrough-technologies/",
-      "https://www.wired.com/tag/the-future-of/",
-      "https://a16z.com/big-ideas-in-tech-2025/",
-      "https://www.cbinsights.com/research/report/top-tech-trends/"
+      "https://www.eweek.com/news/aws-reinvent-2025-roundup-neuron/"
     ]
   }
 ]
