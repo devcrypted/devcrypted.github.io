@@ -19,7 +19,7 @@ tags:
 - llm
 - coding assistant
 - ai privacy
-image: f9b3aec6213341e28316cb284645b548.webp
+image: dad1179d31154a7bbf1dbafac3b6b5d8.webp
 description: Discuss the rise of DeepSeek V3.2 and its performance on coding benchmarks
   like CodeForces. Analyze the implications of an open-weights model challenging GPT-5
   and Gemini 3. Discus
