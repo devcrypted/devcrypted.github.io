@@ -1,0 +1,67 @@
+name: Daily Blog Generation
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Override target date (YYYY-MM-DD)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai pillow pyyaml
+
+      - name: Generate post and thumbnail
+        run: |
+          DATE_ARG=""
+          if [ "${{ inputs.date }}" != "" ]; then DATE_ARG="--date ${{ inputs.date }}"; fi
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
+          python tools/daily_post_runner.py $DATE_ARG
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push
+        run: |
+          git add _posts assets/img
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add daily AI-generated post"
+          git push origin HEAD

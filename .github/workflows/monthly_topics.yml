@@ -1,0 +1,62 @@
+name: Monthly Topics Plan
+
+on:
+  schedule:
+    - cron: "0 1 1 * *"
+  workflow_dispatch:
+    inputs:
+      month:
+        description: "Month number override (1-12)"
+        required: false
+        type: number
+      year:
+        description: "Year override"
+        required: false
+        type: number
+
+permissions:
+  contents: write
+
+jobs:
+  generate-topics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai
+
+      - name: Generate topics
+        run: |
+          MONTH_ARG=""
+          YEAR_ARG=""
+          if [ "${{ inputs.month }}" != "" ]; then MONTH_ARG="--month ${{ inputs.month }}"; fi
+          if [ "${{ inputs.year }}" != "" ]; then YEAR_ARG="--year ${{ inputs.year }}"; fi
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
+          python tools/monthly_topics.py $MONTH_ARG $YEAR_ARG
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push
+        run: |
+          git add topics
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add monthly topics plan"
+          git push origin HEAD

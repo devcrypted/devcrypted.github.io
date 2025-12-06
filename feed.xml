@@ -1,0 +1,38 @@
+---
+layout: none
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ site.url }}{{ site.baseurl }}</link>
+    <description>{{ site.description | xml_escape }}</description>
+    <language>{{ site.lang | default: "en" }}</language>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self" type="application/rss+xml" />
+    {% for post in site.posts %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ site.url }}{{ site.baseurl }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ site.baseurl }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      {% assign image_val = post.image %}
+      {% if image_val %}
+        {% if image_val.path %}
+          {% assign image_path = image_val.path %}
+        {% else %}
+          {% assign image_path = image_val %}
+        {% endif %}
+        {% if image_path contains '://' %}
+          {% assign image_url = image_path %}
+        {% else %}
+          {% assign image_url = site.url | append: site.baseurl | append: image_path %}
+        {% endif %}
+        <media:content url="{{ image_url }}" medium="image" />
+        <enclosure url="{{ image_url }}" length="0" type="image/webp" />
+      {% endif %}
+      <description>{{ post.excerpt | strip_html | strip_newlines | xml_escape }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
