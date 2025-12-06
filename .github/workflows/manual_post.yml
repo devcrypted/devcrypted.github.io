@@ -1,0 +1,115 @@
+name: Manual Blog Generation
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: "Post title"
+        required: true
+        type: string
+      description:
+        description: "Post description/brief"
+        required: true
+        type: string
+      category:
+        description: "Optional category override"
+        required: false
+        type: string
+      tags:
+        description: "Optional comma-separated tags"
+        required: false
+        type: string
+      permalink:
+        description: "Optional permalink slug"
+        required: false
+        type: string
+      image_prompt:
+        description: "Optional image prompt override"
+        required: false
+        type: string
+      resources:
+        description: "Optional comma-separated resource URLs"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  generate-manual-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-genai pillow pyyaml requests
+
+      - name: Generate post and thumbnail
+        env:
+          GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY }}
+          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          TITLE: ${{ inputs.title }}
+          DESCRIPTION: ${{ inputs.description }}
+          CATEGORY: ${{ inputs.category }}
+          TAGS: ${{ inputs.tags }}
+          PERMALINK: ${{ inputs.permalink }}
+          IMAGE_PROMPT: ${{ inputs.image_prompt }}
+          RESOURCES: ${{ inputs.resources }}
+        run: |
+          python - <<'PY'
+          import os, subprocess, shlex
+
+          args = ["python", "tools/daily_post_runner.py", "--title", os.environ["TITLE"], "--description", os.environ["DESCRIPTION"]]
+
+          if os.environ.get("CATEGORY"):
+              args += ["--category", os.environ["CATEGORY"]]
+          if os.environ.get("TAGS"):
+              args += ["--tags", os.environ["TAGS"]]
+          if os.environ.get("PERMALINK"):
+              args += ["--permalink", os.environ["PERMALINK"]]
+          if os.environ.get("IMAGE_PROMPT"):
+              args += ["--image-prompt", os.environ["IMAGE_PROMPT"]]
+          if os.environ.get("RESOURCES"):
+              args += ["--resources", os.environ["RESOURCES"]]
+
+          subprocess.run(args, check=True)
+          PY
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push
+        run: |
+          git add _posts assets/img
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Add manual AI-generated post"
+          git push origin HEAD

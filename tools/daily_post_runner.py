@@ -191,6 +191,55 @@ def load_text_key() -> str:
     return key
 
 
+def parse_tags_csv(text: str | None) -> List[str]:
+    if not text:
+        return []
+    return [t.strip().lower() for t in text.split(",") if t.strip()]
+
+
+def normalize_tags(value: Any) -> List[str]:
+    if not value:
+        return []
+    if isinstance(value, list):
+        return [str(t).strip().lower() for t in value if str(t).strip()]
+    if isinstance(value, str):
+        return parse_tags_csv(value)
+    return []
+
+
+def parse_resources_csv(text: str | None) -> List[str]:
+    if not text:
+        return []
+    return [r.strip() for r in text.split(",") if r.strip()]
+
+
+def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
+    client = genai.Client(api_key=load_text_key())
+    prompt = (
+        "You generate concise metadata for a tech blog post."
+        f"\nTitle: {title}"
+        f"\nDescription: {description}"
+        "\nRespond as JSON with keys: category (one short word), tags (3-6 items, kebab-case), permalink_slug (kebab-case), image_prompt (concise), description (<=180 chars)."
+    )
+    try:
+        resp = client.models.generate_content(
+            model=KEYWORD_MODEL,
+            contents=prompt,
+            config={"response_mime_type": "application/json"},
+        )
+        raw = getattr(resp, "text", None)
+        if not raw and getattr(resp, "candidates", None):
+            parts = getattr(resp.candidates[0].content, "parts", []) if resp.candidates[0].content else []
+            if parts and getattr(parts[0], "text", None):
+                raw = parts[0].text
+        if not raw:
+            raise RuntimeError("Empty metadata response")
+        return json.loads(raw)
+    except Exception as exc:
+        print(f"Metadata suggestion failed: {exc}; using defaults.")
+        return {}
+
+
 def load_image_key() -> str:
     key = (
         os.environ.get("GEMINI_IMAGE_API_KEY")
@@ -363,7 +412,16 @@ def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: L
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate daily blog post and thumbnail from topics JSON.")
     parser.add_argument("--date", help="ISO date (YYYY-MM-DD). Defaults to today.")
+    parser.add_argument("--title", help="Manual mode title (skip topics JSON)")
+    parser.add_argument("--description", help="Manual mode description")
+    parser.add_argument("--category", help="Override category")
+    parser.add_argument("--tags", help="Comma-separated tags")
+    parser.add_argument("--permalink", help="Override permalink slug")
+    parser.add_argument("--image-prompt", dest="image_prompt_override", help="Override image prompt base")
+    parser.add_argument("--resources", help="Comma-separated resource links")
     args = parser.parse_args()
+
+    manual_mode = bool(args.title)
 
     if args.date:
         target_date = date.fromisoformat(args.date)
@@ -373,19 +431,45 @@ def main() -> None:
     api_key = load_text_key()
     client = genai.Client(api_key=api_key)
 
-    topics = read_topics(target_date.month, target_date.year)
-    topic = pick_topic(topics, target_date.day)
+    if manual_mode:
+        if not args.description:
+            raise SystemExit("--description is required when --title is provided")
+        title = str(args.title).strip()
+        description_prompt = str(args.description).strip()
+        suggested = suggest_metadata(title, description_prompt)
+        category = (args.category or suggested.get("category") or "Tech").strip()
+        suggested_tags = normalize_tags(suggested.get("tags"))
+        tags = parse_tags_csv(args.tags) or suggested_tags
+        if not tags:
+            tags = slugify(title).split("-")[:6]
+        permalink = slugify(args.permalink or suggested.get("permalink_slug") or title)
+        image_prompt_base = (args.image_prompt_override or suggested.get("image_prompt") or f"Hero image for {title}").strip()
+        description_prompt = suggested.get("description") or description_prompt
+        resources = parse_resources_csv(args.resources)
+        topic = {
+            "title": title,
+            "description_prompt": description_prompt,
+            "category": category,
+            "tags": tags,
+            "resources": resources,
+            "permalink": permalink,
+            "image_prompt": image_prompt_base,
+        }
+    else:
+        topics = read_topics(target_date.month, target_date.year)
+        topic = pick_topic(topics, target_date.day)
 
-    title = str(topic.get("title") or "Technical Insight").strip()
-    permalink = slugify(topic.get("permalink") or title)
-    category = str(topic.get("category") or "Tech").strip()
-    tags = [str(t).lower().strip() for t in topic.get("tags", []) if str(t).strip()]
-    if not tags:
-        tags = slugify(title).split("-")[:6]
-    description_prompt = str(topic.get("description_prompt") or "Concise overview.").strip()
-    image_prompt_base = str(topic.get("image_prompt") or f"Hero image for {title}").strip()
+        title = str(topic.get("title") or "Technical Insight").strip()
+        permalink = slugify(topic.get("permalink") or title)
+        category = str(topic.get("category") or "Tech").strip()
+        tags = [str(t).lower().strip() for t in topic.get("tags", []) if str(t).strip()]
+        if not tags:
+            tags = slugify(title).split("-")[:6]
+        description_prompt = str(topic.get("description_prompt") or "Concise overview.").strip()
+        image_prompt_base = str(topic.get("image_prompt") or f"Hero image for {title}").strip()
+        resources = topic.get("resources") or []
+
     image_prompt = f"{image_prompt_base}. 1280x720, Nano Banana style, cinematic lighting, detailed."
-    resources = topic.get("resources") or []
 
     body_prompt = build_body_prompt(topic)
     # Generate image first with image-specific key/quota
