@@ -1,4 +1,5 @@
 name: Content Operations
+descriptiion: "Generate draft posts and validate site build"
 
 on:
   workflow_dispatch:

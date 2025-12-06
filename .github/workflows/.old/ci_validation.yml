@@ -1,4 +1,5 @@
 name: CI Validation
+description: "Validate site build and tools linting on push and pull request"
 
 on:
   push:

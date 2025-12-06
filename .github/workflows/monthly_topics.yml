@@ -1,4 +1,4 @@
-name: Monthly Topics Plan
+name: Monthly Topics Generation
 
 on:
   schedule:
@@ -38,12 +38,14 @@ jobs:
           pip install google-genai
 
       - name: Generate topics
+        env:
+          GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           MONTH_ARG=""
           YEAR_ARG=""
           if [ "${{ inputs.month }}" != "" ]; then MONTH_ARG="--month ${{ inputs.month }}"; fi
           if [ "${{ inputs.year }}" != "" ]; then YEAR_ARG="--year ${{ inputs.year }}"; fi
-          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
           python tools/monthly_topics.py $MONTH_ARG $YEAR_ARG
 
       - name: Configure Git

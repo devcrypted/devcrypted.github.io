@@ -19,17 +19,32 @@ import yaml
 from google import genai
 from PIL import Image
 
-TEXT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro-preview")
+TEXT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-2.5-pro")
 IMAGE_MODEL = os.environ.get("GEMINI_IMAGE_MODEL", "gemini-2.5-flash-image")
 POSTS_DIR = Path(__file__).resolve().parent.parent / "_posts"
 ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "img"
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
 
-def load_api_key() -> str:
-    key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+def load_text_key() -> str:
+    key = (
+        os.environ.get("GEMINI_TEXT_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
+    )
     if not key:
-        raise RuntimeError("Set GEMINI_API_KEY or GOOGLE_API_KEY in the environment.")
+        raise RuntimeError("Set GEMINI_TEXT_API_KEY or GEMINI_API_KEY in the environment.")
+    return key
+
+
+def load_image_key() -> str:
+    key = (
+        os.environ.get("GEMINI_IMAGE_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+    )
+    if not key:
+        raise RuntimeError("Set GEMINI_IMAGE_API_KEY or GEMINI_API_KEY in the environment.")
     return key
 
 
@@ -89,7 +104,7 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
 def request_markdown(client: genai.Client, prompt: str) -> str:
     response = client.models.generate_content(
         model=TEXT_MODEL,
-        contents=[{"role": "user", "parts": [prompt]}],
+        contents=prompt,
         config={"response_mime_type": "text/plain"},
     )
     if hasattr(response, "text") and response.text:
@@ -98,23 +113,29 @@ def request_markdown(client: genai.Client, prompt: str) -> str:
 
 
 def request_image(client: genai.Client, prompt: str) -> bytes:
-    response = client.models.generate_content(
-        model=IMAGE_MODEL,
-        contents=[{"role": "user", "parts": [prompt]}],
-        config={"response_mime_type": "image/png"},
-    )
-    if hasattr(response, "binary") and response.binary:
-        return bytes(response.binary)
-    if hasattr(response, "data") and response.data:
-        return bytes(response.data)
-    for candidate in getattr(response, "candidates", []) or []:
-        content = getattr(candidate, "content", None)
-        parts = getattr(content, "parts", []) if content else []
-        for part in parts:
-            inline_data = getattr(part, "inline_data", None)
-            if inline_data and getattr(inline_data, "data", None):
-                return bytes(inline_data.data)
-    raise RuntimeError("No image bytes returned from model.")
+    try:
+        response = client.models.generate_content(
+            model=IMAGE_MODEL,
+            contents=prompt,
+        )
+        if hasattr(response, "binary") and response.binary:
+            return bytes(response.binary)
+        if hasattr(response, "data") and response.data:
+            return bytes(response.data)
+        for candidate in getattr(response, "candidates", []) or []:
+            content = getattr(candidate, "content", None)
+            parts = getattr(content, "parts", []) if content else []
+            for part in parts:
+                inline_data = getattr(part, "inline_data", None)
+                if inline_data and getattr(inline_data, "data", None):
+                    return bytes(inline_data.data)
+        raise RuntimeError("No image bytes returned from model.")
+    except Exception as exc:  # Fallback if quota or image model fails
+        print(f"Image generation failed ({exc}); using placeholder.")
+        buffer = io.BytesIO()
+        placeholder = Image.new("RGB", (1280, 720), color=(30, 30, 30))
+        placeholder.save(buffer, format="WEBP", quality=80)
+        return buffer.getvalue()
 
 
 def save_webp(image_bytes: bytes, destination: Path) -> str:
@@ -167,7 +188,7 @@ def main() -> None:
     else:
         target_date = date.today()
 
-    api_key = load_api_key()
+    api_key = load_text_key()
     client = genai.Client(api_key=api_key)
 
     topics = read_topics(target_date.month, target_date.year)
@@ -185,11 +206,15 @@ def main() -> None:
     resources = topic.get("resources") or []
 
     body_prompt = build_body_prompt(topic)
-    body = request_markdown(client, body_prompt)
-
-    image_bytes = request_image(client, image_prompt)
+    # Generate image first with image-specific key/quota
+    image_api_key = load_image_key()
+    image_client = genai.Client(api_key=image_api_key)
+    image_bytes = request_image(image_client, image_prompt)
     image_name = f"{uuid.uuid4().hex}.webp"
     image_path = save_webp(image_bytes, ASSETS_DIR / image_name)
+
+    # Then generate the post body using the text key
+    body = request_markdown(client, body_prompt)
 
     now = datetime.now().astimezone()
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S %z")

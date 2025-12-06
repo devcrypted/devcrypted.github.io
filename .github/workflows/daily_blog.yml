@@ -34,10 +34,13 @@ jobs:
           pip install google-genai pillow pyyaml
 
       - name: Generate post and thumbnail
+        env:
+          GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY }}
+          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           DATE_ARG=""
           if [ "${{ inputs.date }}" != "" ]; then DATE_ARG="--date ${{ inputs.date }}"; fi
-          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }} \
           python tools/daily_post_runner.py $DATE_ARG
 
       - name: Set up Ruby

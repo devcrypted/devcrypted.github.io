@@ -15,14 +15,18 @@ from typing import Any, Dict, Tuple
 import yaml
 from google import genai
 
-DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro-preview")
+DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-2.5-pro")
 POSTS_DIR = Path(__file__).resolve().parent.parent / "_posts"
 
 
 def load_api_key() -> str:
-    key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    key = (
+        os.environ.get("GEMINI_TEXT_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
+    )
     if not key:
-        raise RuntimeError("Set GOOGLE_API_KEY or GEMINI_API_KEY.")
+        raise RuntimeError("Set GEMINI_TEXT_API_KEY or GEMINI_API_KEY.")
     return key
 
 
@@ -71,7 +75,7 @@ def build_prompt(topic: str, category: str, timestamp: str, context: str | None)
 def request_markdown(client: genai.Client, prompt: str) -> str:
     response = client.models.generate_content(
         model=DEFAULT_MODEL,
-        contents=[{"role": "user", "parts": [prompt]}],
+        contents=prompt,
         config={"response_mime_type": "text/plain"},
     )
     if hasattr(response, "text") and response.text:

@@ -17,14 +17,18 @@ from typing import Any, List
 
 from google import genai
 
-DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro-preview")
+DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-2.5-pro")
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
 
 def load_api_key() -> str:
-    key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    key = (
+        os.environ.get("GEMINI_TEXT_API_KEY")
+        or os.environ.get("GOOGLE_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
+    )
     if not key:
-        raise RuntimeError("Set GEMINI_API_KEY or GOOGLE_API_KEY in the environment.")
+        raise RuntimeError("Set GEMINI_TEXT_API_KEY or GEMINI_API_KEY in the environment.")
     return key
 
 
@@ -80,7 +84,7 @@ def build_prompt(month_name: str, year: int, days: int, last_month_name: str) ->
 def request_topics(client: genai.Client, prompt: str) -> list[Any]:
     response = client.models.generate_content(
         model=DEFAULT_MODEL,
-        contents=[{"role": "user", "parts": [prompt]}],
+        contents=prompt,
         config={"response_mime_type": "application/json"},
     )
     raw = response.text if hasattr(response, "text") else None
@@ -158,6 +162,11 @@ def main() -> None:
     month_name = calendar.month_name[month]
     last_month_name = f"{calendar.month_name[last_month_num]} {last_month_year}"
 
+    output_path = TOPICS_DIR / f"{month:02d}-{year}.json"
+    if output_path.exists():
+        print(f"Topics already exist for {month:02d}-{year}: {output_path}. Skipping generation.")
+        return
+
     api_key = load_api_key()
     client = genai.Client(api_key=api_key)
 
@@ -175,8 +184,6 @@ def main() -> None:
             print(f"Skipping malformed topic: {exc}", file=sys.stderr)
 
     topics = ensure_length(topics, days)
-
-    output_path = TOPICS_DIR / f"{month:02d}-{year}.json"
     write_topics_file(output_path, topics)
     print(f"Wrote topics: {output_path}")
 
