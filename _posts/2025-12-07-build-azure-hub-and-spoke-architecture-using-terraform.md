@@ -56,24 +56,24 @@ This design prevents spokes from communicating directly with each other, forcing
 Here is a high-level diagram of the architecture we will build.
 
 ```mermaid
-graph TD
-    subgraph Azure Cloud
-        subgraph Hub VNet ("Hub VNet: 10.0.0.0/16")
-            FirewallSubnet("AzureFirewallSubnet<br>10.0.1.0/24")
-            GatewaySubnet("GatewaySubnet<br>10.0.2.0/24")
-        end
-
-        subgraph Spoke 1 VNet ("Spoke 1 VNet: 10.1.0.0/16")
-            Workload1("Workload Subnet<br>10.1.1.0/24")
-        end
-
-        subgraph Spoke 2 VNet ("Spoke 2 VNet: 10.2.0.0/16")
-            Workload2("Workload Subnet<br>10.2.1.0/24")
-        end
-
-        Hub VNet <-->|VNet Peering| Spoke 1 VNet
-        Hub VNet <-->|VNet Peering| Spoke 2 VNet
+flowchart TD
+  subgraph Azure_Cloud["Azure Cloud"]
+    subgraph Hub_VNet["Hub VNet\n10.0.0.0/16"]
+      FirewallSubnet["AzureFirewallSubnet\n10.0.1.0/24"]
+      GatewaySubnet["GatewaySubnet\n10.0.2.0/24"]
     end
+
+    subgraph Spoke1["Spoke 1 VNet\n10.1.0.0/16"]
+      Workload1["Workload Subnet\n10.1.1.0/24"]
+    end
+
+    subgraph Spoke2["Spoke 2 VNet\n10.2.0.0/16"]
+      Workload2["Workload Subnet\n10.2.1.0/24"]
+    end
+
+    Hub_VNet <--> |"VNet Peering"| Spoke1
+    Hub_VNet <--> |"VNet Peering"| Spoke2
+  end
 ```
 
 ### Roles and Responsibilities
