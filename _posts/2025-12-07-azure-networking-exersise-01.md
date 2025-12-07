@@ -474,7 +474,7 @@ We now activate the "God Mode" of the firewall: TLS Inspection.
 
 **The Exercise Task:**
 
-Configure an Application Rule to allow access to *.google.com but deny [http://www.google.com/hidden-path.](http://www.google.com/hidden-path.) This URL-path filtering is only possible if
+Configure an Application Rule to allow access to *.google.com but deny [https://www.google.com/hidden-path.](https://www.google.com/hidden-path.) This URL-path filtering is only possible if
 TLS inspection is working.29 If encryption is not broken, the firewall only sees the SNI (<www.google.com>), not the path (/hidden-path).
 
 **Verification:**
