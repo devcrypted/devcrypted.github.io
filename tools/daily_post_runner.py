@@ -300,6 +300,7 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
         "Include varied formats where useful: fenced code blocks, mermaid diagrams for flows/architecture, markdown tables, info blocks/quotes, bold/italic for emphasis, and links to credible sources. Emojis optional; keep tasteful.\n"
         "Prefer examples and code where applicable; keep bullets short.\n"
         "The content should be approximately 700-1200 words. Ensure not to write too long paragraphs\n"
+        "Ensure to use Jekyll safe mermaid syntax please, don't use the chars/symbols that could break rendering.\n"
         "Research on what technical audience want from a blog post, I think it's not difficult to find: it's important info, key highlights, small paragraphs, bullet points for clarity, code written within ```lang``` blocks properly, clean steps to follow, pros/cons of topic support that, a brief summary, mermaid high level architect/flow diagrams to understand things better and maybe a few more things, no all blogs support all of the things so use them carefully and ensure you're not making the content too long or unfollowable just because you want to put all stuff, keep precise up to the point and don't overdo things everything should be backed by proper research, no lies but if imaginations could be there indirectly telling that it's imaginations, etc. Rest you take care.\n"
         f"Title: {title}.\n"
         f"Category: {category}. Tags: {', '.join(tags)}.\n"
