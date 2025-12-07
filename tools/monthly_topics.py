@@ -17,7 +17,7 @@ from typing import Any, List
 
 from google import genai
 
-DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-2.5-pro")
+DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro")
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
 

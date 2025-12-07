@@ -341,7 +341,8 @@ def pick_image_model(client: genai.Client) -> Tuple[str | None, List[str]]:
 
 
 def request_image(client: genai.Client, prompt: str, title: str) -> bytes:
-    model_name, available = pick_image_model(client)
+    # model_name, available = pick_image_model(client) ## Uncomment it if you want to use Gemini image generation
+    model_name = None
     if model_name:
         print(f"Requesting image from {model_name}...")
         try:
