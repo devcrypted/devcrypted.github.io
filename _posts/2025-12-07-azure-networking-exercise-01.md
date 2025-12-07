@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+  - devcrypted
 pin: false
 video_prefix: https://youtu.be/
 playlist_prefix: https://youtube.com/playlist?list=
@@ -12,19 +12,19 @@ permalink: azure-networking-exercise-01
 media_subpath: /assets/img
 date: 2025-12-07 00:33:33 +0530
 categories:
-- Cloud Networking
+  - Cloud Networking
 tags:
-- azure
-- azure-networking
-- networking
-- kobayashi-maru
-- multi-region-networking
-- exercises
-image: network-arch.png
+  - azure
+  - azure-networking
+  - networking
+  - kobayashi-maru
+  - multi-region-networking
+  - exercises
+image: azure-networking-exercise-01.webp
 description: The modern cloud network is no longer a simple extension of the on-premises data center. It has evolved into a disjointed, highly abstract mesh of overlay networks, software-defined perimeters, and platform-native connectivity patterns that often defy traditional networking intuition. For a Senior Cloud Engineer, mastery is not demonstrated by the ability to deploy a Virtual Network (VNet); it is demonstrated by the ability to troubleshoot a dropped packet in a split-tunnel, asymmetric, multi-region architecture where the control plane is opaque and the data plane is encrypted.
-video_id: ''
-playlist_id: ''
-github_repo: ''
+video_id: ""
+playlist_id: ""
+github_repo: ""
 ---
 
 # Module 0: The Philosophical Framework and Exercise
@@ -59,11 +59,11 @@ this laboratory will be constructed manually via the Azure CLI or the Azure Port
 Furthermore, the architecture strictly adheres to a **Zero Trust** model.
 
 - **No Public Ingress** : No Virtual Machine (VM) or Platform-as-a-Service (PaaS) resource
-(SQL, Storage, Function App) may have a public IP address.
+  (SQL, Storage, Function App) may have a public IP address.
 - **Management via Bastion** : All administration occurs through a hardened jumpbox or
-Azure Bastion.
+  Azure Bastion.
 - **Private Link Mandate** : All PaaS services must be accessed exclusively via Private
-Endpoints.
+  Endpoints.
 - Encryption : All transit traffic must be encrypted.
 
 ### 0.3 The Architectural Topology
@@ -231,6 +231,7 @@ We deploy a Linux VM (nva-onprem) that will serve as the gateway for the simulat
 172.16.0.0/12 corporate network.
 
 **The NVA Build:**
+
 - OS: Ubuntu 22.04 LTS.
 - Networking: IP Forwarding Enabled on the NIC.
 - Software: FRRouting (FRR) and StrongSwan (for IPsec).
@@ -300,7 +301,7 @@ We must configure Ingress and Egress NAT rules on the Gateway.
 
 **CLI Implementation:**
 
-```bash
+````bash
 
 # Create the Gateway (This takes ~45 mins - use this time to configure the Linux NVA)
 
@@ -310,7 +311,7 @@ az network vnet-gateway create --name vpngw-hub --resource-group $RG_CORE --vnet
 # Apply NAT Rule (Ingress)
 
 az network vnet-gateway nat-rule add --resource-group $RG_CORE --gateway-name vpngw-hub --name Nat-Branch-Ingress --type Static --mode IngressSnat --internal-mappings 192.168.100.0/24 --external-mappings 10.0.1.0/
-```
+````
 
 _Implication_ : The On-Premises router will continue to send traffic sourced from 10.0.1.x, but
 Azure NSGs and Firewalls will see packets sourced from 192.168.100.x. This translation is
@@ -331,12 +332,12 @@ creates a specific DNS challenge.
 
 - VNet: vnet-spoke-aca (10.1.0.0/16).
 - Subnet: snet-aca (Minimum /23 required for Consumption + Dedicated profiles, though
-/27 works for Consumption only, we use /23 to be safe).^11
+  /27 works for Consumption only, we use /23 to be safe).^11
 - Resource: ACA Environment with internal ingress.
 
 **The DNS Challenge 13:**
 
-ACA requires a wildcard DNS record (*.green-island.eastus2.azurecontainerapps.io) pointing
+ACA requires a wildcard DNS record (\*.green-island.eastus2.azurecontainerapps.io) pointing
 to the ILB IP. Since we cannot easily put a wildcard A-record in a standard Azure Private DNS
 Zone linked to the hub without careful planning, we must create a dedicated Private DNS Zone
 for the ACA domain.
@@ -392,9 +393,9 @@ exercise.
 1. **DNS Query** : Logic App runtime asks for stlogicapp.blob.core.windows.net.
 2. **Azure DNS** : The query hits the Azure recursive resolver (168.63.129.16).^19
 3. **CNAME Logic** : The public DNS returns a CNAME to
-    stlogicapp.privatelink.blob.core.windows.net.
+   stlogicapp.privatelink.blob.core.windows.net.
 4. **Private Zone Lookup** : The resolver checks if a Private DNS Zone for
-    privatelink.blob.core.windows.net is linked to the VNet.
+   privatelink.blob.core.windows.net is linked to the VNet.
 5. **A-Record Return** : If linked, it returns the private IP (e.g., 10.2.1.4).
 6. **Connection** : The Logic App connects to 10.2.1.4.
 
@@ -420,12 +421,12 @@ override learned BGP routes.
 **The Exercise Task:**
 
 1. Establish BGP peering between the Gateway and the On-Prem NVA. Advertise
-    172.16.0.0/16.
+   172.16.0.0/16.
 2. Create a UDR on the Hub subnets pointing 172.16.0.0/16 to a "Blackhole" (Next Hop:
-    None).^20
+   None).^20
 3. Observe that connectivity drops despite the BGP route being present in the Gateway.
 4. **The Fix** : Modify the UDR to point to the Firewall, or remove the UDR to allow BGP
-    propagation.
+   propagation.
 
 ### 4.2 Integration of Azure Private DNS Resolver
 
@@ -443,7 +444,7 @@ Step 2: On-Prem Configuration. On the Linux NVA (which also acts as a DNS server
 Step 3: Outbound Endpoint & Ruleset We provision an Outbound Endpoint. We create a DNS Forwarding Ruleset linked to the Hub VNet.
 
 - Rule: corp.local -> Target: 172.16.1.5 (On-Prem DNS IP). The "Transitive" DNS Problem: The Spoke VNets (ACA, Serverless) are peered to the Hub. Do they automatically use the Private Resolver? **No.** VNet Peering does not extend custom DNS settings.
-You must manually update the DNS Servers setting on every Spoke VNet to point to the Inbound Endpoint IP (10.0.4.4). CLI for Ruleset 27:
+  You must manually update the DNS Servers setting on every Spoke VNet to point to the Inbound Endpoint IP (10.0.4.4). CLI for Ruleset 27:
 
 ```bash
 # Create Ruleset
@@ -474,11 +475,11 @@ We now activate the "God Mode" of the firewall: TLS Inspection.
 
 **The Exercise Task:**
 
-Configure an Application Rule to allow access to *.google.com but deny [https://www.google.com/hidden-path.](https://www.google.com/hidden-path.) This URL-path filtering is only possible if
+Configure an Application Rule to allow access to \*.google.com but deny [https://www.google.com/hidden-path.](https://www.google.com/hidden-path.) This URL-path filtering is only possible if
 TLS inspection is working.29 If encryption is not broken, the firewall only sees the SNI (<www.google.com>), not the path (/hidden-path).
 
 **Verification:**
-From a Spoke VM, curl <https://www.google.com>. It should work. curl <https://www.google.com/hidden-path>. It should receive a 403 or  Connection Reset from the Firewall.
+From a Spoke VM, curl <https://www.google.com>. It should work. curl <https://www.google.com/hidden-path>. It should receive a 403 or Connection Reset from the Firewall.
 
 ### 5.2 Micro-Segmentation with NSGs
 
@@ -558,16 +559,16 @@ Studio**.^31
 We will inject a "Network Disconnect" fault into the On-Prem NVA.
 
 - **Expectation** : The BGP session with the VPN Gateway drops. Routes are withdrawn from
-the Route Server.
+  the Route Server.
 - **Observation** : How long does convergence take? Does traffic failover to the secondary
-NVA (if configured)?
+  NVA (if configured)?
 
 **Experiment 2: The DNS Blackhole**
 We stop the Private Resolver Inbound Endpoint (simulated by blocking port 53 via NSG).
 
 - **Expectation** : All cross-premise name resolution fails.
 - **Mitigation** : Does the application have caching? Is there a secondary DNS server
-configured in the VNet DNS settings?
+  configured in the VNet DNS settings?
 
 ### 6.3 The "Final Boss": Asymmetric Routing Debugging
 
