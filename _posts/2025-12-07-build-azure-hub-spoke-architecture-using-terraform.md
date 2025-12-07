@@ -20,7 +20,7 @@ tags:
 - azure-networking
 - infrastructure-as-code
 - cloud-architecture
-image: e06c33356312410d954c2b1d66bd6b03.webp
+image: build-azure-hub-spoke-architecture-using-terraform.webp
 description: Learn to build a robust Azure Hub and Spoke architecture from scratch
   using Terraform within a single subscription. Includes file names, commands, and
   code examples for a clean, si

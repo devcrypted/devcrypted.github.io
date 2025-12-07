@@ -484,7 +484,7 @@ def main() -> None:
     image_api_key = load_image_key()
     image_client = genai.Client(api_key=image_api_key)
     image_bytes = request_image(image_client, image_prompt, title)
-    image_name = f"{uuid.uuid4().hex}.webp"
+    image_name = f"{permalink}.webp"
     image_path = save_webp(image_bytes, ASSETS_DIR / image_name)
 
     # Then generate the post body using the text key
@@ -495,11 +495,12 @@ def main() -> None:
 
     front_matter = build_front_matter(title, permalink, category, tags, image_path, description_prompt, timestamp)
 
-    filename = f"{target_date.strftime('%Y-%m-%d')}-{slugify(title)}.md"
+    filename = f"{target_date.strftime('%Y-%m-%d')}-{permalink}.md"
     destination = ensure_unique_path(POSTS_DIR / filename)
     write_post(destination, front_matter, body, resources)
     print(f"Generated post: {destination}")
     print(f"Thumbnail: {image_path}")
+
 
 
 if __name__ == "__main__":

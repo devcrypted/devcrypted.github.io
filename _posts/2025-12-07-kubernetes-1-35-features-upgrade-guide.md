@@ -19,7 +19,7 @@ tags:
 - platform engineering
 - cloud native
 - release notes
-image: a7a54f8277874cda91704ff136302516.webp
+image: kubernetes-1-35-features-upgrade-guide.webp
 description: 'Detail the new features and deprecations in Kubernetes 1.35. Discuss
   the roadmap for 1.36 and the lifecycle management of clusters in 2025. Focus on
   stability improvements and the '
