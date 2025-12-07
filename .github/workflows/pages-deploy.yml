@@ -83,50 +83,71 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Wait for website to be available
-        run: sleep 15
-
-      - name: Verify website content
+      - name: Verify website with retries
         id: verify_content
         env:
           PAGE_URL: ${{ needs.deploy.outputs.page_url }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "Testing website at: $PAGE_URL"
+          # Convert HTTP to HTTPS
+          PAGE_URL="${PAGE_URL/http:/https:}"
 
-          # Fetch the main page
-          response=$(curl -s -w "\n%{http_code}" "$PAGE_URL")
-          http_code=$(echo "$response" | tail -n 1)
-          content=$(echo "$response" | head -n -1)
+          MAX_RETRIES=2
+          RETRY_DELAY=30
 
-          echo "HTTP Status Code: $http_code"
-
-          # Check if request was successful
-          if [ "$http_code" != "301" ]; then
-            echo "❌ Website returned HTTP $http_code"
-            echo "verification_failed=true" >> $GITHUB_OUTPUT
+          for attempt in $(seq 1 $MAX_RETRIES); do
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🔍 Verification Attempt $attempt of $MAX_RETRIES"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "Testing website at: $PAGE_URL"
+            
+            # Wait before first attempt
+            if [ $attempt -eq 1 ]; then
+              echo "⏳ Waiting 15 seconds for website to be available..."
+              sleep 15
+            fi
+            
+            # Fetch the main page
+            response=$(curl -s -w "\n%{http_code}" "$PAGE_URL")
+            http_code=$(echo "$response" | tail -n 1)
+            content=$(echo "$response" | head -n -1)
+            
+            echo "📊 HTTP Status Code: $http_code"
+            
+            # Check if request was successful
+            if [ "$http_code" != "200" ]; then
+              echo "❌ Website returned HTTP $http_code"
+              if [ $attempt -lt $MAX_RETRIES ]; then
+                echo "⏳ Retrying in $RETRY_DELAY seconds..."
+                sleep $RETRY_DELAY
+                continue
+              else
+                echo "💀 All retry attempts exhausted"
+                exit 1
+              fi
+            fi
+            
+            # Get content size in bytes
+            content_size=${#content}
+            echo "📏 Content size: $content_size bytes"
+            
+            # Check if content is at least 1KB (1024 bytes)
+            if [ $content_size -lt 1024 ]; then
+              echo "❌ Content size is less than 1KB ($content_size bytes)"
+              if [ $attempt -lt $MAX_RETRIES ]; then
+                echo "⏳ Retrying in $RETRY_DELAY seconds..."
+                sleep $RETRY_DELAY
+                continue
+              else
+                echo "💀 All retry attempts exhausted"
+                exit 1
+              fi
+            fi
+            
+            # Success!
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "✅ Website verification PASSED!"
+            echo "📏 Content size: $content_size bytes"
+            echo "🌐 Status code: $http_code"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
             exit 0
-          fi
-
-          # Get content size in bytes
-          content_size=${#content}
-          echo "Content size: $content_size bytes"
-
-          # Check if content is at least 1KB (1024 bytes)
-          if [ $content_size -lt 1024 ]; then
-            echo "❌ Content size is less than 1KB ($content_size bytes)"
-            echo "verification_failed=true" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          echo "✅ Website verification passed! Content size: $content_size bytes"
-          echo "verification_failed=false" >> $GITHUB_OUTPUT
-
-      - name: Re-trigger workflow on failure
-        if: steps.verify_content.outputs.verification_failed == 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "⚠️ Verification failed. Re-triggering workflow..."
-          gh workflow run "${{ github.workflow }}" --ref "${{ github.ref_name }}"
-          exit 1
+          done
