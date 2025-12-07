@@ -11,18 +11,14 @@ layout: null
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll</generator>
-    
     {% for post in site.posts limit:10 %}
       <item>
         <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.excerpt | xml_escape }}</description>
+        <description>{{ post.excerpt | strip_html | xml_escape }}</description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ site.url }}{{ post.url }}</link>
         <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
-        
-        {% comment %} Handle Chirpy image object (path) or standard string {% endcomment %}
         {% assign post_image = post.image.path | default: post.image %}
-        
         {% if post_image %}
           {% if post_image contains "://" %}
             {% assign final_image_url = post_image %}
