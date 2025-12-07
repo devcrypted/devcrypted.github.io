@@ -12,11 +12,11 @@ media_subpath: /assets/img
 date: 2025-01-23 00:00 +0530
 categories: ["Desktop Configuration"]
 tags: ["Windows 11", "Desktop Setup", "Winget"]
-image:  https://img.youtube.com/vi/CvcNiSRMSjk/maxresdefault.jpg
+image: https://img.youtube.com/vi/CvcNiSRMSjk/maxresdefault.jpg
 description: Welcome to our deep dive into Winget, the command-line package manager for Windows. Whether you're setting up a new machine, managing software updates, or simply curious about streamlining your digital environment, this video is for you!
 video_id: CvcNiSRMSjk
 playlist_id: PL2JBbPWIA_Tq_TNk0JGsnH_ate3QSIYoV
-github_repo: ''
+github_repo: ""
 ---
 
 ### **RESOURCES**
@@ -168,15 +168,16 @@ winget install vscode && winget install git
 
 - **Use `--silent`**: Skip prompts during installation.
 
-   ```bash
-   winget install <app-name> --silent
-   ```
+  ```bash
+  winget install <app-name> --silent
+  ```
 
 - **Avoid Uninstalling Critical Dependencies**: Double-check dependencies before removing apps.
 
 - **Winget.run**: Use [Winget.run](https://winget.run) to search apps and copy installation commands directly from your browser.
 
 - **Shortcut Commands**:
+
   - View help: `winget --help`
   - View version: `winget --version`
 

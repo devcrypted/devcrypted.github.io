@@ -1,31 +1,32 @@
 ---
 layout: post
 authors:
-- devcrypted
+  - devcrypted
 pin: false
 video_prefix: https://youtu.be/
 playlist_prefix: https://youtube.com/playlist?list=
 github_prefix: https://github.com/devcrypted/
 published: true
-title: 'Kubernetes 1.35: Key Features and Upgrade Guide for Platform Engineers'
+title: "Kubernetes 1.35: Key Features and Upgrade Guide for Platform Engineers"
 permalink: kubernetes-1-35-features-upgrade-guide
 media_subpath: /assets/img
 date: 2025-12-07 00:40:37 +0530
 categories:
-- Kubernetes
+  - Kubernetes
 tags:
-- kubernetes
-- k8s upgrade
-- platform engineering
-- cloud native
-- release notes
+  - kubernetes
+  - k8s upgrade
+  - platform engineering
+  - cloud native
+  - release notes
 image: kubernetes-1-35-features-upgrade-guide.webp
-description: 'Detail the new features and deprecations in Kubernetes 1.35. Discuss
+description:
+  "Detail the new features and deprecations in Kubernetes 1.35. Discuss
   the roadmap for 1.36 and the lifecycle management of clusters in 2025. Focus on
-  stability improvements and the '
-video_id: ''
-playlist_id: ''
-github_repo: ''
+  stability improvements and the "
+video_id: ""
+playlist_id: ""
+github_repo: ""
 ---
 
 # Kubernetes 1.35: Key Features and Upgrade Guide for Platform Engineers
@@ -34,7 +35,7 @@ As Kubernetes continues its trajectory as the de facto standard for container or
 
 This article provides a forward-looking analysis of what to expect in Kubernetes 1.35, based on the project's current trajectory and long-term initiatives. We'll explore key themes, anticipated features and deprecations, and a practical guide to managing your cluster's lifecycle into 2025 and beyond.
 
-***Note:** As of this writing, Kubernetes 1.35 is a future release, projected for late 2025 or early 2026 based on the current cadence of three releases per year. This guide is based on established trends, active Kubernetes Enhancement Proposals (KEPs), and the stated goals of various Special Interest Groups (SIGs).*
+**\*Note:** As of this writing, Kubernetes 1.35 is a future release, projected for late 2025 or early 2026 based on the current cadence of three releases per year. This guide is based on established trends, active Kubernetes Enhancement Proposals (KEPs), and the stated goals of various Special Interest Groups (SIGs).\*
 
 ## The Modern K8s Release: Stability is the Core Feature
 
@@ -42,9 +43,9 @@ Before diving into specific features, it's crucial to understand the philosophy 
 
 What this means for practitioners:
 
-*   **Longer Maturation Cycles:** Features often spend multiple releases in Alpha and Beta stages, undergoing rigorous testing and community feedback. By the time a feature reaches General Availability (GA), it is considered production-grade.
-*   **Predictable Deprecation Windows:** APIs are deprecated with ample warning (typically at least one year or three releases), giving teams time to migrate.
-*   **Focus on the Core:** The core Kubernetes API server, scheduler, and controller manager receive incremental, non-disruptive improvements. Major innovation is often pushed to ecosystem projects (e.g., service meshes, storage operators) that build on top of a stable foundation.
+- **Longer Maturation Cycles:** Features often spend multiple releases in Alpha and Beta stages, undergoing rigorous testing and community feedback. By the time a feature reaches General Availability (GA), it is considered production-grade.
+- **Predictable Deprecation Windows:** APIs are deprecated with ample warning (typically at least one year or three releases), giving teams time to migrate.
+- **Focus on the Core:** The core Kubernetes API server, scheduler, and controller manager receive incremental, non-disruptive improvements. Major innovation is often pushed to ecosystem projects (e.g., service meshes, storage operators) that build on top of a stable foundation.
 
 This shift ensures that upgrading a cluster is less about gambling on new features and more about a planned, methodical process of adopting battle-tested improvements.
 
@@ -56,8 +57,8 @@ Based on ongoing work in the community, we can project several key themes that w
 
 Security remains a top priority. By the time 1.35 is released, we expect several powerful security features to have reached stable GA status, making them default tools in the platform engineer's arsenal.
 
-*   **ValidatingAdmissionPolicy (GA):** This feature, which uses the Common Expression Language (CEL), will be the standard for implementing complex, in-process admission control without requiring custom webhooks. This reduces operational overhead and improves cluster security posture.
-*   **CEL for CRD Validation (GA):** Extending CEL to Custom Resource Definitions allows for richer, more declarative validation rules directly within the CRD schema, improving the reliability of the entire operator ecosystem.
+- **ValidatingAdmissionPolicy (GA):** This feature, which uses the Common Expression Language (CEL), will be the standard for implementing complex, in-process admission control without requiring custom webhooks. This reduces operational overhead and improves cluster security posture.
+- **CEL for CRD Validation (GA):** Extending CEL to Custom Resource Definitions allows for richer, more declarative validation rules directly within the CRD schema, improving the reliability of the entire operator ecosystem.
 
 An example of a `ValidatingAdmissionPolicy` you might be using by then:
 
@@ -86,15 +87,15 @@ spec:
 
 The rise of AI/ML has put new demands on Kubernetes. SIG-Node and SIG-Scheduling are actively working on features to better manage these stateful, resource-intensive workloads.
 
-*   **Dynamic Resource Allocation (GA):** This will provide a more flexible and extensible way to request and manage specialized hardware like GPUs, FPGAs, and NPUs, moving beyond the limitations of the current device plugin framework.
-*   **JobSet and Indexed Jobs Maturation:** Ecosystem projects like JobSet (for managing tightly coupled jobs) and core features like Indexed Jobs (for parallel processing) will be mature, providing robust, built-in patterns for complex batch and ML training scenarios.
+- **Dynamic Resource Allocation (GA):** This will provide a more flexible and extensible way to request and manage specialized hardware like GPUs, FPGAs, and NPUs, moving beyond the limitations of the current device plugin framework.
+- **JobSet and Indexed Jobs Maturation:** Ecosystem projects like JobSet (for managing tightly coupled jobs) and core features like Indexed Jobs (for parallel processing) will be mature, providing robust, built-in patterns for complex batch and ML training scenarios.
 
 ### H3: Streamlined Cluster Lifecycle and Management
 
 The work of SIG-Cluster-Lifecycle, particularly around Cluster API, will continue to simplify the management of Kubernetes clusters themselves. By 1.35, we can expect:
 
-*   **Declarative Control Plane Upgrades:** More sophisticated and automated strategies for rolling out control plane updates with minimal downtime.
-*   **Improved Node Health and Remediation:** More built-in intelligence for automatically detecting, draining, and replacing unhealthy nodes.
+- **Declarative Control Plane Upgrades:** More sophisticated and automated strategies for rolling out control plane updates with minimal downtime.
+- **Improved Node Health and Remediation:** More built-in intelligence for automatically detecting, draining, and replacing unhealthy nodes.
 
 ## Planning for Deprecations and Removals
 
@@ -131,9 +132,9 @@ For most organizations, a sound policy is to stay no more than two versions behi
 
 This strategy provides a balance:
 
-*   **Security:** You receive timely security patches, as the Kubernetes project supports the three most recent minor releases.
-*   **Stability:** You avoid Day-1 bugs of a new release, letting the broader community surface them first.
-*   **Manageable Change:** The delta between two consecutive versions is small and easy to manage.
+- **Security:** You receive timely security patches, as the Kubernetes project supports the three most recent minor releases.
+- **Stability:** You avoid Day-1 bugs of a new release, letting the broader community surface them first.
+- **Manageable Change:** The delta between two consecutive versions is small and easy to manage.
 
 ### H3: A Phased Upgrade Checklist
 
@@ -151,7 +152,6 @@ For every upgrade, follow a structured, phased approach.
 Kubernetes 1.35 will not be a revolutionary release, and that is its greatest strength. It will represent the culmination of years of effort to make the platform more secure, stable, and capable of handling the next generation of cloud-native workloads. The roadmap toward 1.36 will likely continue these themes, with an even greater focus on operational simplicity and autonomous systems.
 
 For platform engineers, the key to success is not in chasing the newest alpha feature, but in establishing a disciplined, continuous lifecycle management process. By understanding the project's direction, proactively managing API deprecations, and adopting a routine upgrade cadence, you can ensure your platform remains a stable, secure, and powerful foundation for your organization's innovation.
-
 
 ## Further Reading
 
