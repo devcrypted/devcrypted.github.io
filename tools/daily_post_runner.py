@@ -387,6 +387,7 @@ def build_front_matter(title: str, permalink: str, category: str, tags: List[str
         "layout": "post",
         "authors": ["devcrypted"],
         "pin": False,
+        "mermaid": True,
         "video_prefix": "https://youtu.be/",
         "playlist_prefix": "https://youtube.com/playlist?list=",
         "github_prefix": "https://github.com/devcrypted/",

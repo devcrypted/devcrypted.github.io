@@ -7,6 +7,7 @@ video_prefix: https://youtu.be/
 playlist_prefix: https://youtube.com/playlist?list=
 github_prefix: https://github.com/devcrypted/
 published: true
+mermaid: true
 title: Build Azure Hub and Spoke Architecture using Terraform
 permalink: build-azure-hub-spoke-architecture-using-terraform
 media_subpath: /assets/img
