@@ -75,6 +75,8 @@ def compress_image_to_webp_bytes(image: Image.Image, target_kb: int = IMAGE_MAX_
 def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, Any]]:
     """Return a small list of candidate images (metadata + download url) from Pexels."""
     if not PEXELS_API_KEY:
+        print("WARNING: PEXELS_API_KEY environment variable is not set. Skipping Pexels search.")
+        print("To enable Pexels image search, get a free API key from https://www.pexels.com/api/")
         return []
     headers = {"Authorization": PEXELS_API_KEY}
     params = {"query": prompt, "per_page": per_page, "orientation": "landscape"}
@@ -98,9 +100,11 @@ def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, A
                     "url": url,
                 }
             )
+        print(f"Pexels search for '{prompt}' returned {len(results)} candidate(s).")
         return results
     except Exception as exc:
-        print(f"Pexels search failed: {exc}")
+        print(f"ERROR: Pexels API request failed: {exc}")
+        print("This could be due to an invalid API key, network issues, or API rate limits.")
         return []
 
 
@@ -146,8 +150,10 @@ def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: st
 def pexels_select_image(prompt: str, title: str) -> bytes | None:
     """Search Pexels, let AI pick/iterate up to 3 tries, and return image bytes if found."""
     if not PEXELS_API_KEY:
+        print("WARNING: Cannot search Pexels - PEXELS_API_KEY not set.")
         return None
     query = f"{prompt} technology illustration"
+    print(f"Searching Pexels for: '{query}'")
     fallback_candidate: Dict[str, Any] | None = None
     for attempt in range(3):
         candidates = pexels_search_candidates(query)
@@ -166,17 +172,24 @@ def pexels_select_image(prompt: str, title: str) -> bytes | None:
 
             data = fetch_image(candidate["url"], headers={"Authorization": PEXELS_API_KEY})
             if data:
+                print(f"Successfully downloaded image from Pexels (photographer: {candidate.get('photographer', 'unknown')})")
                 return data
+            else:
+                print(f"Failed to download image from URL: {candidate['url']}")
             if new_query and attempt < 2:
                 query = new_query
+                print(f"Refining search query to: '{query}'")
                 continue
         elif attempt < 2:
             continue
 
     if fallback_candidate:
+        print("Attempting to download fallback candidate...")
         data = fetch_image(fallback_candidate["url"], headers={"Authorization": PEXELS_API_KEY})
         if data:
+            print("Successfully downloaded fallback image from Pexels")
             return data
+    print("No suitable images found on Pexels after all attempts.")
     return None
 
 
@@ -346,7 +359,30 @@ def pick_image_model(client: genai.Client) -> Tuple[str | None, List[str]]:
     return None, available
 
 
-def request_image(client: genai.Client, prompt: str, title: str) -> bytes:
+def process_image_url(url: str, target_kb: int = IMAGE_MAX_KB) -> bytes:
+    """Download image from URL and convert to optimized WebP."""
+    print(f"Downloading custom image from: {url}")
+    data = fetch_image(url)
+    if not data:
+        raise RuntimeError(f"Failed to download image from {url}")
+    
+    try:
+        image = Image.open(io.BytesIO(data))
+        webp_bytes = compress_image_to_webp_bytes(image, target_kb)
+        print(f"Successfully processed custom image ({len(webp_bytes)/1024:.1f}KB)")
+        return webp_bytes
+    except Exception as exc:
+        raise RuntimeError(f"Failed to process image from {url}: {exc}")
+
+
+def request_image(client: genai.Client, prompt: str, title: str, custom_image_url: str | None = None) -> bytes:
+    # If custom image URL provided, use it
+    if custom_image_url:
+        try:
+            return process_image_url(custom_image_url)
+        except Exception as exc:
+            print(f"WARNING: Custom image URL failed ({exc}); falling back to stock search.")
+    
     # model_name, available = pick_image_model(client) ## Uncomment it if you want to use Gemini image generation
     model_name = None
     if model_name:
@@ -365,14 +401,17 @@ def request_image(client: genai.Client, prompt: str, title: str) -> bytes:
         except Exception as exc:
             print(f"Image model '{model_name}' failed ({exc}); falling back to stock search.")
     else:
-        print("No image-capable models available on this key; using Pexels search.")
+        print("No image-capable models available on this key; falling back to Pexels search.")
 
     # Stock photo fallback via Pexels with AI ranking/iteration
+    print("Attempting to find stock photo from Pexels...")
     stock_bytes = pexels_select_image(prompt, title)
     if stock_bytes:
+        print("Using stock photo from Pexels.")
         return stock_bytes
 
-    print("Stock photo search failed; using placeholder.")
+    print("WARNING: Stock photo search failed. Using placeholder image.")
+    print("To use real images, set PEXELS_API_KEY environment variable.")
     return placeholder_image_bytes()
 
 def save_webp(image_bytes: bytes, destination: Path) -> str:
@@ -420,16 +459,17 @@ def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: L
 def main() -> None:
     parser = argparse.ArgumentParser(description="Generate daily blog post and thumbnail from topics JSON.")
     parser.add_argument("--date", help="ISO date (YYYY-MM-DD). Defaults to today.")
-    parser.add_argument("--title", help="Manual mode title (skip topics JSON)")
+    parser.add_argument("--title", help="Manual mode title (optional - auto-generated from description if not provided)")
     parser.add_argument("--description", help="Manual mode description")
     parser.add_argument("--category", help="Override category")
     parser.add_argument("--tags", help="Comma-separated tags")
     parser.add_argument("--permalink", help="Override permalink slug")
     parser.add_argument("--image-prompt", dest="image_prompt_override", help="Override image prompt base")
+    parser.add_argument("--image-url", dest="image_url", help="Custom image URL (will be downloaded and optimized)")
     parser.add_argument("--resources", help="Comma-separated resource links")
     args = parser.parse_args()
 
-    manual_mode = bool(args.title)
+    manual_mode = bool(args.title or args.description)
 
     if args.date:
         target_date = date.fromisoformat(args.date)
@@ -441,9 +481,20 @@ def main() -> None:
 
     if manual_mode:
         if not args.description:
-            raise SystemExit("--description is required when --title is provided")
-        title = str(args.title).strip()
+            raise SystemExit("--description is required when using manual mode")
+        
         description_prompt = str(args.description).strip()
+        
+        # Auto-generate title from description if not provided
+        if args.title:
+            title = str(args.title).strip()
+        else:
+            print("Auto-generating title from description...")
+            suggested = suggest_metadata("", description_prompt)
+            title = suggested.get("title") or "Technical Insight"
+            print(f"Generated title: {title}")
+        
+        # Get other metadata
         suggested = suggest_metadata(title, description_prompt)
         category = (args.category or suggested.get("category") or "Tech").strip()
         suggested_tags = normalize_tags(suggested.get("tags"))
@@ -483,7 +534,7 @@ def main() -> None:
     # Generate image first with image-specific key/quota
     image_api_key = load_image_key()
     image_client = genai.Client(api_key=image_api_key)
-    image_bytes = request_image(image_client, image_prompt, title)
+    image_bytes = request_image(image_client, image_prompt, title, args.image_url)
     image_name = f"{permalink}.webp"
     image_path = save_webp(image_bytes, ASSETS_DIR / image_name)
 
