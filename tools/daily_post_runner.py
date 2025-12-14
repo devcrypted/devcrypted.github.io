@@ -24,15 +24,6 @@ from google.genai import types
 BLOG_MODEL_PRIMARY = os.environ.get("GEMINI_BLOG_MODEL_PRIMARY", "gemini-3-pro")
 BLOG_MODEL_FALLBACK = os.environ.get("GEMINI_BLOG_MODEL_FALLBACK", "gemini-2.5-pro")
 KEYWORD_MODEL = os.environ.get("GEMINI_KEYWORD_MODEL", "gemini-2.5-flash")
-IMAGE_MODEL = os.environ.get("GEMINI_IMAGE_MODEL", "imagen-3.0-generate-002")
-IMAGE_MODEL_FALLBACKS = [
-    m.strip()
-    for m in os.environ.get(
-        "GEMINI_IMAGE_MODEL_FALLBACKS",
-        "imagen-3.0-fast-generate-001,imagen-3.0-generate-001,imagen-2.0-fast-generate-001",
-    ).split(",")
-    if m.strip()
-]
 POSTS_DIR = Path(__file__).resolve().parent.parent / "_posts"
 ASSETS_DIR = Path(__file__).resolve().parent.parent / "assets" / "img"
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
@@ -118,7 +109,7 @@ def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: st
     if not candidates:
         return None, None
     try:
-        text_client = genai.Client(api_key=load_text_key())
+        operations_client = genai.Client(api_key=load_operations_key())
         options = [f"{idx}: alt='{c.get('alt','')}' by {c.get('photographer','')}" for idx, c in enumerate(candidates)]
         prompt = (
             "You rank stock photos for a tech blog thumbnail."
@@ -128,7 +119,7 @@ def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: st
             "\nRespond as JSON: {\"choice\": <index or null>, \"new_query\": <string or null>}"
             "\nChoose the best tech-relevant image. If none fit, set choice=null and suggest a better concise query."
         )
-        resp = text_client.models.generate_content(
+        resp = operations_client.models.generate_content(
             model=KEYWORD_MODEL,
             contents=prompt,
             config={"response_mime_type": "application/json"},
@@ -194,13 +185,18 @@ def pexels_select_image(prompt: str, title: str) -> bytes | None:
 
 
 def load_text_key() -> str:
-    key = (
-        os.environ.get("GEMINI_TEXT_API_KEY")
-        or os.environ.get("GOOGLE_API_KEY")
-        or os.environ.get("GEMINI_API_KEY")
-    )
+    """Load API key for blog content generation (uses primary models)."""
+    key = os.environ.get("GEMINI_API_KEY")
     if not key:
-        raise RuntimeError("Set GEMINI_TEXT_API_KEY or GEMINI_API_KEY in the environment.")
+        raise RuntimeError("Set GEMINI_API_KEY in the environment for blog content generation.")
+    return key
+
+
+def load_operations_key() -> str:
+    """Load API key for operations like metadata generation and image ranking (uses flash models)."""
+    key = os.environ.get("GEMINI_OPERATIONS_KEY")
+    if not key:
+        raise RuntimeError("Set GEMINI_OPERATIONS_KEY in the environment for metadata and operations.")
     return key
 
 
@@ -227,15 +223,15 @@ def parse_resources_csv(text: str | None) -> List[str]:
 
 
 def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
-    client = genai.Client(api_key=load_text_key())
+    operations_client = genai.Client(api_key=load_operations_key())
     prompt = (
         "You generate concise metadata for a tech blog post."
-        f"\nTitle: {title}"
+        f"\nTitle: {title if title else 'Not provided'}"
         f"\nDescription: {description}"
-        "\nRespond as JSON with keys: category (one short word), tags (3-6 items, kebab-case), permalink_slug (kebab-case), image_prompt (concise), description (<=180 chars)."
+        "\nRespond as JSON with keys: title (catchy, professional blog title if not provided), category (one short word), tags (3-6 items, kebab-case), permalink_slug (kebab-case), image_prompt (concise), description (<=180 chars)."
     )
     try:
-        resp = client.models.generate_content(
+        resp = operations_client.models.generate_content(
             model=KEYWORD_MODEL,
             contents=prompt,
             config={"response_mime_type": "application/json"},
@@ -253,15 +249,7 @@ def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
         return {}
 
 
-def load_image_key() -> str:
-    key = (
-        os.environ.get("GEMINI_IMAGE_API_KEY")
-        or os.environ.get("GEMINI_API_KEY")
-        or os.environ.get("GOOGLE_API_KEY")
-    )
-    if not key:
-        raise RuntimeError("Set GEMINI_IMAGE_API_KEY or GEMINI_API_KEY in the environment.")
-    return key
+
 
 
 def slugify(text: str, max_length: int = 60) -> str:
@@ -300,14 +288,12 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
     title = topic.get("title", "Technical Insight")
     description_prompt = topic.get("description_prompt", "Provide a concise overview.")
     resources = topic.get("resources", [])
-    tags = topic.get("tags", [])
-    category = topic.get("category", "Tech")
     resources_block = "\n".join(str(r) for r in resources)
     return (
         "Act as an experienced technical writer with internet research skills.\n"
         "Write a full Markdown article (no YAML front matter).\n"
         "Follow Jekyll-friendly Markdown: top-level headings must be '# ' and lowest-level headings '###', do not exceed h3.\n"
-        "Structure: brief intro, explicit 'What You’ll Get' bullet list, multiple clear sections with h2/h3, small paragraphs, concise bullets.\n"
+        "Structure: brief intro, explicit 'What You'll Get' bullet list, multiple clear sections with h2/h3, small paragraphs, concise bullets.\n"
         "Tone: concise, authoritative, engaging for practitioners.\n"
         "Use research-driven details; avoid fluff.\n"
         "Include varied formats where useful: fenced code blocks, mermaid diagrams for flows/architecture, markdown tables, info blocks/quotes, bold/italic for emphasis, and links to credible sources. Emojis optional; keep tasteful.\n"
@@ -317,7 +303,6 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
         "CRITICAL MERMAID SYNTAX RULES: Always quote node labels containing special characters (parentheses, brackets, etc.) using double quotes. Example: Use A[\"Label (with parens)\"] NOT A[Label (with parens)]. For node labels with parentheses, remove them or quote the entire label. Use <br/> for line breaks, not actual newlines.\n"
         "Research on what technical audience want from a blog post, I think it's not difficult to find: it's important info, key highlights, small paragraphs, bullet points for clarity, code written within ```lang``` blocks properly, clean steps to follow, pros/cons of topic support that, a brief summary, mermaid high level architect/flow diagrams to understand things better and maybe a few more things, no all blogs support all of the things so use them carefully and ensure you're not making the content too long or unfollowable just because you want to put all stuff, keep precise up to the point and don't overdo things everything should be backed by proper research, no lies but if imaginations could be there indirectly telling that it's imaginations, etc. Rest you take care.\n"
         f"Title: {title}.\n"
-        f"Category: {category}. Tags: {', '.join(tags)}.\n"
         f"Writing guidance: {description_prompt}\n"
         f"Reference links to consider (do not copy):\n{resources_block}\n"
         "Do not include YAML. Do not invent media links. Keep text precise and clean."
@@ -343,21 +328,7 @@ def request_markdown(client: genai.Client, prompt: str) -> str:
     raise RuntimeError("No text response from model.")
 
 
-def pick_image_model(client: genai.Client) -> Tuple[str | None, List[str]]:
-    """Return the first available generateImages-capable model and the full list."""
-    available = []
-    for model_info in client.models.list():
-        methods = getattr(model_info, "supported_generation_methods", []) or []
-        if "generateImages" in methods:
-            available.append(model_info.name)
 
-    candidates = [IMAGE_MODEL] + [m for m in IMAGE_MODEL_FALLBACKS if m != IMAGE_MODEL]
-    for name in candidates:
-        if name in available:
-            return name, available
-    if available:
-        return available[0], available
-    return None, available
 
 
 def process_image_url(url: str, target_kb: int = IMAGE_MAX_KB) -> bytes:
@@ -376,7 +347,8 @@ def process_image_url(url: str, target_kb: int = IMAGE_MAX_KB) -> bytes:
         raise RuntimeError(f"Failed to process image from {url}: {exc}")
 
 
-def request_image(client: genai.Client, prompt: str, title: str, custom_image_url: str | None = None) -> bytes:
+def request_image(prompt: str, title: str, custom_image_url: str | None = None) -> bytes:
+    """Get image for blog post - custom URL, Pexels, or placeholder."""
     # If custom image URL provided, use it
     if custom_image_url:
         try:
@@ -384,27 +356,7 @@ def request_image(client: genai.Client, prompt: str, title: str, custom_image_ur
         except Exception as exc:
             print(f"WARNING: Custom image URL failed ({exc}); falling back to stock search.")
     
-    # model_name, available = pick_image_model(client) ## Uncomment it if you want to use Gemini image generation
-    model_name = None
-    if model_name:
-        print(f"Requesting image from {model_name}...")
-        try:
-            response = client.models.generate_images(
-                model=model_name,
-                prompt=prompt,
-                config=types.GenerateImagesConfig(number_of_images=1),
-            )
-            for image_entry in getattr(response, "generated_images", []) or []:
-                image_obj = getattr(image_entry, "image", None)
-                if image_obj and getattr(image_obj, "image_bytes", None):
-                    return bytes(image_obj.image_bytes)
-            print("Model call succeeded but no image bytes returned; falling back to stock search.")
-        except Exception as exc:
-            print(f"Image model '{model_name}' failed ({exc}); falling back to stock search.")
-    else:
-        print("No image-capable models available on this key; falling back to Pexels search.")
-
-    # Stock photo fallback via Pexels with AI ranking/iteration
+    # Pexels stock photo search with AI ranking/iteration
     print("Attempting to find stock photo from Pexels...")
     stock_bytes = pexels_select_image(prompt, title)
     if stock_bytes:
@@ -451,7 +403,20 @@ def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: L
     yaml_block = yaml.safe_dump(front_matter, sort_keys=False, allow_unicode=False)
     extra = ""
     if resources:
-        links = "\n".join(f"- {url}" for url in resources)
+        # Format resources as proper markdown links
+        formatted_links = []
+        for url in resources:
+            url = url.strip()
+            if not url:
+                continue
+            # Check if already a markdown link
+            if url.startswith("[") and "](" in url and url.endswith(")"):
+                formatted_links.append(url)
+            else:
+                # Convert plain URL to markdown link
+                formatted_links.append(f"[{url}]({url})")
+        
+        links = "\n".join(f"- {link}" for link in formatted_links)
         extra = f"\n\n## Further Reading\n\n{links}\n"
     content = f"---\n{yaml_block}---\n\n{body.strip()}\n{extra}"
     path.write_text(content, encoding="utf-8")
@@ -532,10 +497,8 @@ def main() -> None:
     image_prompt = f"{image_prompt_base}. 1280x720, Nano Banana style, cinematic lighting, detailed."
 
     body_prompt = build_body_prompt(topic)
-    # Generate image first with image-specific key/quota
-    image_api_key = load_image_key()
-    image_client = genai.Client(api_key=image_api_key)
-    image_bytes = request_image(image_client, image_prompt, title, args.image_url)
+    # Generate image using Pexels
+    image_bytes = request_image(image_prompt, title, args.image_url)
     image_name = f"{permalink}.webp"
     image_path = save_webp(image_bytes, ASSETS_DIR / image_name)
 

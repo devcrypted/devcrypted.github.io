@@ -22,13 +22,9 @@ TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
 
 def load_api_key() -> str:
-    key = (
-        os.environ.get("GEMINI_TEXT_API_KEY")
-        or os.environ.get("GOOGLE_API_KEY")
-        or os.environ.get("GEMINI_API_KEY")
-    )
+    key = os.environ.get("GEMINI_API_KEY")
     if not key:
-        raise RuntimeError("Set GEMINI_TEXT_API_KEY or GEMINI_API_KEY in the environment.")
+        raise RuntimeError("Set GEMINI_API_KEY in the environment.")
     return key
 
 

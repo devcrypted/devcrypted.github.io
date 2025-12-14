@@ -35,9 +35,8 @@ jobs:
 
       - name: Generate post and thumbnail
         env:
-          GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY }}
-          GEMINI_IMAGE_API_KEY: ${{ secrets.GEMINI_IMAGE_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_OPERATIONS_KEY: ${{ secrets.GEMINI_OPERATIONS_KEY }}
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
         run: |
           DATE_ARG=""

@@ -32,9 +32,9 @@ class Post:
 
 
 def load_api_key() -> str:
-    key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY")
+    key = os.environ.get("GEMINI_OPERATIONS_KEY")
     if not key:
-        raise RuntimeError("Set GOOGLE_API_KEY or GEMINI_API_KEY.")
+        raise RuntimeError("Set GEMINI_OPERATIONS_KEY in the environment.")
     return key
 
 

@@ -38,8 +38,6 @@ jobs:
           pip install google-genai
 
       - name: Generate topics
-        env:
-          GEMINI_TEXT_API_KEY: ${{ secrets.GEMINI_TEXT_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           MONTH_ARG=""
