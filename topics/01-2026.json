@@ -1,0 +1,272 @@
+[
+  {
+    "title": "AWS re:Invent 2025 Recap: Frontier Agents & Nova",
+    "description_prompt": "Detailed retrospective of AWS re:Invent 2025 (Dec 1-5). Deep dive into the 'Frontier Agents' announcement, Nova model family, and Trainium3 UltraServers. Discuss the shift to 'Agentic Cloud' and the 'Rack Drop' symbolism.",
+    "image_prompt": "Abstract representation of AWS cloud infrastructure transforming into intelligent robotic assistants, orange and black color scheme, sleek modern tech aesthetic.",
+    "tags": [],
+    "category": "AWS",
+    "permalink": "aws-reinvent-2025-recap-frontier-agents",
+    "resources": ["https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/", "https://www.aboutamazon.com/aws-reinvent-news-updates"]
+  },
+  {
+    "title": "Kubernetes 1.35 'Timbernetes' Released",
+    "description_prompt": "Technical deep dive into Kubernetes 1.35 features: Native Workload Identity (PodCertificateRequest), User Namespaces, and SLA-aware scheduling. Explain the significance of the 'Timbernetes' release theme.",
+    "image_prompt": "A massive, digital 'World Tree' (Yggdrasil) with Kubernetes logos as leaves, roots connecting to servers, glowing blue and green, fantasy-tech style.",
+    "tags": [],
+    "category": "Kubernetes",
+    "permalink": "kubernetes-1-35-timbernetes-features",
+    "resources": ["https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/", "https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9"]
+  },
+  {
+    "title": "Python 3.14: Performance & JIT Updates",
+    "description_prompt": "Review of Python 3.14 (released late 2025). Focus on the JIT compiler improvements, performance benchmarks vs 3.13, and the roadmap for GIL removal. Include the 'Antigravity' cultural reference.",
+    "image_prompt": "A high-speed python snake made of chrome and neon lights racing through a circuit board, motion blur, speed, dynamic lighting.",
+    "tags": ["Python", "Programming", "Performance", "AI"],
+    "category": "Development",
+    "permalink": "python-3-14-performance-jit-review",
+    "resources": ["https://docs.python.org/3/whatsnew/3.14.html", "https://peps.python.org/pep-0745/"]
+  },
+  {
+    "title": "Visual Studio 2026: Agent HQ Explained",
+    "description_prompt": "Review Microsoft's Visual Studio 2026. Demystify 'Agent HQ' and 'Agent Sessions'. Discuss the move towards multi-agent coding environments and the confusion surrounding the launch.",
+    "image_prompt": "Visual Studio Code interface expanding into a holographic command center with multiple AI avatars assisting a developer, sci-fi HUD style.",
+    "tags": [],
+    "category": "VSCode",
+    "permalink": "visual-studio-2026-agent-hq-review",
+    "resources": ["https://devops.com/vs-code-pushes-hard-on-ai-agents-while-quietly-killing-free-code-completion/", "https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/"]
+  },
+  {
+    "title": "OpenTofu vs Terraform: The 2026 State of Play",
+    "description_prompt": "Compare OpenTofu 1.10+ against Terraform in 2026. Highlight OpenTofu's encryption at rest, OCI registry support, and CNCF Sandbox status. Guide for migration.",
+    "image_prompt": "A fork in a digital road, one path leading to a corporate glass building (Terraform), the other to a vibrant open community park (OpenTofu), 3d render.",
+    "tags": [],
+    "category": "Terraform",
+    "permalink": "opentofu-vs-terraform-2026-comparison",
+    "resources": ["https://opentofu.org/", "https://www.harness.io/blog/late-to-opentofu"]
+  },
+  {
+    "title": "Docker Desktop 4.40: Running Local AI Models",
+    "description_prompt": "Tutorial on using Docker Desktop 4.40's new 'Model Runner' and MCP Gateway. How to run LLMs locally within containers for secure development and cloud offload.",
+    "image_prompt": "A Docker whale container ship carrying glowing AI brains, navigating a digital ocean, isometric view, detailed 3d render.",
+    "tags": [],
+    "category": "Docker",
+    "permalink": "docker-desktop-4-40-local-ai-models",
+    "resources": ["https://www.docker.com/solutions/docker-ai/", "https://www.infoq.com/news/2025/11/docker-desktop-ai/"]
+  },
+  {
+    "title": "Preemptive Cybersecurity: AI Fighting AI",
+    "description_prompt": "Discuss Gartner's 'Preemptive Cybersecurity' trend. How organizations are using AI to anticipate threats and deploy honeypots dynamically before attacks occur.",
+    "image_prompt": "Digital chess match between a red AI (attacker) and a blue AI (defender), with the blue AI predicting moves ahead, glowing neons.",
+    "tags": [],
+    "category": "DevSecOps",
+    "permalink": "preemptive-cybersecurity-ai-defense",
+    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026", "https://www.youtube.com/watch?v=5dgpcQXq1eo"]
+  },
+  {
+    "title": "Identity for Agents: The Non-Human Identity Crisis",
+    "description_prompt": "Analyze the security risks of autonomous AI agents. Discuss CyberArk's prediction that 'Every AI Agent is an Identity' and how to manage NHI access.",
+    "image_prompt": "A robotic hand holding a security badge, scanning into a secure vault, digital lock interface, cinematic lighting.",
+    "tags": [],
+    "category": "Security Tooling",
+    "permalink": "identity-management-for-ai-agents",
+    "resources": ["https://www.cyberark.com/resources/blog/ai-agents-and-identity-risks-how-security-will-shift-in-2026", "https://www.proofpoint.com/us/blog/ciso-perspectives/cybersecurity-2026-agentic-ai-cloud-chaos-and-human-factor"]
+  },
+  {
+    "title": "Rust in Linux: The Experiment is Over",
+    "description_prompt": "Update on Rust in the Linux Kernel. The 'experiment' is officially declared a success at the 2025 Summit. Discuss the implications for driver development and kernel stability in 2026.",
+    "image_prompt": "The Linux Penguin (Tux) wearing rusty metal armor, holding a shield, standing victorious on a digital mountain.",
+    "tags": [],
+    "category": "Linux",
+    "permalink": "rust-in-linux-kernel-2026-update",
+    "resources":
+  },
+  {
+    "title": "The 'Lazy Thinking' Epidemic",
+    "description_prompt": "Analyze Gartner's warning about 'AI-free' skills assessments. Discuss the atrophy of critical thinking in engineering teams due to over-reliance on AI agents.",
+    "image_prompt": "A human brain connected to a computer, with the brain fading in color while the computer glows brighter, symbolic of skill atrophy.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "lazy-thinking-epidemic-engineering-skills",
+    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+  },
+  {
+    "title": "Platform Engineering 2026: Beyond Backstage",
+    "description_prompt": "The state of Platform Engineering in 2026. Discuss the 'Standards Paradox', the maturity of Internal Developer Platforms (IDPs), and the role of Backstage's new frontend system.",
+    "image_prompt": "A neatly organized futuristic control room with multiple screens showing server stats, clean lines, white and blue color palette, architectural drawing style.",
+    "tags": [],
+    "category": "Platform Engineering",
+    "permalink": "platform-engineering-trends-2026",
+    "resources": ["https://backstage.io/docs/overview/roadmap/", "https://slavikdev.com/platform-engineering-trends-2026/"]
+  },
+  {
+    "title": "Cilium Service Mesh: Sidecar-less Future",
+    "description_prompt": "Deep dive into Cilium Service Mesh in 2026. How eBPF enables mTLS and observability without sidecars. Advantages over Istio sidecar models.",
+    "image_prompt": "Abstract visualization of network packets flowing smoothly through a transparent mesh, no heavy blocks (sidecars) obstructing flow, bright speed lines.",
+    "tags": [],
+    "category": "Cloud Networking",
+    "permalink": "cilium-service-mesh-sidecarless-2026",
+    "resources": ["https://cilium.io/use-cases/service-mesh/", "https://www.cncf.io/blog/2022/07/20/cilium-1-12-ga-cilium-service-mesh-and-other-major-new-features-for-enterprise-kubernetes/"]
+  },
+  {
+    "title": "Wasm Component Model: The Universal Binary",
+    "description_prompt": "Explaining the WebAssembly Component Model in 2026. How it enables polyglot applications and component composition beyond the browser.",
+    "image_prompt": "Interlocking 3D puzzle pieces of different materials (wood, metal, glass) forming a perfect sphere, representing different languages combining in Wasm.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "wasm-component-model-adoption-2026",
+    "resources": ["https://www.f5.com/company/blog/what-is-the-webassembly-component-model", "https://www.cncf.io/blog/2024/07/09/webassembly-components-the-next-wave-of-cloud-native-computing/"]
+  },
+  {
+    "title": "Ansible Lightspeed & Event-Driven Automation",
+    "description_prompt": "How Ansible Lightspeed integrates with Event-Driven Automation (EDA) in 2026. Using AI to generate playbooks that respond to system events automatically.",
+    "image_prompt": "A spark of light (AI) hitting a gear system, causing it to turn and repair a broken pipe, representing automated fixing.",
+    "tags": [],
+    "category": "Ansible",
+    "permalink": "ansible-lightspeed-event-driven-automation",
+    "resources": ["https://www.redhat.com/en/blog/evolution-red-hat-ansible-lightspeed", "https://devops.com/red-hat-previews-series-of-updates-to-ansible-automation-platform/"]
+  },
+  {
+    "title": "FinOps for AI: Controlling Agent Spend",
+    "description_prompt": "The challenge of managing cloud costs when autonomous agents run loops. Strategies for 'Circuit Breakers' in AI spend and FinOps integration.",
+    "image_prompt": "A balance scale with a robot head on one side and a stack of gold coins on the other, balancing perfectly, 3d render.",
+    "tags": ["FinOps", "AI", "Cloud", "Cost Management"],
+    "category": "Tech News",
+    "permalink": "finops-for-agentic-ai-workloads",
+    "resources": ["https://slavikdev.com/platform-engineering-trends-2026/", "https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"]
+  },
+  {
+    "title": "Azure Cobalt 200: ARM in the Cloud",
+    "description_prompt": "Analysis of Microsoft's Azure Cobalt 200 chip updates from Ignite 2025. Performance benefits for AI workloads and the shift to custom silicon in cloud.",
+    "image_prompt": "Close up of a futuristic processor chip labeled 'Cobalt 200', glowing blue energy lines, circuit details.",
+    "tags": ["Azure", "Hardware", "Cloud", "Performance"],
+    "category": "Azure",
+    "permalink": "azure-cobalt-200-arm-chip-analysis",
+    "resources": ["https://azure.microsoft.com/en-us/blog/actioning-agentic-ai-5-ways-to-build-with-news-from-microsoft-ignite-2025/", "https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"]
+  },
+  {
+    "title": "'Death by AI': Legal Risks in 2026",
+    "description_prompt": "Gartner's prediction of 'Death by AI' legal claims. Discuss guardrails and compliance strategies for autonomous agents in high-stakes sectors.",
+    "image_prompt": "A gavel resting on a computer server, with a legal document in the background, dramatic lighting, symbolizing the intersection of law and AI.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "death-by-ai-legal-claims-2026",
+    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+  },
+  {
+    "title": "In-Place Pod Resizing: K8s Autoscaling",
+    "description_prompt": "Deep dive into 'In-Place Pod Vertical Scaling' now stable in K8s 1.35. How to resize Database pods without restarting them.",
+    "image_prompt": "A container (shipping container style) expanding in size smoothly without breaking or moving, magical realism.",
+    "tags": [],
+    "category": "Kubernetes",
+    "permalink": "kubernetes-in-place-pod-resizing-guide",
+    "resources": ["https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9", "https://palark.com/blog/kubernetes-1-35-release-features/"]
+  },
+  {
+    "title": "Physical AI: KubeCon Edge Recap",
+    "description_prompt": "Recap of KubeCon NA 2025's focus on Edge and Physical AI. Running Kubernetes on factory floors, drones, and robots.",
+    "image_prompt": "Industrial robot arm welding a car part, with a holographic Kubernetes logo hovering over the controller.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "kubecon-na-2025-edge-physical-ai",
+    "resources": ["https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/", "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"]
+  },
+  {
+    "title": "SQL Server 2025: Vector Search & AI",
+    "description_prompt": "Overview of SQL Server 2025 features. Focus on native vector search and AI integration for RAG applications without specialized vector DBs.",
+    "image_prompt": "A classic SQL database server rack transforming into a glowing neural network node, blue and silver.",
+    "tags": [],
+    "category": "Azure",
+    "permalink": "sql-server-2025-vector-search-ai",
+    "resources": ["https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"]
+  },
+  {
+    "title": "Cursor vs Copilot: 2026 Comparison",
+    "description_prompt": "Comparison of Cursor AI editor and GitHub Copilot in 2026. Analyze features like 'Full Codebase Context', 'Copilot Workspace', and enterprise compliance.",
+    "image_prompt": "Split screen showing Cursor IDE interface on left and VS Code Copilot on right, with code flowing between them, versus style.",
+    "tags": [],
+    "category": "Popular Tools",
+    "permalink": "cursor-vs-github-copilot-2026-review",
+    "resources": ["https://byclaritytech.com/cursor-vs-github-copilot/", "https://www.builder.io/blog/cursor-vs-github-copilot"]
+  },
+  {
+    "title": "OpenTofu Encryption at Rest",
+    "description_prompt": "How to implement OpenTofu's state encryption. A security guide for DevOps engineers protecting infrastructure secrets in state files.",
+    "image_prompt": "A heavy steel vault door with the OpenTofu logo, locked and secure, protecting glowing data files inside.",
+    "tags": [],
+    "category": "Terraform",
+    "permalink": "opentofu-state-encryption-guide",
+    "resources": ["https://www.harness.io/blog/late-to-opentofu", "https://opentofu.org/"]
+  },
+  {
+    "title": "Digital Provenance: Trusting Content",
+    "description_prompt": "The importance of Digital Provenance (C2PA) in 2026. Tools and standards for verifying the authenticity of AI-generated code and content.",
+    "image_prompt": "A magnifying glass examining a digital watermark on a piece of code or image, revealing a 'Verified' checkmark.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "digital-provenance-c2pa-2026",
+    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026", "https://medium.com/@kyanon.digital/top-10-tech-trends-2026-by-gartner-2a58a45fc28b"]
+  },
+  {
+    "title": "Green Cloud: Measuring AI Carbon",
+    "description_prompt": "Sustainability in the age of Agentic AI. Tools for measuring the carbon footprint of AI workloads on Kubernetes (Kepler, etc.).",
+    "image_prompt": "A data center server rack with green vines growing around it, glowing with clean energy, eco-friendly tech concept.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "measuring-ai-carbon-footprint-kubernetes",
+    "resources": ["https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"]
+  },
+  {
+    "title": "Physical AI Deep Dive: Robotics",
+    "description_prompt": "Orchestrating Physical AI. How Kubernetes and cloud-native patterns are being applied to robotics and warehouse automation in 2026.",
+    "image_prompt": "A futuristic warehouse with autonomous robots moving boxes, all connected by digital lines to a central cloud brain.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "physical-ai-robotics-orchestration",
+    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"]
+  },
+  {
+    "title": "Chaos Engineering for AI Agents",
+    "description_prompt": "Adapting Chaos Engineering for non-deterministic AI agents. How to stress test 'Frontier Agents' and 'Agent HQ' workflows.",
+    "image_prompt": "A chaotic digital storm swirling around a calm AI agent, testing its resilience, purple and black storm clouds.",
+    "tags": [],
+    "category": "DevOps",
+    "permalink": "chaos-engineering-for-ai-agents",
+    "resources": ["https://slavikdev.com/platform-engineering-trends-2026/"]
+  },
+  {
+    "title": "WebAssembly vs Containers: 2026 View",
+    "description_prompt": "Comparing WebAssembly and Containers in 2026. When to use Wasm (Edge, Serverless) vs Docker (Long-running apps).",
+    "image_prompt": "A scale weighing a lightweight feather (Wasm) against a heavy shipping container (Docker), balanced by speed vs power.",
+    "tags": [],
+    "category": "Docker",
+    "permalink": "wasm-vs-containers-2026-comparison",
+    "resources": ["https://www.f5.com/company/blog/what-is-the-webassembly-component-model", "https://medium.com/@amin-softtech/how-webassembly-is-shaping-the-future-of-javascript-applications-2025-2026-0078f15ced06"]
+  },
+  {
+    "title": "Refactoring with AI: The 'Rack Drop'",
+    "description_prompt": "Strategies for using AI agents to refactor legacy technical debt. Inspired by AWS's 'Rack Drop' demo. Automated mainframe modernization with AWS Transform.",
+    "image_prompt": "A giant robotic crusher compressing a pile of old dusty servers (labeled Legacy) into a diamond (labeled Modern), 3d render.",
+    "tags": [],
+    "category": "AWS",
+    "permalink": "ai-refactoring-technical-debt-strategy",
+    "resources": ["https://reinvent.awsevents.com/", "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/"]
+  },
+  {
+    "title": "Developer Metrics in the Agent Era",
+    "description_prompt": "Redefining DORA metrics for AI-augmented teams. How to measure productivity when AI writes 50% of the code.",
+    "image_prompt": "A futuristic dashboard with holographic gauges measuring 'Agent Efficiency', 'Human Review Time', and 'Code Quality'.",
+    "tags": [],
+    "category": "Platform Engineering",
+    "permalink": "developer-productivity-metrics-ai-era",
+    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+  },
+  {
+    "title": "January 2026 Month in Review",
+    "description_prompt": "Recap of the major themes of Jan 2026: Timbernetes adoption, Agentic AI rollout, and the OpenTofu migration wave.",
+    "image_prompt": "A calendar page for January 2026 filled with checkmarks and technical doodles, resting on a desk with a coffee cup.",
+    "tags": [],
+    "category": "Tech News",
+    "permalink": "january-2026-tech-month-in-review",
+    "resources": ["https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/"]
+  }
+]
