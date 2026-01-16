@@ -1,32 +1,30 @@
 ---
 layout: post
 authors:
-- devcrypted
+  - devcrypted
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
 playlist_prefix: https://youtube.com/playlist?list=
 github_prefix: https://github.com/devcrypted/
 published: true
-title: 'ARM in the Cloud: Migrating Workloads to Azure Cobalt 100 VMs'
+title: "ARM in the Cloud: Migrating Workloads to Azure Cobalt 100 VMs"
 permalink: migrating-to-azure-cobalt-100-arm-vms
 media_subpath: /assets/img
 date: 2025-12-11 07:13:55 +0000
 categories:
-- Azure
+  - Azure
 tags:
-- azure
-- cobalt 100
-- arm
-- cloud migration
-- greenops
+  - azure
+  - cobalt 100
+  - arm
+  - cloud migration
+  - greenops
 image: migrating-to-azure-cobalt-100-arm-vms.webp
-description: Write a migration guide for Azure Cobalt 100 VMs. Explain the benefits
-  of Microsoft's custom silicon for general-purpose and AI-support workloads. Include
-  a comparison of performan
-video_id: ''
-playlist_id: ''
-github_repo: ''
+description: "A comprehensive guide to migrating workloads to Azure Cobalt 100 ARM VMs. Learn about performance benefits, cost savings, and the migration process."
+video_id: ""
+playlist_id: ""
+github_repo: ""
 ---
 
 # ARM in the Cloud: Migrating Workloads to Azure Cobalt 100 VMs
@@ -37,11 +35,11 @@ This guide provides a practitioner-focused playbook for understanding, evaluatin
 
 ### What You’ll Get
 
-*   **Core Benefits:** A clear breakdown of why Cobalt 100 is a game-changer for performance, cost, and energy efficiency.
-*   **Migration Playbook:** A step-by-step process for assessing and moving your applications to ARM64 on Azure.
-*   **Practical Code Examples:** Actionable Azure CLI and Docker commands to get you started.
-*   **Visualized Workflow:** A Mermaid diagram illustrating the end-to-end migration path.
-*   **Key Challenges:** A realistic look at potential hurdles and how to navigate them.
+- **Core Benefits:** A clear breakdown of why Cobalt 100 is a game-changer for performance, cost, and energy efficiency.
+- **Migration Playbook:** A step-by-step process for assessing and moving your applications to ARM64 on Azure.
+- **Practical Code Examples:** Actionable Azure CLI and Docker commands to get you started.
+- **Visualized Workflow:** A Mermaid diagram illustrating the end-to-end migration path.
+- **Key Challenges:** A realistic look at potential hurdles and how to navigate them.
 
 ## The ARM Advantage: Why Azure Cobalt 100 Matters
 
@@ -49,9 +47,9 @@ Azure Cobalt 100 isn't just another CPU. It's Microsoft's custom silicon, built 
 
 The primary benefits boil down to three key areas:
 
-*   **Performance Efficiency:** Cobalt 100 is engineered for scale-out applications. Microsoft claims it delivers **up to 40% better performance** compared to previous-generation Azure ARM-based VMs. This makes it ideal for web servers, microservices, containerized applications, and open-source databases.
-*   **Cost Savings:** Higher performance at lower power consumption translates directly into better price-performance. By running workloads more efficiently, you can often use smaller or fewer VM instances to achieve the same or better results, reducing your overall cloud spend.
-*   **GreenOps & Sustainability:** Power consumption is a major operational cost and environmental concern in data centers. The performance-per-watt of ARM chips is their signature feature. Migrating to Cobalt 100 VMs is a tangible step toward reducing your application's carbon footprint.
+- **Performance Efficiency:** Cobalt 100 is engineered for scale-out applications. Microsoft claims it delivers **up to 40% better performance** compared to previous-generation Azure ARM-based VMs. This makes it ideal for web servers, microservices, containerized applications, and open-source databases.
+- **Cost Savings:** Higher performance at lower power consumption translates directly into better price-performance. By running workloads more efficiently, you can often use smaller or fewer VM instances to achieve the same or better results, reducing your overall cloud spend.
+- **GreenOps & Sustainability:** Power consumption is a major operational cost and environmental concern in data centers. The performance-per-watt of ARM chips is their signature feature. Migrating to Cobalt 100 VMs is a tangible step toward reducing your application's carbon footprint.
 
 > **Info Block: Embracing GreenOps**
 > GreenOps is an emerging practice that applies DevOps principles to sustainability. By optimizing for energy efficiency with hardware like Cobalt 100, engineering teams can directly contribute to their organization's environmental, social, and governance (ESG) goals without sacrificing performance. It's about making sustainability a first-class metric in software architecture and operations.
@@ -60,14 +58,14 @@ The primary benefits boil down to three key areas:
 
 The new Cobalt 100-powered VMs are part of the **Dpsv6 and Epsv6-series**. Let's compare a general-purpose Cobalt 100 instance with its x86-based counterpart.
 
-| Feature             | Dpsv6 Series (ARM64)     | Dpsv5 Series (x86-64)    | Key Difference                                                                  |
-| ------------------- | ------------------------ | ------------------------ | ------------------------------------------------------------------------------- |
-| **Processor**       | Azure Cobalt 100 (ARM)   | 3rd Gen Intel Xeon       | Custom silicon optimized for scale-out workloads vs. general-purpose CPU.       |
-| **vCPU:Memory Ratio** | 1:4 GiB                  | 1:4 GiB                  | Similar memory ratios, making for an easy comparison in resource planning.      |
-| **Performance Claim** | Up to 40% improvement    | Baseline                 | Significant uplift for compatible workloads.                                    |
-| **Target Workloads**  | Web servers, containers, OSS databases, .NET, Java | General purpose workloads | Cobalt 100 excels at throughput-oriented, parallelizable tasks.                 |
+| Feature               | Dpsv6 Series (ARM64)                               | Dpsv5 Series (x86-64)     | Key Difference                                                             |
+| --------------------- | -------------------------------------------------- | ------------------------- | -------------------------------------------------------------------------- |
+| **Processor**         | Azure Cobalt 100 (ARM)                             | 3rd Gen Intel Xeon        | Custom silicon optimized for scale-out workloads vs. general-purpose CPU.  |
+| **vCPU:Memory Ratio** | 1:4 GiB                                            | 1:4 GiB                   | Similar memory ratios, making for an easy comparison in resource planning. |
+| **Performance Claim** | Up to 40% improvement                              | Baseline                  | Significant uplift for compatible workloads.                               |
+| **Target Workloads**  | Web servers, containers, OSS databases, .NET, Java | General purpose workloads | Cobalt 100 excels at throughput-oriented, parallelizable tasks.            |
 
-*Note: Performance gains are highly dependent on the specific workload. Always benchmark your own applications.* For more details, see the [official Azure Cobalt 100 overview](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview).
+_Note: Performance gains are highly dependent on the specific workload. Always benchmark your own applications._ For more details, see the [official Azure Cobalt 100 overview](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes/cobalt-overview).
 
 ## The Migration Playbook: Moving to Cobalt 100
 
@@ -107,12 +105,12 @@ graph TD
 
 ### Step 1: Assess Your Workload Compatibility
 
-The first step is a simple question: *will my application run on ARM64?*
+The first step is a simple question: _will my application run on ARM64?_
 
-*   **Interpreted Languages:** Applications written in languages like **Java, Python, Node.js, and .NET (5+)** are excellent candidates. Since they run on a runtime or virtual machine that has already been ported to ARM64, your application code often runs with no changes.
-*   **Compiled Languages:** Code written in **C, C++, Go, or Rust** must be recompiled for the ARM64 architecture (`aarch64`). This is usually straightforward but requires updating your build process.
-*   **Dependencies:** This is the most critical checkpoint. Every library, agent, and tool you use must have an ARM64-compatible version. Check with your vendors for monitoring agents, security scanners, and database drivers.
-*   **Containerization:** Using containers is the single biggest accelerator for an ARM migration. Docker's multi-architecture support simplifies building and deploying images that can run on both x86 and ARM.
+- **Interpreted Languages:** Applications written in languages like **Java, Python, Node.js, and .NET (5+)** are excellent candidates. Since they run on a runtime or virtual machine that has already been ported to ARM64, your application code often runs with no changes.
+- **Compiled Languages:** Code written in **C, C++, Go, or Rust** must be recompiled for the ARM64 architecture (`aarch64`). This is usually straightforward but requires updating your build process.
+- **Dependencies:** This is the most critical checkpoint. Every library, agent, and tool you use must have an ARM64-compatible version. Check with your vendors for monitoring agents, security scanners, and database drivers.
+- **Containerization:** Using containers is the single biggest accelerator for an ARM migration. Docker's multi-architecture support simplifies building and deploying images that can run on both x86 and ARM.
 
 ### Step 2: Prepare Your Environment and Tooling
 
@@ -149,23 +147,23 @@ az vm create \
 ```
 
 After deployment, conduct rigorous performance and functional testing.
-*   **Benchmark:** Measure key metrics like requests per second, latency, and CPU utilization against your x86 baseline.
-*   **Validate:** Run your full suite of integration and end-to-end tests to ensure there are no subtle, architecture-specific bugs.
+
+- **Benchmark:** Measure key metrics like requests per second, latency, and CPU utilization against your x86 baseline.
+- **Validate:** Run your full suite of integration and end-to-end tests to ensure there are no subtle, architecture-specific bugs.
 
 ## Key Considerations and Potential Challenges
 
 While the migration path is becoming smoother, it's important to be aware of potential hurdles.
 
-*   **Software Availability:** The ARM64 server ecosystem is mature but not as comprehensive as x86. Some proprietary or legacy software may not have an ARM64 version available. Always verify support for all third-party components.
-*   **Performance Nuances:** Don't assume universal performance gains. While many scale-out workloads thrive on ARM, tasks that rely heavily on single-threaded performance or specific x86 instruction sets might not see the same benefits. **Benchmarking is non-negotiable.**
-*   **Tooling and Debugging:** Ensure your debugging and profiling tools are compatible with ARM64. Most modern tools are, but it's essential to check.
+- **Software Availability:** The ARM64 server ecosystem is mature but not as comprehensive as x86. Some proprietary or legacy software may not have an ARM64 version available. Always verify support for all third-party components.
+- **Performance Nuances:** Don't assume universal performance gains. While many scale-out workloads thrive on ARM, tasks that rely heavily on single-threaded performance or specific x86 instruction sets might not see the same benefits. **Benchmarking is non-negotiable.**
+- **Tooling and Debugging:** Ensure your debugging and profiling tools are compatible with ARM64. Most modern tools are, but it's essential to check.
 
 ## Conclusion
 
 Azure Cobalt 100 marks a pivotal moment for cloud infrastructure. By pairing the inherent efficiency of the ARM architecture with custom silicon optimized for cloud-native workloads, Microsoft is offering a compelling trifecta of performance, cost savings, and sustainability.
 
 For engineering teams, this isn't just about swapping one VM for another. It's an opportunity to build more efficient, scalable, and environmentally-conscious applications. The path to adoption is clear: assess your workloads, embrace multi-architecture container builds, and start testing. The future of the cloud is efficient, and it's increasingly built on ARM.
-
 
 ## Further Reading
 
