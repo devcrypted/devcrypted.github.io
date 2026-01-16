@@ -6,7 +6,10 @@
     "tags": [],
     "category": "AWS",
     "permalink": "aws-reinvent-2025-recap-frontier-agents",
-    "resources": ["https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/", "https://www.aboutamazon.com/aws-reinvent-news-updates"]
+    "resources": [
+      "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/",
+      "https://www.aboutamazon.com/aws-reinvent-news-updates"
+    ]
   },
   {
     "title": "Kubernetes 1.35 'Timbernetes' Released",
@@ -15,7 +18,10 @@
     "tags": [],
     "category": "Kubernetes",
     "permalink": "kubernetes-1-35-timbernetes-features",
-    "resources": ["https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/", "https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9"]
+    "resources": [
+      "https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/",
+      "https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9"
+    ]
   },
   {
     "title": "Python 3.14: Performance & JIT Updates",
@@ -24,7 +30,10 @@
     "tags": ["Python", "Programming", "Performance", "AI"],
     "category": "Development",
     "permalink": "python-3-14-performance-jit-review",
-    "resources": ["https://docs.python.org/3/whatsnew/3.14.html", "https://peps.python.org/pep-0745/"]
+    "resources": [
+      "https://docs.python.org/3/whatsnew/3.14.html",
+      "https://peps.python.org/pep-0745/"
+    ]
   },
   {
     "title": "Visual Studio 2026: Agent HQ Explained",
@@ -33,7 +42,10 @@
     "tags": [],
     "category": "VSCode",
     "permalink": "visual-studio-2026-agent-hq-review",
-    "resources": ["https://devops.com/vs-code-pushes-hard-on-ai-agents-while-quietly-killing-free-code-completion/", "https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/"]
+    "resources": [
+      "https://devops.com/vs-code-pushes-hard-on-ai-agents-while-quietly-killing-free-code-completion/",
+      "https://devblogs.microsoft.com/visualstudio/visual-studio-2026-is-here-faster-smarter-and-a-hit-with-early-adopters/"
+    ]
   },
   {
     "title": "OpenTofu vs Terraform: The 2026 State of Play",
@@ -42,7 +54,10 @@
     "tags": [],
     "category": "Terraform",
     "permalink": "opentofu-vs-terraform-2026-comparison",
-    "resources": ["https://opentofu.org/", "https://www.harness.io/blog/late-to-opentofu"]
+    "resources": [
+      "https://opentofu.org/",
+      "https://www.harness.io/blog/late-to-opentofu"
+    ]
   },
   {
     "title": "Docker Desktop 4.40: Running Local AI Models",
@@ -51,7 +66,10 @@
     "tags": [],
     "category": "Docker",
     "permalink": "docker-desktop-4-40-local-ai-models",
-    "resources": ["https://www.docker.com/solutions/docker-ai/", "https://www.infoq.com/news/2025/11/docker-desktop-ai/"]
+    "resources": [
+      "https://www.docker.com/solutions/docker-ai/",
+      "https://www.infoq.com/news/2025/11/docker-desktop-ai/"
+    ]
   },
   {
     "title": "Preemptive Cybersecurity: AI Fighting AI",
@@ -60,7 +78,10 @@
     "tags": [],
     "category": "DevSecOps",
     "permalink": "preemptive-cybersecurity-ai-defense",
-    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026", "https://www.youtube.com/watch?v=5dgpcQXq1eo"]
+    "resources": [
+      "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026",
+      "https://www.youtube.com/watch?v=5dgpcQXq1eo"
+    ]
   },
   {
     "title": "Identity for Agents: The Non-Human Identity Crisis",
@@ -69,7 +90,10 @@
     "tags": [],
     "category": "Security Tooling",
     "permalink": "identity-management-for-ai-agents",
-    "resources": ["https://www.cyberark.com/resources/blog/ai-agents-and-identity-risks-how-security-will-shift-in-2026", "https://www.proofpoint.com/us/blog/ciso-perspectives/cybersecurity-2026-agentic-ai-cloud-chaos-and-human-factor"]
+    "resources": [
+      "https://www.cyberark.com/resources/blog/ai-agents-and-identity-risks-how-security-will-shift-in-2026",
+      "https://www.proofpoint.com/us/blog/ciso-perspectives/cybersecurity-2026-agentic-ai-cloud-chaos-and-human-factor"
+    ]
   },
   {
     "title": "Rust in Linux: The Experiment is Over",
@@ -78,7 +102,7 @@
     "tags": [],
     "category": "Linux",
     "permalink": "rust-in-linux-kernel-2026-update",
-    "resources":
+    "resources": []
   },
   {
     "title": "The 'Lazy Thinking' Epidemic",
@@ -87,7 +111,9 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "lazy-thinking-epidemic-engineering-skills",
-    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+    "resources": [
+      "https://www.gartner.com/en/articles/strategic-predictions-for-2026"
+    ]
   },
   {
     "title": "Platform Engineering 2026: Beyond Backstage",
@@ -96,7 +122,10 @@
     "tags": [],
     "category": "Platform Engineering",
     "permalink": "platform-engineering-trends-2026",
-    "resources": ["https://backstage.io/docs/overview/roadmap/", "https://slavikdev.com/platform-engineering-trends-2026/"]
+    "resources": [
+      "https://backstage.io/docs/overview/roadmap/",
+      "https://slavikdev.com/platform-engineering-trends-2026/"
+    ]
   },
   {
     "title": "Cilium Service Mesh: Sidecar-less Future",
@@ -105,7 +134,10 @@
     "tags": [],
     "category": "Cloud Networking",
     "permalink": "cilium-service-mesh-sidecarless-2026",
-    "resources": ["https://cilium.io/use-cases/service-mesh/", "https://www.cncf.io/blog/2022/07/20/cilium-1-12-ga-cilium-service-mesh-and-other-major-new-features-for-enterprise-kubernetes/"]
+    "resources": [
+      "https://cilium.io/use-cases/service-mesh/",
+      "https://www.cncf.io/blog/2022/07/20/cilium-1-12-ga-cilium-service-mesh-and-other-major-new-features-for-enterprise-kubernetes/"
+    ]
   },
   {
     "title": "Wasm Component Model: The Universal Binary",
@@ -114,7 +146,10 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "wasm-component-model-adoption-2026",
-    "resources": ["https://www.f5.com/company/blog/what-is-the-webassembly-component-model", "https://www.cncf.io/blog/2024/07/09/webassembly-components-the-next-wave-of-cloud-native-computing/"]
+    "resources": [
+      "https://www.f5.com/company/blog/what-is-the-webassembly-component-model",
+      "https://www.cncf.io/blog/2024/07/09/webassembly-components-the-next-wave-of-cloud-native-computing/"
+    ]
   },
   {
     "title": "Ansible Lightspeed & Event-Driven Automation",
@@ -123,7 +158,10 @@
     "tags": [],
     "category": "Ansible",
     "permalink": "ansible-lightspeed-event-driven-automation",
-    "resources": ["https://www.redhat.com/en/blog/evolution-red-hat-ansible-lightspeed", "https://devops.com/red-hat-previews-series-of-updates-to-ansible-automation-platform/"]
+    "resources": [
+      "https://www.redhat.com/en/blog/evolution-red-hat-ansible-lightspeed",
+      "https://devops.com/red-hat-previews-series-of-updates-to-ansible-automation-platform/"
+    ]
   },
   {
     "title": "FinOps for AI: Controlling Agent Spend",
@@ -132,7 +170,10 @@
     "tags": ["FinOps", "AI", "Cloud", "Cost Management"],
     "category": "Tech News",
     "permalink": "finops-for-agentic-ai-workloads",
-    "resources": ["https://slavikdev.com/platform-engineering-trends-2026/", "https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"]
+    "resources": [
+      "https://slavikdev.com/platform-engineering-trends-2026/",
+      "https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"
+    ]
   },
   {
     "title": "Azure Cobalt 200: ARM in the Cloud",
@@ -141,7 +182,10 @@
     "tags": ["Azure", "Hardware", "Cloud", "Performance"],
     "category": "Azure",
     "permalink": "azure-cobalt-200-arm-chip-analysis",
-    "resources": ["https://azure.microsoft.com/en-us/blog/actioning-agentic-ai-5-ways-to-build-with-news-from-microsoft-ignite-2025/", "https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"]
+    "resources": [
+      "https://azure.microsoft.com/en-us/blog/actioning-agentic-ai-5-ways-to-build-with-news-from-microsoft-ignite-2025/",
+      "https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"
+    ]
   },
   {
     "title": "'Death by AI': Legal Risks in 2026",
@@ -150,7 +194,9 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "death-by-ai-legal-claims-2026",
-    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+    "resources": [
+      "https://www.gartner.com/en/articles/strategic-predictions-for-2026"
+    ]
   },
   {
     "title": "In-Place Pod Resizing: K8s Autoscaling",
@@ -159,7 +205,10 @@
     "tags": [],
     "category": "Kubernetes",
     "permalink": "kubernetes-in-place-pod-resizing-guide",
-    "resources": ["https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9", "https://palark.com/blog/kubernetes-1-35-release-features/"]
+    "resources": [
+      "https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9",
+      "https://palark.com/blog/kubernetes-1-35-release-features/"
+    ]
   },
   {
     "title": "Physical AI: KubeCon Edge Recap",
@@ -168,7 +217,10 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "kubecon-na-2025-edge-physical-ai",
-    "resources": ["https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/", "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"]
+    "resources": [
+      "https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/",
+      "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    ]
   },
   {
     "title": "SQL Server 2025: Vector Search & AI",
@@ -177,7 +229,9 @@
     "tags": [],
     "category": "Azure",
     "permalink": "sql-server-2025-vector-search-ai",
-    "resources": ["https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"]
+    "resources": [
+      "https://azure.microsoft.com/en-us/blog/azure-at-microsoft-ignite-2025-all-the-intelligent-cloud-news-explained/"
+    ]
   },
   {
     "title": "Cursor vs Copilot: 2026 Comparison",
@@ -186,7 +240,10 @@
     "tags": [],
     "category": "Popular Tools",
     "permalink": "cursor-vs-github-copilot-2026-review",
-    "resources": ["https://byclaritytech.com/cursor-vs-github-copilot/", "https://www.builder.io/blog/cursor-vs-github-copilot"]
+    "resources": [
+      "https://byclaritytech.com/cursor-vs-github-copilot/",
+      "https://www.builder.io/blog/cursor-vs-github-copilot"
+    ]
   },
   {
     "title": "OpenTofu Encryption at Rest",
@@ -195,7 +252,10 @@
     "tags": [],
     "category": "Terraform",
     "permalink": "opentofu-state-encryption-guide",
-    "resources": ["https://www.harness.io/blog/late-to-opentofu", "https://opentofu.org/"]
+    "resources": [
+      "https://www.harness.io/blog/late-to-opentofu",
+      "https://opentofu.org/"
+    ]
   },
   {
     "title": "Digital Provenance: Trusting Content",
@@ -204,7 +264,10 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "digital-provenance-c2pa-2026",
-    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026", "https://medium.com/@kyanon.digital/top-10-tech-trends-2026-by-gartner-2a58a45fc28b"]
+    "resources": [
+      "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026",
+      "https://medium.com/@kyanon.digital/top-10-tech-trends-2026-by-gartner-2a58a45fc28b"
+    ]
   },
   {
     "title": "Green Cloud: Measuring AI Carbon",
@@ -213,7 +276,9 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "measuring-ai-carbon-footprint-kubernetes",
-    "resources": ["https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"]
+    "resources": [
+      "https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/"
+    ]
   },
   {
     "title": "Physical AI Deep Dive: Robotics",
@@ -222,7 +287,9 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "physical-ai-robotics-orchestration",
-    "resources": ["https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"]
+    "resources": [
+      "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    ]
   },
   {
     "title": "Chaos Engineering for AI Agents",
@@ -240,7 +307,10 @@
     "tags": [],
     "category": "Docker",
     "permalink": "wasm-vs-containers-2026-comparison",
-    "resources": ["https://www.f5.com/company/blog/what-is-the-webassembly-component-model", "https://medium.com/@amin-softtech/how-webassembly-is-shaping-the-future-of-javascript-applications-2025-2026-0078f15ced06"]
+    "resources": [
+      "https://www.f5.com/company/blog/what-is-the-webassembly-component-model",
+      "https://medium.com/@amin-softtech/how-webassembly-is-shaping-the-future-of-javascript-applications-2025-2026-0078f15ced06"
+    ]
   },
   {
     "title": "Refactoring with AI: The 'Rack Drop'",
@@ -249,7 +319,10 @@
     "tags": [],
     "category": "AWS",
     "permalink": "ai-refactoring-technical-debt-strategy",
-    "resources": ["https://reinvent.awsevents.com/", "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/"]
+    "resources": [
+      "https://reinvent.awsevents.com/",
+      "https://aws.amazon.com/blogs/aws/top-announcements-of-aws-reinvent-2025/"
+    ]
   },
   {
     "title": "Developer Metrics in the Agent Era",
@@ -258,7 +331,9 @@
     "tags": [],
     "category": "Platform Engineering",
     "permalink": "developer-productivity-metrics-ai-era",
-    "resources": ["https://www.gartner.com/en/articles/strategic-predictions-for-2026"]
+    "resources": [
+      "https://www.gartner.com/en/articles/strategic-predictions-for-2026"
+    ]
   },
   {
     "title": "January 2026 Month in Review",
@@ -267,6 +342,8 @@
     "tags": [],
     "category": "Tech News",
     "permalink": "january-2026-tech-month-in-review",
-    "resources": ["https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/"]
+    "resources": [
+      "https://kubernetes.io/blog/2025/12/17/kubernetes-v1-35-release/"
+    ]
   }
 ]

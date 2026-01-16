@@ -2,6 +2,7 @@
 """
 Generate a month-long topic plan using Gemini 3 Pro and save to topics/MM-YYYY.json.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -18,6 +19,7 @@ from typing import Any, List
 from google import genai
 
 DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro")
+FALLBACK_MODEL = os.environ.get("GEMINI_BLOG_MODEL_FALLBACK", "gemini-2.5-flash")
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
 
@@ -78,11 +80,23 @@ def build_prompt(month_name: str, year: int, days: int, last_month_name: str) ->
 
 
 def request_topics(client: genai.Client, prompt: str) -> list[Any]:
-    response = client.models.generate_content(
-        model=DEFAULT_MODEL,
-        contents=prompt,
-        config={"response_mime_type": "application/json"},
-    )
+    try:
+        response = client.models.generate_content(
+            model=DEFAULT_MODEL,
+            contents=prompt,
+            config={"response_mime_type": "application/json"},
+        )
+    except Exception as exc:
+        print(
+            f"Primary model {DEFAULT_MODEL} failed: {exc}. Trying fallback {FALLBACK_MODEL}...",
+            file=sys.stderr,
+        )
+        response = client.models.generate_content(
+            model=FALLBACK_MODEL,
+            contents=prompt,
+            config={"response_mime_type": "application/json"},
+        )
+
     raw = response.text if hasattr(response, "text") else None
     if not raw:
         raise RuntimeError("No response from model.")
@@ -94,7 +108,9 @@ def normalize_topic(entry: Any) -> Topic:
         raise ValueError("Topic entry must be an object")
 
     title = str(entry.get("title") or "Untitled").strip()
-    description_prompt = str(entry.get("description_prompt") or "Outline the topic clearly.").strip()
+    description_prompt = str(
+        entry.get("description_prompt") or "Outline the topic clearly."
+    ).strip()
     image_prompt = str(entry.get("image_prompt") or f"Hero image for {title}").strip()
     tags_raw = entry.get("tags") or []
     tags = [str(tag).lower().strip() for tag in tags_raw if str(tag).strip()]
@@ -130,7 +146,10 @@ def ensure_length(topics: list[Topic], desired: int) -> list[Topic]:
                 tags=["cloud", "engineering", "devops"],
                 category="Cloud",
                 permalink=slugify(fallback_title),
-                resources=["https://cloud.google.com/architecture", "https://aws.amazon.com/whitepapers"],
+                resources=[
+                    "https://cloud.google.com/architecture",
+                    "https://aws.amazon.com/whitepapers",
+                ],
             )
         )
     return topics
@@ -143,9 +162,15 @@ def write_topics_file(path: Path, topics: list[Topic]) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate monthly topics JSON using Gemini.")
-    parser.add_argument("--month", type=int, help="Month number (1-12). Defaults to current month.")
-    parser.add_argument("--year", type=int, help="Year (e.g., 2025). Defaults to current year.")
+    parser = argparse.ArgumentParser(
+        description="Generate monthly topics JSON using Gemini."
+    )
+    parser.add_argument(
+        "--month", type=int, help="Month number (1-12). Defaults to current month."
+    )
+    parser.add_argument(
+        "--year", type=int, help="Year (e.g., 2025). Defaults to current year."
+    )
     args = parser.parse_args()
 
     today = date.today()
@@ -160,7 +185,9 @@ def main() -> None:
 
     output_path = TOPICS_DIR / f"{month:02d}-{year}.json"
     if output_path.exists():
-        print(f"Topics already exist for {month:02d}-{year}: {output_path}. Skipping generation.")
+        print(
+            f"Topics already exist for {month:02d}-{year}: {output_path}. Skipping generation."
+        )
         return
 
     api_key = load_api_key()

@@ -2,6 +2,7 @@
 """
 Generate a daily Chirpy blog post from monthly topics and create a thumbnail image.
 """
+
 from __future__ import annotations
 
 import argparse
@@ -38,7 +39,9 @@ def placeholder_image_bytes(color: tuple[int, int, int] = (220, 225, 230)) -> by
     return compress_image_to_webp_bytes(placeholder)
 
 
-def fetch_image(url: str, headers: Dict[str, str] | None = None, timeout: int = 20) -> bytes | None:
+def fetch_image(
+    url: str, headers: Dict[str, str] | None = None, timeout: int = 20
+) -> bytes | None:
     try:
         resp = requests.get(url, headers=headers or {}, timeout=timeout)
         resp.raise_for_status()
@@ -48,7 +51,9 @@ def fetch_image(url: str, headers: Dict[str, str] | None = None, timeout: int = 
         return None
 
 
-def compress_image_to_webp_bytes(image: Image.Image, target_kb: int = IMAGE_MAX_KB) -> bytes:
+def compress_image_to_webp_bytes(
+    image: Image.Image, target_kb: int = IMAGE_MAX_KB
+) -> bytes:
     # Resize to max dimensions while preserving aspect ratio
     img = image.copy()
     img.thumbnail(MAX_DIMENSIONS)
@@ -66,13 +71,22 @@ def compress_image_to_webp_bytes(image: Image.Image, target_kb: int = IMAGE_MAX_
 def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, Any]]:
     """Return a small list of candidate images (metadata + download url) from Pexels."""
     if not PEXELS_API_KEY:
-        print("WARNING: PEXELS_API_KEY environment variable is not set. Skipping Pexels search.")
-        print("To enable Pexels image search, get a free API key from https://www.pexels.com/api/")
+        print(
+            "WARNING: PEXELS_API_KEY environment variable is not set. Skipping Pexels search."
+        )
+        print(
+            "To enable Pexels image search, get a free API key from https://www.pexels.com/api/"
+        )
         return []
     headers = {"Authorization": PEXELS_API_KEY}
     params = {"query": prompt, "per_page": per_page, "orientation": "landscape"}
     try:
-        resp = requests.get("https://api.pexels.com/v1/search", headers=headers, params=params, timeout=20)
+        resp = requests.get(
+            "https://api.pexels.com/v1/search",
+            headers=headers,
+            params=params,
+            timeout=20,
+        )
         resp.raise_for_status()
         data = resp.json()
         photos = data.get("photos") or []
@@ -80,7 +94,13 @@ def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, A
         for photo in photos:
             src = photo.get("src", {})
             # Prefer a ~1k-1.5k wide asset; fallback to anything available
-            url = src.get("large2x") or src.get("large") or src.get("original") or src.get("medium") or src.get("small")
+            url = (
+                src.get("large2x")
+                or src.get("large")
+                or src.get("original")
+                or src.get("medium")
+                or src.get("small")
+            )
             if not url:
                 continue
             results.append(
@@ -95,7 +115,9 @@ def pexels_search_candidates(prompt: str, per_page: int = 6) -> List[Dict[str, A
         return results
     except Exception as exc:
         print(f"ERROR: Pexels API request failed: {exc}")
-        print("This could be due to an invalid API key, network issues, or API rate limits.")
+        print(
+            "This could be due to an invalid API key, network issues, or API rate limits."
+        )
         return []
 
 
@@ -104,19 +126,25 @@ def unsplash_search(prompt: str) -> bytes | None:
     return None
 
 
-def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: str) -> Tuple[int | None, str | None]:
+def choose_image_with_ai(
+    candidates: List[Dict[str, Any]], query: str, title: str
+) -> Tuple[int | None, str | None]:
     """Ask the text model to pick the best candidate or suggest a better query."""
     if not candidates:
         return None, None
     try:
         operations_client = genai.Client(api_key=load_operations_key())
-        options = [f"{idx}: alt='{c.get('alt','')}' by {c.get('photographer','')}" for idx, c in enumerate(candidates)]
+        options = [
+            f"{idx}: alt='{c.get('alt', '')}' by {c.get('photographer', '')}"
+            for idx, c in enumerate(candidates)
+        ]
         prompt = (
             "You rank stock photos for a tech blog thumbnail."
             f"\nBlog title: {title}"
             f"\nSearch query used: {query}"
-            "\nCandidates (index: alt by photographer):\n" + "\n".join(options) +
-            "\nRespond as JSON: {\"choice\": <index or null>, \"new_query\": <string or null>}"
+            "\nCandidates (index: alt by photographer):\n"
+            + "\n".join(options)
+            + '\nRespond as JSON: {"choice": <index or null>, "new_query": <string or null>}'
             "\nChoose the best tech-relevant image. If none fit, set choice=null and suggest a better concise query."
         )
         resp = operations_client.models.generate_content(
@@ -126,7 +154,11 @@ def choose_image_with_ai(candidates: List[Dict[str, Any]], query: str, title: st
         )
         raw = getattr(resp, "text", None)
         if not raw and getattr(resp, "candidates", None):
-            parts = getattr(resp.candidates[0].content, "parts", []) if resp.candidates[0].content else []
+            parts = (
+                getattr(resp.candidates[0].content, "parts", [])
+                if resp.candidates[0].content
+                else []
+            )
             if parts and getattr(parts[0], "text", None):
                 raw = parts[0].text
         if not raw:
@@ -161,9 +193,13 @@ def pexels_select_image(prompt: str, title: str) -> bytes | None:
             else:
                 candidate = candidates[0]
 
-            data = fetch_image(candidate["url"], headers={"Authorization": PEXELS_API_KEY})
+            data = fetch_image(
+                candidate["url"], headers={"Authorization": PEXELS_API_KEY}
+            )
             if data:
-                print(f"Successfully downloaded image from Pexels (photographer: {candidate.get('photographer', 'unknown')})")
+                print(
+                    f"Successfully downloaded image from Pexels (photographer: {candidate.get('photographer', 'unknown')})"
+                )
                 return data
             else:
                 print(f"Failed to download image from URL: {candidate['url']}")
@@ -176,7 +212,9 @@ def pexels_select_image(prompt: str, title: str) -> bytes | None:
 
     if fallback_candidate:
         print("Attempting to download fallback candidate...")
-        data = fetch_image(fallback_candidate["url"], headers={"Authorization": PEXELS_API_KEY})
+        data = fetch_image(
+            fallback_candidate["url"], headers={"Authorization": PEXELS_API_KEY}
+        )
         if data:
             print("Successfully downloaded fallback image from Pexels")
             return data
@@ -188,7 +226,9 @@ def load_text_key() -> str:
     """Load API key for blog content generation (uses primary models)."""
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
-        raise RuntimeError("Set GEMINI_API_KEY in the environment for blog content generation.")
+        raise RuntimeError(
+            "Set GEMINI_API_KEY in the environment for blog content generation."
+        )
     return key
 
 
@@ -196,7 +236,9 @@ def load_operations_key() -> str:
     """Load API key for operations like metadata generation and image ranking (uses flash models)."""
     key = os.environ.get("GEMINI_OPERATIONS_KEY")
     if not key:
-        raise RuntimeError("Set GEMINI_OPERATIONS_KEY in the environment for metadata and operations.")
+        raise RuntimeError(
+            "Set GEMINI_OPERATIONS_KEY in the environment for metadata and operations."
+        )
     return key
 
 
@@ -238,7 +280,11 @@ def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
         )
         raw = getattr(resp, "text", None)
         if not raw and getattr(resp, "candidates", None):
-            parts = getattr(resp.candidates[0].content, "parts", []) if resp.candidates[0].content else []
+            parts = (
+                getattr(resp.candidates[0].content, "parts", [])
+                if resp.candidates[0].content
+                else []
+            )
             if parts and getattr(parts[0], "text", None):
                 raw = parts[0].text
         if not raw:
@@ -247,9 +293,6 @@ def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
     except Exception as exc:
         print(f"Metadata suggestion failed: {exc}; using defaults.")
         return {}
-
-
-
 
 
 def slugify(text: str, max_length: int = 60) -> str:
@@ -300,7 +343,7 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
         "Prefer examples and code where applicable; keep bullets short.\n"
         "The content should be approximately 700-1200 words. Ensure not to write too long paragraphs\n"
         "Ensure to use Jekyll safe mermaid syntax please, don't use the chars/symbols that could break rendering.\n"
-        "CRITICAL MERMAID SYNTAX RULES: Always quote node labels containing special characters (parentheses, brackets, etc.) using double quotes. Example: Use A[\"Label (with parens)\"] NOT A[Label (with parens)]. For node labels with parentheses, remove them or quote the entire label. Use <br/> for line breaks, not actual newlines.\n"
+        'CRITICAL MERMAID SYNTAX RULES: Always quote node labels containing special characters (parentheses, brackets, etc.) using double quotes. Example: Use A["Label (with parens)"] NOT A[Label (with parens)]. For node labels with parentheses, remove them or quote the entire label. Use <br/> for line breaks, not actual newlines.\n'
         "Research on what technical audience want from a blog post, I think it's not difficult to find: it's important info, key highlights, small paragraphs, bullet points for clarity, code written within ```lang``` blocks properly, clean steps to follow, pros/cons of topic support that, a brief summary, mermaid high level architect/flow diagrams to understand things better and maybe a few more things, no all blogs support all of the things so use them carefully and ensure you're not making the content too long or unfollowable just because you want to put all stuff, keep precise up to the point and don't overdo things everything should be backed by proper research, no lies but if imaginations could be there indirectly telling that it's imaginations, etc. Rest you take care.\n"
         f"Title: {title}.\n"
         f"Writing guidance: {description_prompt}\n"
@@ -317,7 +360,9 @@ def request_markdown(client: genai.Client, prompt: str) -> str:
             config={"response_mime_type": "text/plain"},
         )
     except Exception as primary_exc:
-        print(f"Primary blog model '{BLOG_MODEL_PRIMARY}' failed ({primary_exc}); using fallback '{BLOG_MODEL_FALLBACK}'.")
+        print(
+            f"Primary blog model '{BLOG_MODEL_PRIMARY}' failed ({primary_exc}); using fallback '{BLOG_MODEL_FALLBACK}'."
+        )
         response = client.models.generate_content(
             model=BLOG_MODEL_FALLBACK,
             contents=prompt,
@@ -328,34 +373,35 @@ def request_markdown(client: genai.Client, prompt: str) -> str:
     raise RuntimeError("No text response from model.")
 
 
-
-
-
 def process_image_url(url: str, target_kb: int = IMAGE_MAX_KB) -> bytes:
     """Download image from URL and convert to optimized WebP."""
     print(f"Downloading custom image from: {url}")
     data = fetch_image(url)
     if not data:
         raise RuntimeError(f"Failed to download image from {url}")
-    
+
     try:
         image = Image.open(io.BytesIO(data))
         webp_bytes = compress_image_to_webp_bytes(image, target_kb)
-        print(f"Successfully processed custom image ({len(webp_bytes)/1024:.1f}KB)")
+        print(f"Successfully processed custom image ({len(webp_bytes) / 1024:.1f}KB)")
         return webp_bytes
     except Exception as exc:
         raise RuntimeError(f"Failed to process image from {url}: {exc}")
 
 
-def request_image(prompt: str, title: str, custom_image_url: str | None = None) -> bytes:
+def request_image(
+    prompt: str, title: str, custom_image_url: str | None = None
+) -> bytes:
     """Get image for blog post - custom URL, Pexels, or placeholder."""
     # If custom image URL provided, use it
     if custom_image_url:
         try:
             return process_image_url(custom_image_url)
         except Exception as exc:
-            print(f"WARNING: Custom image URL failed ({exc}); falling back to stock search.")
-    
+            print(
+                f"WARNING: Custom image URL failed ({exc}); falling back to stock search."
+            )
+
     # Pexels stock photo search with AI ranking/iteration
     print("Attempting to find stock photo from Pexels...")
     stock_bytes = pexels_select_image(prompt, title)
@@ -367,6 +413,7 @@ def request_image(prompt: str, title: str, custom_image_url: str | None = None) 
     print("To use real images, set PEXELS_API_KEY environment variable.")
     return placeholder_image_bytes()
 
+
 def save_webp(image_bytes: bytes, destination: Path) -> str:
     destination.parent.mkdir(parents=True, exist_ok=True)
     image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
@@ -375,7 +422,15 @@ def save_webp(image_bytes: bytes, destination: Path) -> str:
     return destination.name
 
 
-def build_front_matter(title: str, permalink: str, category: str, tags: List[str], image_path: str, description_prompt: str, timestamp: str) -> Dict[str, Any]:
+def build_front_matter(
+    title: str,
+    permalink: str,
+    category: str,
+    tags: List[str],
+    image_path: str,
+    description_prompt: str,
+    timestamp: str,
+) -> Dict[str, Any]:
     return {
         "layout": "post",
         "authors": ["devcrypted"],
@@ -399,7 +454,9 @@ def build_front_matter(title: str, permalink: str, category: str, tags: List[str
     }
 
 
-def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: List[str]) -> None:
+def write_post(
+    path: Path, front_matter: Dict[str, Any], body: str, resources: List[str]
+) -> None:
     yaml_block = yaml.safe_dump(front_matter, sort_keys=False, allow_unicode=False)
     extra = ""
     if resources:
@@ -415,7 +472,7 @@ def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: L
             else:
                 # Convert plain URL to markdown link
                 formatted_links.append(f"[{url}]({url})")
-        
+
         links = "\n".join(f"- {link}" for link in formatted_links)
         extra = f"\n\n## Further Reading\n\n{links}\n"
     content = f"---\n{yaml_block}---\n\n{body.strip()}\n{extra}"
@@ -423,15 +480,28 @@ def write_post(path: Path, front_matter: Dict[str, Any], body: str, resources: L
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Generate daily blog post and thumbnail from topics JSON.")
+    parser = argparse.ArgumentParser(
+        description="Generate daily blog post and thumbnail from topics JSON."
+    )
     parser.add_argument("--date", help="ISO date (YYYY-MM-DD). Defaults to today.")
-    parser.add_argument("--title", help="Manual mode title (optional - auto-generated from description if not provided)")
+    parser.add_argument(
+        "--title",
+        help="Manual mode title (optional - auto-generated from description if not provided)",
+    )
     parser.add_argument("--description", help="Manual mode description")
     parser.add_argument("--category", help="Override category")
     parser.add_argument("--tags", help="Comma-separated tags")
     parser.add_argument("--permalink", help="Override permalink slug")
-    parser.add_argument("--image-prompt", dest="image_prompt_override", help="Override image prompt base")
-    parser.add_argument("--image-url", dest="image_url", help="Custom image URL (will be downloaded and optimized)")
+    parser.add_argument(
+        "--image-prompt",
+        dest="image_prompt_override",
+        help="Override image prompt base",
+    )
+    parser.add_argument(
+        "--image-url",
+        dest="image_url",
+        help="Custom image URL (will be downloaded and optimized)",
+    )
     parser.add_argument("--resources", help="Comma-separated resource links")
     args = parser.parse_args()
 
@@ -448,32 +518,42 @@ def main() -> None:
     if manual_mode:
         if not args.description:
             raise SystemExit("--description is required when using manual mode")
-        
-        description_prompt = str(args.description).strip()
-        
+
+        body_instructions = str(args.description).strip()
+
         # Auto-generate title from description if not provided
         if args.title:
             title = str(args.title).strip()
+            # If title is provided but we need other metadata (like meta description)
+            suggested = suggest_metadata(title, body_instructions)
         else:
-            print("Auto-generating title from description...")
-            suggested = suggest_metadata("", description_prompt)
-            title = suggested.get("title") or "Technical Insight"
+            print("Auto-generating title and metadata from description...")
+            suggested = suggest_metadata("", body_instructions)
+            title = suggested.get("title")
+            if not title:
+                print("WARNING: AI failed to generate title, using fallback.")
+                title = "Technical Insight"
             print(f"Generated title: {title}")
-        
-        # Get other metadata
-        suggested = suggest_metadata(title, description_prompt)
+
         category = (args.category or suggested.get("category") or "Tech").strip()
         suggested_tags = normalize_tags(suggested.get("tags"))
         tags = parse_tags_csv(args.tags) or suggested_tags
         if not tags:
             tags = slugify(title).split("-")[:6]
         permalink = slugify(args.permalink or suggested.get("permalink_slug") or title)
-        image_prompt_base = (args.image_prompt_override or suggested.get("image_prompt") or f"Hero image for {title}").strip()
-        description_prompt = suggested.get("description") or description_prompt
+        image_prompt_base = (
+            args.image_prompt_override
+            or suggested.get("image_prompt")
+            or f"Hero image for {title}"
+        ).strip()
+
+        # KEY FIX: Use suggested 'description' for front matter, keep args.description for body generation
+        meta_description = suggested.get("description") or f"A deep dive into {title}."
+
         resources = parse_resources_csv(args.resources)
         topic = {
             "title": title,
-            "description_prompt": description_prompt,
+            "description_prompt": body_instructions,
             "category": category,
             "tags": tags,
             "resources": resources,
@@ -490,11 +570,26 @@ def main() -> None:
         tags = [str(t).lower().strip() for t in topic.get("tags", []) if str(t).strip()]
         if not tags:
             tags = slugify(title).split("-")[:6]
-        description_prompt = str(topic.get("description_prompt") or "Concise overview.").strip()
-        image_prompt_base = str(topic.get("image_prompt") or f"Hero image for {title}").strip()
+
+        # For automated topics, description_prompt is essentially the instructions
+        body_instructions = str(
+            topic.get("description_prompt") or "Concise overview."
+        ).strip()
+
+        # Try to generate a better meta description if possible, or just use a truncated instruction
+        # Ideally, we should suggest metadata here too if we want better descriptions, but for now fallback to truncation
+        # to match previous behavior, but we could improve this later.
+        meta_description = body_instructions[:180]
+
+        image_prompt_base = str(
+            topic.get("image_prompt") or f"Hero image for {title}"
+        ).strip()
         resources = topic.get("resources") or []
 
     image_prompt = f"{image_prompt_base}. 1280x720, Nano Banana style, cinematic lighting, detailed."
+
+    # Update topic with the correct instruction for the writer
+    topic["description_prompt"] = body_instructions
 
     body_prompt = build_body_prompt(topic)
     # Generate image using Pexels
@@ -508,14 +603,15 @@ def main() -> None:
     now = datetime.now().astimezone()
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S %z")
 
-    front_matter = build_front_matter(title, permalink, category, tags, image_path, description_prompt, timestamp)
+    front_matter = build_front_matter(
+        title, permalink, category, tags, image_path, meta_description, timestamp
+    )
 
     filename = f"{target_date.strftime('%Y-%m-%d')}-{permalink}.md"
     destination = ensure_unique_path(POSTS_DIR / filename)
     write_post(destination, front_matter, body, resources)
     print(f"Generated post: {destination}")
     print(f"Thumbnail: {image_path}")
-
 
 
 if __name__ == "__main__":
