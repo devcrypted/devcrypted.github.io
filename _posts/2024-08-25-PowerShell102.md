@@ -1,6 +1,6 @@
 ---
 layout: post
-authors: ["devcrypted"]
+authors: ["kamal"]
 media_subpath: /assets/img/
 pin: false
 video_prefix: https://youtu.be/

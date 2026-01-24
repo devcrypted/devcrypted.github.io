@@ -1,6 +1,6 @@
 ---
 layout: post
-authors: ["devcrypted"]
+authors: ["kamal"]
 media_subpath: /assets/img/
 pin: false
 video_prefix: https://youtu.be/
@@ -63,7 +63,7 @@ A company "TechCorp" creates:
 
 ## 2. **Azure Enterprise Account**
 
-An **Azure Enterprise Account** is a billing and administrative boundary at the top level, often used by large organizations to manage costs and allocate resources. 
+An **Azure Enterprise Account** is a billing and administrative boundary at the top level, often used by large organizations to manage costs and allocate resources.
 
 ### Example
 
@@ -168,6 +168,6 @@ TechCorp creates:
 5. **Subscriptions** contain Resource Groups.
 6. **Resource Groups** contain individual resources like VMs and databases.
 
-### Visual Representation:
+### Visual Representation
 
 ![Visual Representation](mg-structure.png)

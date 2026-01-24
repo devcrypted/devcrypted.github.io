@@ -250,7 +250,7 @@ def create_blog_post(blog_data, config):
     # Create frontmatter
     frontmatter = f"""---
 layout: post
-authors: ["devcrypted"]
+authors: ["kamal"]
 media_subpath: /assets/img/
 pin: false
 

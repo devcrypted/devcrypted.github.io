@@ -1,6 +1,6 @@
 ---
 layout: post
-authors: ["devcrypted"]
+authors: ["kamal"]
 media_subpath: /assets/img/
 pin: false
 video_prefix: https://youtu.be/
@@ -46,7 +46,7 @@ You can segment a virtual network into **subnets** for better organization and m
 
 **Pro Tip:** Use tools like [Visual Subnet Calculator](https://visualsubnetcalc.com) if you're new to subnetting.
 
-### Example Scenario:
+### Example Scenario
 
 - **Virtual Network CIDR**: `10.0.0.0/16`
 - **Subnets**:
