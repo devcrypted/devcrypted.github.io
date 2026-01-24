@@ -8,14 +8,14 @@ prefer_datetime_locale:
 
 # timezone: Asia/Calcutta
 
-title: Devcrypted
+title: Aicademy
 
-tagline: Cloud & DevOps Simplified for Everyone!
+tagline: AI-Powered Learning for Everyone!
 
 description: >-
-  Cloud & DevOps Simplified for Everyone!
+  AI-Powered Learning for Everyone!
 
-url: "https://devcrypted.com"
+url: "https://blog.aicademy.ac"
 
 github:
   username: devcrypted
@@ -29,8 +29,8 @@ youtube:
   channelid: UCsV90U2e5FqsSTMizQCH4vA
 
 social:
-  name: Devcrypted
-  email: devcrypted@outlook.com
+  name: Aicademy
+  email: kamal@aicademy.ac
   links:
     - https://decr.in/github
     - https://decr.in/twitter
@@ -49,7 +49,7 @@ analytics:
 img_cdn: # Will use Cloudflare CDN in future
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://avatars.githubusercontent.com/u/177287932?s=400&u=e777516f3dcc75ae5110c9dc58832bfedb939d03&v=4
+avatar: https://avatars.githubusercontent.com/u/226739925?s=400&u=f5159a87550599451271568ae85113662016ebe1&v=4
 
 # boolean type, the global switch for ToC in posts.
 toc: true
