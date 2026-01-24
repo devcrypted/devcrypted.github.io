@@ -99,7 +99,7 @@ Once the system prompt is set, use this structured prompt to generate the initia
 ## 1. USER CONFIGURATION (EDIT THIS SECTION ONLY)
 - Web3Forms Token: <WEB3_TOKEN>
 - Resume/LinkedIn Profile: Attached
-- Target Audience: [e.g., Recruiters, Clients, Developers]
+- Target Audience: Recruiters, Clients, Developers
 
 ## 2. Design Directive: "The Unique Seed"
 CRITICAL: Before generating any code, you must randomly select a distinct modern design aesthetic to ensure this portfolio looks unique compared to previous generations. Pick ONE of the following styles (or invent a hybrid):
@@ -167,4 +167,4 @@ By combining the generative power of Gemini Studio with the robustness of React 
 
 Ready to take your development skills to the next level? Check out my live courses available at [aicademy.ac/courses](https://www.aicademy.ac/courses).
 
-Also, you can get up to a **100% discount** on our programs by taking the free scholarship test. Apply now at [aicademy.ac/scholarship](https://www.aicademy.ac/aisp).
+Also, you can get up to a **100% discount** on our programs by taking the free scholarship test. Apply now at [aicademy.ac/scholarship](https://www.aicademy.ac/scholarship).
