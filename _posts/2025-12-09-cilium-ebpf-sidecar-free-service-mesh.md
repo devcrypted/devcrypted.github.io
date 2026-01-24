@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ Enter the next evolution: the sidecar-free service mesh. Powered by the revoluti
 
 ### What You’ll Get
 
-*   **Architectural Contrast**: A clear comparison between the traditional sidecar model and Cilium's eBPF-based approach.
-*   **Performance Insights**: An understanding of why the sidecar-free model reduces latency and resource consumption.
-*   **Practical Examples**: Code snippets demonstrating L7 traffic management in Cilium.
-*   **Future Outlook**: A look at the maturing capabilities, like pervasive mTLS and advanced traffic management, solidifying in the ecosystem.
+* **Architectural Contrast**: A clear comparison between the traditional sidecar model and Cilium's eBPF-based approach.
+* **Performance Insights**: An understanding of why the sidecar-free model reduces latency and resource consumption.
+* **Practical Examples**: Code snippets demonstrating L7 traffic management in Cilium.
+* **Future Outlook**: A look at the maturing capabilities, like pervasive mTLS and advanced traffic management, solidifying in the ecosystem.
 
 ---
 
@@ -48,12 +48,12 @@ Enter the next evolution: the sidecar-free service mesh. Powered by the revoluti
 
 In a sidecar-based service mesh like early Istio, a full network proxy (typically Envoy) is injected into each application pod. This proxy intercepts all incoming and outgoing network traffic.
 
-*   **How it works**: Kubernetes networking rules (`iptables`) redirect traffic from the application container to the sidecar proxy. The proxy then applies policies (like routing or access control) before forwarding the traffic to its destination.
-*   **Pros**: It's language-agnostic and decouples networking logic from the application code.
-*   **Cons**:
-    *   **Resource Overhead**: Every pod runs an additional container, consuming significant CPU and memory across the cluster.
-    *   **Increased Latency**: Traffic must pass through an extra network hop within the pod (App -> Proxy -> Network), adding latency to every request.
-    *   **Operational Complexity**: Managing, updating, and troubleshooting thousands of sidecar proxies can be a heavy operational burden.
+* **How it works**: Kubernetes networking rules (`iptables`) redirect traffic from the application container to the sidecar proxy. The proxy then applies policies (like routing or access control) before forwarding the traffic to its destination.
+* **Pros**: It's language-agnostic and decouples networking logic from the application code.
+* **Cons**:
+  * **Resource Overhead**: Every pod runs an additional container, consuming significant CPU and memory across the cluster.
+  * **Increased Latency**: Traffic must pass through an extra network hop within the pod (App -> Proxy -> Network), adding latency to every request.
+  * **Operational Complexity**: Managing, updating, and troubleshooting thousands of sidecar proxies can be a heavy operational burden.
 
 This flow can be visualized as two distinct proxy hops for a single request-response cycle.
 
@@ -89,9 +89,9 @@ Cilium leverages eBPF to implement its service mesh data plane directly in the k
 
 Cilium attaches eBPF programs to kernel hooks on each Kubernetes node. These programs manage networking, observability, and security for all pods on that node.
 
-1.  **Identity-Based Security**: Cilium assigns a cryptographic identity to each pod based on its Kubernetes labels. Security policies are enforced in the kernel by eBPF programs that understand these identities.
-2.  **Service Routing**: When a pod makes a request to a Kubernetes Service, eBPF intercepts the call and performs load balancing directly in the kernel, selecting a destination pod and forwarding the packet.
-3.  **L7 Policy Enforcement**: For application-layer protocols like HTTP or gRPC, Cilium's eBPF programs can parse the traffic and make decisions without a full user-space proxy. For very complex policies, it can transparently direct traffic to a shared, node-level Envoy proxy, still avoiding the per-pod model.
+1. **Identity-Based Security**: Cilium assigns a cryptographic identity to each pod based on its Kubernetes labels. Security policies are enforced in the kernel by eBPF programs that understand these identities.
+2. **Service Routing**: When a pod makes a request to a Kubernetes Service, eBPF intercepts the call and performs load balancing directly in the kernel, selecting a destination pod and forwarding the packet.
+3. **L7 Policy Enforcement**: For application-layer protocols like HTTP or gRPC, Cilium's eBPF programs can parse the traffic and make decisions without a full user-space proxy. For very complex policies, it can transparently direct traffic to a shared, node-level Envoy proxy, still avoiding the per-pod model.
 
 The data path becomes significantly shorter and more efficient.
 
@@ -114,9 +114,9 @@ graph TD
 
 The architectural difference translates into tangible performance gains.
 
-*   **Reduced Latency**: By removing the two extra proxy hops per request (one on the client side, one on the server side), network latency is significantly reduced.
-*   **Lower Resource Consumption**: Eliminating the sidecar container in every pod saves a massive amount of CPU and memory, especially in large clusters. This leads to better pod density and lower infrastructure costs.
-*   **Simplified Operations**: A single agent per node is far easier to manage, monitor, and upgrade than thousands of individual sidecar proxies.
+* **Reduced Latency**: By removing the two extra proxy hops per request (one on the client side, one on the server side), network latency is significantly reduced.
+* **Lower Resource Consumption**: Eliminating the sidecar container in every pod saves a massive amount of CPU and memory, especially in large clusters. This leads to better pod density and lower infrastructure costs.
+* **Simplified Operations**: A single agent per node is far easier to manage, monitor, and upgrade than thousands of individual sidecar proxies.
 
 ## Core Capabilities: Beyond Performance
 
@@ -159,8 +159,8 @@ Mutual TLS (mTLS) is critical for zero-trust security. The sidecar model handles
 
 As these capabilities mature, especially looking towards late 2025, the goal is fully transparent and performant encryption managed by eBPF and node-level agents. This means:
 
-*   **Transparent Encryption**: Applications don't need to be aware of mTLS. Encryption and decryption can happen in the kernel via eBPF or through a streamlined path using the node's TLS implementation.
-*   **Efficient Certificate Management**: A single Cilium agent per node manages certificate rotation and distribution, rather than requiring each sidecar to do so.
+* **Transparent Encryption**: Applications don't need to be aware of mTLS. Encryption and decryption can happen in the kernel via eBPF or through a streamlined path using the node's TLS implementation.
+* **Efficient Certificate Management**: A single Cilium agent per node manages certificate rotation and distribution, rather than requiring each sidecar to do so.
 
 This approach promises to deliver the security benefits of mTLS without the performance penalty of traditional service meshes.
 
@@ -183,8 +183,7 @@ While sidecars may still be valuable for extremely complex L7 processing or inte
 
 As eBPF continues to mature, expect to see even more service mesh functionality being pushed directly into the kernel, making our distributed systems faster and more efficient than ever before. To learn more, check out the official [Cilium Service Mesh documentation](https://docs.cilium.io/en/stable/network/servicemesh/index.html) and the resources at [eBPF.io](https://ebpf.io/).
 
-
 ## Further Reading
 
-- https://cilium.io/use-cases/service-mesh/
-- https://docs.cilium.io/en/stable/network/servicemesh/index.html
+* <https://cilium.io/use-cases/service-mesh/>
+* <https://docs.cilium.io/en/stable/network/servicemesh/index.html>

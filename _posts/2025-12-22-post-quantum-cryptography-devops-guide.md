@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ This guide breaks down the quantum threat into actionable steps. We'll move past
 
 ### What You'll Get
 
-*   **Understand the Threat:** A clear explanation of the "Harvest Now, Decrypt Later" attack vector.
-*   **Actionable Timeline:** Why 2025 is the year to solidify your PQC strategy.
-*   **A Practical Framework:** A three-step guide to achieving crypto-agility.
-*   **Concrete Examples:** Code snippets, diagrams, and tables to illustrate key concepts.
+* **Understand the Threat:** A clear explanation of the "Harvest Now, Decrypt Later" attack vector.
+* **Actionable Timeline:** Why 2025 is the year to solidify your PQC strategy.
+* **A Practical Framework:** A three-step guide to achieving crypto-agility.
+* **Concrete Examples:** Code snippets, diagrams, and tables to illustrate key concepts.
 
 ---
 
@@ -49,9 +49,10 @@ This guide breaks down the quantum threat into actionable steps. We'll move past
 The most immediate danger isn't that a quantum computer will suddenly appear and break your live TLS session tomorrow. The real, present-day threat is **Harvest Now, Decrypt Later (HNDL)**.
 
 HNDL is a simple yet potent attack strategy:
-1.  **Harvest:** An adversary intercepts and stores your encrypted data today. This could be anything from sensitive customer PII and intellectual property to state secrets and financial records.
-2.  **Wait:** They hold this data, knowing it's protected by classical encryption like RSA or ECC.
-3.  **Decrypt:** Once a CRQC is operational, they use it to run algorithms like Shor's, which can efficiently break classical public-key cryptography, and decrypt the harvested data.
+
+1. **Harvest:** An adversary intercepts and stores your encrypted data today. This could be anything from sensitive customer PII and intellectual property to state secrets and financial records.
+2. **Wait:** They hold this data, knowing it's protected by classical encryption like RSA or ECC.
+3. **Decrypt:** Once a CRQC is operational, they use it to run algorithms like Shor's, which can efficiently break classical public-key cryptography, and decrypt the harvested data.
 
 The shelf-life of your data is the critical factor. If encrypted data needs to remain confidential for the next 10-15 years, it is *already vulnerable* to an HNDL attack.
 
@@ -86,17 +87,19 @@ Here is a practical, three-phase approach to building crypto-agility.
 You can't protect what you don't know you have. The first step is a comprehensive inventory of all cryptographic assets in your environment.
 
 **What to look for:**
-*   **TLS Certificates:** Web servers, load balancers, internal APIs.
-*   **Code Signing Certificates:** Verifying the integrity of binaries and scripts.
-*   **SSH Keys:** Server access, Git repositories, and automated processes.
-*   **VPNs & Network Gear:** Site-to-site and client VPNs using protocols like IPsec.
-*   **Application-Level Encryption:** Libraries and SDKs used by developers (e.g., JWTs, database encryption).
-*   **Hardware Security Modules (HSMs):** Where are your most critical private keys stored?
+
+* **TLS Certificates:** Web servers, load balancers, internal APIs.
+* **Code Signing Certificates:** Verifying the integrity of binaries and scripts.
+* **SSH Keys:** Server access, Git repositories, and automated processes.
+* **VPNs & Network Gear:** Site-to-site and client VPNs using protocols like IPsec.
+* **Application-Level Encryption:** Libraries and SDKs used by developers (e.g., JWTs, database encryption).
+* **Hardware Security Modules (HSMs):** Where are your most critical private keys stored?
 
 **How to find it:**
-*   **Use Scanners:** Tools like `nmap` can identify open ports and TLS versions.
-*   **Check CI/CD Pipelines:** Scrutinize your build and deployment scripts for hardcoded keys or certificate generation steps.
-*   **Analyze Source Code:** Grep your codebases for common crypto libraries (`OpenSSL`, `Bouncy Castle`, `cryptography.io`).
+
+* **Use Scanners:** Tools like `nmap` can identify open ports and TLS versions.
+* **Check CI/CD Pipelines:** Scrutinize your build and deployment scripts for hardcoded keys or certificate generation steps.
+* **Analyze Source Code:** Grep your codebases for common crypto libraries (`OpenSSL`, `Bouncy Castle`, `cryptography.io`).
 
 A simple command to check a server's certificate signature algorithm:
 
@@ -117,18 +120,20 @@ Once you have an inventory, you can start planning the transition. NIST has sele
 | **Dilithium (ML-DSA)** | Digital Signature Algorithm | RSA/ECDSA Signatures | Used for authentication and proving identity.      |
 
 **Key Considerations:**
-*   **Performance:** PQC algorithms often have larger key and signature sizes compared to their classical counterparts. This can impact latency and bandwidth, especially in constrained environments (IoT).
-*   **Hybrid Mode:** A pragmatic initial step is to operate in a "hybrid" mode. This approach combines a classical algorithm (like ECDH) with a PQC algorithm (like Kyber). A compromise of either one does not compromise the established key. This ensures backward compatibility and hedges against potential weaknesses in the new algorithms.
-*   **Library Support:** Check if your programming languages, web servers, and libraries support the new standards. OpenSSL 3.0+ and other major libraries are actively integrating PQC.
+
+* **Performance:** PQC algorithms often have larger key and signature sizes compared to their classical counterparts. This can impact latency and bandwidth, especially in constrained environments (IoT).
+* **Hybrid Mode:** A pragmatic initial step is to operate in a "hybrid" mode. This approach combines a classical algorithm (like ECDH) with a PQC algorithm (like Kyber). A compromise of either one does not compromise the established key. This ensures backward compatibility and hedges against potential weaknesses in the new algorithms.
+* **Library Support:** Check if your programming languages, web servers, and libraries support the new standards. OpenSSL 3.0+ and other major libraries are actively integrating PQC.
 
 ### Phase 3: Automate and Orchestrate
 
 Manual certificate and key rotation is slow, error-prone, and unsustainable at scale. Automation is the only way to achieve true crypto-agility.
 
 **Integrate PQC into your DevOps toolchain:**
-*   **Automated Certificate Management:** Use tools like `cert-manager` for Kubernetes or HashiCorp Vault to automate the entire lifecycle of your PQC certificates.
-*   **Infrastructure as Code (IaC):** Define your cryptographic policies in code using tools like Terraform or Ansible. This makes it easy to update an algorithm across your entire infrastructure with a single commit.
-*   **CI/CD Pipeline Integration:** Build security checks into your pipeline that validate cryptographic configurations and prevent the deployment of services using weak or deprecated algorithms.
+
+* **Automated Certificate Management:** Use tools like `cert-manager` for Kubernetes or HashiCorp Vault to automate the entire lifecycle of your PQC certificates.
+* **Infrastructure as Code (IaC):** Define your cryptographic policies in code using tools like Terraform or Ansible. This makes it easy to update an algorithm across your entire infrastructure with a single commit.
+* **CI/CD Pipeline Integration:** Build security checks into your pipeline that validate cryptographic configurations and prevent the deployment of services using weak or deprecated algorithms.
 
 This mermaid diagram shows a simplified, automated certificate rotation flow in a modern environment:
 
@@ -152,8 +157,7 @@ The quantum threat is a slow-burning fire that requires immediate action. The "H
 
 Preparing for the post-quantum era is a marathon, not a sprint. By focusing on **crypto-agility**, you can build resilient systems that can adapt to the next generation of cryptography. Start today by taking inventory, planning your transition, and, most importantly, automating every step of the process. The future of your data's security depends on the work you do now.
 
-
 ## Further Reading
 
-- [https://www.bcg.com/publications/2025/how-quantum-computing-will-upend-cybersecurity](https://www.bcg.com/publications/2025/how-quantum-computing-will-upend-cybersecurity)
-- [https://cpl.thalesgroup.com/encryption/post-quantum-crypto-agility](https://cpl.thalesgroup.com/encryption/post-quantum-crypto-agility)
+* [https://www.bcg.com/publications/2025/how-quantum-computing-will-upend-cybersecurity](https://www.bcg.com/publications/2025/how-quantum-computing-will-upend-cybersecurity)
+* [https://cpl.thalesgroup.com/encryption/post-quantum-crypto-agility](https://cpl.thalesgroup.com/encryption/post-quantum-crypto-agility)

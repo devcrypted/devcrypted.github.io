@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ VS Code version 1.106 addresses this head-on by introducing **Agent HQ** and **A
 
 ### What You'll Get
 
-*   **A Unified Hub:** Discover Agent HQ, a central panel to manage all your integrated AI agents.
-*   **Persistent Context:** Learn how Agent Sessions preserve context for specific tasks, letting you pause and resume complex work without losing the AI's "train of thought."
-*   **Proactive Assistance:** See how "Next Edit Suggestions" anticipate your needs, offering intelligent code blocks instead of just single lines.
-*   **Streamlined Workflows:** Understand how these features combine to reduce context switching and boost your focus.
+* **A Unified Hub:** Discover Agent HQ, a central panel to manage all your integrated AI agents.
+* **Persistent Context:** Learn how Agent Sessions preserve context for specific tasks, letting you pause and resume complex work without losing the AI's "train of thought."
+* **Proactive Assistance:** See how "Next Edit Suggestions" anticipate your needs, offering intelligent code blocks instead of just single lines.
+* **Streamlined Workflows:** Understand how these features combine to reduce context switching and boost your focus.
 
 ---
 
@@ -49,9 +49,10 @@ VS Code version 1.106 addresses this head-on by introducing **Agent HQ** and **A
 Until now, each AI interaction has been largely ephemeral. You open a chat panel, provide context by referencing open files, ask your question, and get a response. If you switch to a different task or a different AI tool, you start over.
 
 This model is inefficient for complex, multi-file tasks like:
-*   Refactoring a core authentication service.
-*   Adding a new feature that touches the API, database, and UI layers.
-*   Writing comprehensive integration tests for an existing module.
+
+* Refactoring a core authentication service.
+* Adding a new feature that touches the API, database, and UI layers.
+* Writing comprehensive integration tests for an existing module.
 
 Each time you re-engage the AI, you must meticulously re-establish the context, files, and goals. Agent HQ is designed to eliminate this friction.
 
@@ -64,10 +65,11 @@ The power of Agent HQ is realized through **Agent Sessions**.
 ### Deep Dive: Agent Sessions
 
 An Agent Session is a persistent, task-oriented workspace for a single AI agent. It's more than a chat history; it's a dedicated environment that encapsulates:
-*   **The Objective:** A clear, high-level goal (e.g., "Refactor user service to use dependency injection").
-*   **The Context:** A specific set of files and folders relevant to the task. You explicitly add files to a session's context, giving the agent focused knowledge.
-*   **The Conversation:** The complete history of your interaction with the agent for that task.
-*   **The State:** The agent's internal "understanding" of the task, which is preserved even when you close and reopen VS Code.
+
+* **The Objective:** A clear, high-level goal (e.g., "Refactor user service to use dependency injection").
+* **The Context:** A specific set of files and folders relevant to the task. You explicitly add files to a session's context, giving the agent focused knowledge.
+* **The Conversation:** The complete history of your interaction with the agent for that task.
+* **The State:** The agent's internal "understanding" of the task, which is preserved even when you close and reopen VS Code.
 
 This approach transforms the developer-AI interaction from a series of stateless requests into a continuous, stateful collaboration.
 
@@ -129,10 +131,11 @@ Instead of waiting for you to ask for code, the editor—powered by the active A
 ### How It Works
 
 When you pause typing, the agent in your active session examines:
-1.  The session's high-level objective.
-2.  The code you've just written.
-3.  The Abstract Syntax Tree (AST) of the current file.
-4.  The other files in the session's context.
+
+1. The session's high-level objective.
+2. The code you've just written.
+3. The Abstract Syntax Tree (AST) of the current file.
+4. The other files in the session's context.
 
 It then proposes a multi-line change, presented as a clear diff that you can accept, modify, or reject with a single click.
 
@@ -141,6 +144,7 @@ It then proposes a multi-line change, presented as a clear diff that you can acc
 Imagine you've just created a new function signature inside a TypeScript class.
 
 **Your Code:**
+
 ```typescript
 class UserService {
     private db: Database;
@@ -194,8 +198,7 @@ By providing a persistent, context-aware framework, VS Code is laying the ground
 
 For more information on the latest features, always check the official [VS Code release notes](https://code.visualstudio.com/updates).
 
-
 ## Further Reading
 
-- [https://code.visualstudio.com/updates](https://code.visualstudio.com/updates)
-- [https://github.blog/changelog/2025-01-06-copilot-workspace-changelog-january-6-2025/](https://github.blog/changelog/2025-01-06-copilot-workspace-changelog-january-6-2025/)
+* [https://code.visualstudio.com/updates](https://code.visualstudio.com/updates)
+* [https://github.blog/changelog/2025-01-06-copilot-workspace-changelog-january-6-2025/](https://github.blog/changelog/2025-01-06-copilot-workspace-changelog-january-6-2025/)

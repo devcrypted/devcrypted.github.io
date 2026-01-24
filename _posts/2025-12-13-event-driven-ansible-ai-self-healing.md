@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,11 +39,11 @@ Enter Event-Driven Ansible (EDA), a powerful solution for creating these reactiv
 
 By the end of this article, you will understand:
 
-*   The core concepts of Event-Driven Ansible (EDA).
-*   How an AI agent can act as a diagnostic "brain" within an automation workflow.
-*   A high-level architecture for an AI-powered, self-healing system.
-*   Example code for an EDA Rulebook and the interfacing Ansible Playbook.
-*   The key benefits and practical challenges of implementing this model.
+* The core concepts of Event-Driven Ansible (EDA).
+* How an AI agent can act as a diagnostic "brain" within an automation workflow.
+* A high-level architecture for an AI-powered, self-healing system.
+* Example code for an EDA Rulebook and the interfacing Ansible Playbook.
+* The key benefits and practical challenges of implementing this model.
 
 ---
 
@@ -53,9 +53,9 @@ Event-Driven Ansible provides the framework for reactive automation. It listens 
 
 The key components are:
 
-*   **Event Sources:** These are the eyes and ears of your system. They produce events. Common sources include monitoring tools (Prometheus, Dynatrace), message queues (Kafka), cloud services (AWS CloudWatch), or even simple webhooks.
-*   **Rulebooks:** A Rulebook is a YAML file that defines the logic. It connects a specific event from a source to a specific action. You can define conditions to filter and refine when an action should be taken.
-*   **Actions:** This is what Ansible does in response to a rule being met. The action is typically running a playbook or a specific module to remediate an issue, create a ticket, or notify a team.
+* **Event Sources:** These are the eyes and ears of your system. They produce events. Common sources include monitoring tools (Prometheus, Dynatrace), message queues (Kafka), cloud services (AWS CloudWatch), or even simple webhooks.
+* **Rulebooks:** A Rulebook is a YAML file that defines the logic. It connects a specific event from a source to a specific action. You can define conditions to filter and refine when an action should be taken.
+* **Actions:** This is what Ansible does in response to a rule being met. The action is typically running a playbook or a specific module to remediate an issue, create a ticket, or notify a team.
 
 > **Key Idea:** EDA decouples the *detection* of an issue from the *response*, allowing for a more flexible and scalable automation strategy. Learn more at the official [Ansible documentation](https://www.redhat.com/en/technologies/management/ansible/event-driven-ansible).
 
@@ -67,10 +67,10 @@ Instead of triggering a remediation playbook directly, the EDA rule triggers a *
 
 The AI agent then becomes the decision engine. It can:
 
-*   Analyze the incoming alert data.
-*   Correlate it with recent deployments from your CI/CD pipeline.
-*   Query log aggregation platforms (like Splunk or ELK) for error patterns.
-*   Check for known issues in a knowledge base.
+* Analyze the incoming alert data.
+* Correlate it with recent deployments from your CI/CD pipeline.
+* Query log aggregation platforms (like Splunk or ELK) for error patterns.
+* Check for known issues in a knowledge base.
 
 Based on this holistic view, the AI returns a structured response containing the most likely root cause and the *name* of the specific, targeted remediation playbook to run.
 
@@ -207,8 +207,7 @@ The integration of Event-Driven Ansible and AI is not a far-off dream; it's the 
 
 This approach transforms operations from a reactive, human-centric model to a proactive, automated one. It frees up skilled engineers from repetitive troubleshooting, allowing them to focus on building value rather than fighting fires. The journey requires careful planning and a solid data strategy, but the payoff is a powerful, self-healing enterprise ready for the complexities of the future.
 
-
 ## Further Reading
 
-- https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content
-- https://tv.redhat.com/en/detail/6376346688112/the-future-of-automation-red-hat-ansible-automation-platform-roadmap
+* <https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content>
+* <https://tv.redhat.com/en/detail/6376346688112/the-future-of-automation-red-hat-ansible-automation-platform-roadmap>

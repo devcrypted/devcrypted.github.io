@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -36,12 +36,12 @@ The era of Agentic AI is upon us. Autonomous systems that can reason, plan, and 
 
 This article provides a practitioner's guide to measuring the carbon footprint of AI workloads. You will learn:
 
-*   Why the energy consumption of modern AI is a significant concern.
-*   The core challenges in accurately measuring power draw in a cloud-native environment.
-*   How to use the open-source tool **Kepler** to monitor energy usage at the pod level in Kubernetes.
-*   A high-level architecture of how these measurement tools work.
-*   How to translate raw energy data (joules) into a meaningful carbon footprint (CO2e).
-*   Actionable strategies to build more sustainable AI systems.
+* Why the energy consumption of modern AI is a significant concern.
+* The core challenges in accurately measuring power draw in a cloud-native environment.
+* How to use the open-source tool **Kepler** to monitor energy usage at the pod level in Kubernetes.
+* A high-level architecture of how these measurement tools work.
+* How to translate raw energy data (joules) into a meaningful carbon footprint (CO2e).
+* Actionable strategies to build more sustainable AI systems.
 
 ## The Unseen Cost of Intelligence
 
@@ -55,11 +55,11 @@ Agentic AI systems, which may run continuously and spawn multiple inference task
 
 Accurately attributing energy consumption in a shared, virtualized environment like Kubernetes is complex. The challenges are multi-layered:
 
-*   **Abstraction:** How do you measure the power draw of a single container when multiple containers are running on a single physical host?
-*   **Hardware Diversity:** Different CPUs and GPUs have unique power profiles. A measurement tool needs to account for this heterogeneity.
-*   **The Full Picture:** Power draw at the server level is only part of the story. To calculate a true carbon footprint, you need to factor in:
-    *   **Power Usage Effectiveness (PUE):** The overhead energy used by the data center for cooling and other infrastructure.
-    *   **Carbon Intensity:** The mix of energy sources (renewables, fossil fuels) powering the grid in that specific geographic region at a specific time.
+* **Abstraction:** How do you measure the power draw of a single container when multiple containers are running on a single physical host?
+* **Hardware Diversity:** Different CPUs and GPUs have unique power profiles. A measurement tool needs to account for this heterogeneity.
+* **The Full Picture:** Power draw at the server level is only part of the story. To calculate a true carbon footprint, you need to factor in:
+  * **Power Usage Effectiveness (PUE):** The overhead energy used by the data center for cooling and other infrastructure.
+  * **Carbon Intensity:** The mix of energy sources (renewables, fossil fuels) powering the grid in that specific geographic region at a specific time.
 
 ## Kepler: Your Kubernetes Energy Watchdog
 
@@ -69,9 +69,9 @@ Fortunately, the cloud-native ecosystem has produced a powerful tool to tackle t
 
 Kepler leverages modern kernel technologies to achieve remarkable accuracy without significant overhead.
 
-*   **eBPF for Granularity:** It uses Extended Berkeley Packet Filter (eBPF) to safely and efficiently trace kernel-level activity, collecting detailed performance counters and system stats for each process.
-*   **Hardware-Level Metrics:** On supported hardware (primarily Intel CPUs), Kepler can directly access Running Average Power Limit (RAPL) interfaces, which provide highly accurate energy consumption data from the chip itself.
-*   **ML for Inference:** For components without direct measurement capabilities (like many GPUs or non-RAPL CPUs), Kepler uses pre-trained machine learning models to estimate power consumption based on utilization metrics.
+* **eBPF for Granularity:** It uses Extended Berkeley Packet Filter (eBPF) to safely and efficiently trace kernel-level activity, collecting detailed performance counters and system stats for each process.
+* **Hardware-Level Metrics:** On supported hardware (primarily Intel CPUs), Kepler can directly access Running Average Power Limit (RAPL) interfaces, which provide highly accurate energy consumption data from the chip itself.
+* **ML for Inference:** For components without direct measurement capabilities (like many GPUs or non-RAPL CPUs), Kepler uses pre-trained machine learning models to estimate power consumption based on utilization metrics.
 
 ### How Kepler Works
 
@@ -109,10 +109,10 @@ flowchart TD
     G -- "Data Source" --> H
 ```
 
-1.  **Data Collection:** eBPF probes safely monitor system calls and hardware performance counters for all running pods.
-2.  **Estimation & Export:** The Kepler exporter on each node correlates this raw data with specific pods. It uses RAPL data where available and its ML models otherwise to calculate energy consumption in joules.
-3.  **Monitoring:** The data is exposed via a `/metrics` endpoint, which is scraped by Prometheus for storage and analysis.
-4.  **Visualization:** Grafana dashboards can then be used to visualize energy consumption over time, sliced by namespace, pod, or container.
+1. **Data Collection:** eBPF probes safely monitor system calls and hardware performance counters for all running pods.
+2. **Estimation & Export:** The Kepler exporter on each node correlates this raw data with specific pods. It uses RAPL data where available and its ML models otherwise to calculate energy consumption in joules.
+3. **Monitoring:** The data is exposed via a `/metrics` endpoint, which is scraped by Prometheus for storage and analysis.
+4. **Visualization:** Grafana dashboards can then be used to visualize energy consumption over time, sliced by namespace, pod, or container.
 
 ### Getting Started with Kepler
 
@@ -126,6 +126,7 @@ helm repo update
 # Install Kepler into its own namespace
 helm install kepler kepler/kepler --namespace kepler --create-namespace
 ```
+
 Once deployed, you can configure your Prometheus instance to scrape the `kepler-exporter` service. Within minutes, you'll see new metrics like `kepler_container_joules_total` appearing.
 
 ## From Joules to CO2: The Final Calculation
@@ -158,15 +159,14 @@ Kepler is a foundational piece of the puzzle, but other tools offer different le
 
 Measurement enables strategy. Once you have visibility, you can take concrete steps to reduce your AI's environmental impact.
 
-*   **Optimize Models:** Techniques like quantization (using lower-precision data types), pruning (removing redundant model parameters), and knowledge distillation can drastically reduce the computational cost of inference.
-*   **Carbon-Aware Scheduling:** Use carbon intensity data to schedule large, non-urgent workloads (like model training or batch processing) to run at times or in geographic regions where the grid is powered by renewables.
-*   **Right-size Infrastructure:** Use your measurement data to eliminate waste. Avoid over-provisioning GPUs and CPUs. Ensure your autoscaling is tuned for energy efficiency, not just performance.
+* **Optimize Models:** Techniques like quantization (using lower-precision data types), pruning (removing redundant model parameters), and knowledge distillation can drastically reduce the computational cost of inference.
+* **Carbon-Aware Scheduling:** Use carbon intensity data to schedule large, non-urgent workloads (like model training or batch processing) to run at times or in geographic regions where the grid is powered by renewables.
+* **Right-size Infrastructure:** Use your measurement data to eliminate waste. Avoid over-provisioning GPUs and CPUs. Ensure your autoscaling is tuned for energy efficiency, not just performance.
 
 ## Conclusion
 
 The rise of powerful AI brings a responsibility to build and operate it sustainably. Hope is not a strategy. The path to "Green AI" begins with rigorous, accurate, and real-time measurement. Tools like Kepler, integrated into a modern cloud-native stack, finally give us the visibility we need. By understanding the true energy cost of our AI workloads, we can start a new chapter of optimization—one that benefits both our applications and our planet.
 
-
 ## Further Reading
 
-- [https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/](https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/)
+* [https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/](https://www.megaport.com/blog/your-2026-predictions-from-aws-re-invent-2025/)

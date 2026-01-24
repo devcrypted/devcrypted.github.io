@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-  - devcrypted
+  - kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -115,10 +115,10 @@ Integrating Copilot seamlessly into professional workflows requires more than ju
 
 Don't treat each prompt as a separate event. Use the Copilot Chat history to build on previous interactions. If the first generated code isn't quite right, you can reply with refinements:
 
-1.  **Initial Prompt:** "Create a TypeScript interface for a `Product` with id, name, price, and an optional description."
-2.  **Copilot Generates Code.**
-3.  **Refinement:** "Good. Now add a `tags` property which is an array of strings."
-4.  **Further Refinement:** "Make the `id` and `name` properties readonly."
+1. **Initial Prompt:** "Create a TypeScript interface for a `Product` with id, name, price, and an optional description."
+2. **Copilot Generates Code.**
+3. **Refinement:** "Good. Now add a `tags` property which is an array of strings."
+4. **Further Refinement:** "Make the `id` and `name` properties readonly."
 
 This iterative loop is incredibly effective for developing complex logic, as it keeps the context tight and focused.
 

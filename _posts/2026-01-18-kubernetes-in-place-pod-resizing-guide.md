@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,11 +39,11 @@ With Kubernetes 1.35, this paradigm shifts. The **In-Place Pod Vertical Scaling*
 
 This deep dive will equip you with a practical understanding of this powerful feature. Here’s what we’ll cover:
 
-*   **Core Concepts:** The mechanism behind restart-free Pod resizing.
-*   **How It Works:** A look under the hood at the Container Runtime Interface (CRI) and Pod spec changes.
-*   **Practical Guide:** A step-by-step example of resizing a database Pod in-place.
-*   **Key Limitations:** What you need to know before implementing it.
-*   **Comparison:** How it stacks up against the traditional Vertical Pod Autoscaler (VPA).
+* **Core Concepts:** The mechanism behind restart-free Pod resizing.
+* **How It Works:** A look under the hood at the Container Runtime Interface (CRI) and Pod spec changes.
+* **Practical Guide:** A step-by-step example of resizing a database Pod in-place.
+* **Key Limitations:** What you need to know before implementing it.
+* **Comparison:** How it stacks up against the traditional Vertical Pod Autoscaler (VPA).
 
 ---
 
@@ -81,15 +81,15 @@ This seemingly magical feature is the result of careful coordination between the
 
 The magic starts with a new field in the container spec: `resizePolicy`. This tells the Kubelet how to handle resource change requests for that specific container.
 
-*   `RestartNotRequired`: This is the key value. It enables in-place resizing for both CPU and memory. If the container runtime cannot fulfill the request live, the resize will fail, and the Pod will *not* be restarted.
-*   `Restart`: This is the default behavior, maintaining the traditional "recreate" workflow.
+* `RestartNotRequired`: This is the key value. It enables in-place resizing for both CPU and memory. If the container runtime cannot fulfill the request live, the resize will fail, and the Pod will *not* be restarted.
+* `Restart`: This is the default behavior, maintaining the traditional "recreate" workflow.
 
 ### The Pod Status Update
 
 When a resize occurs, the Pod's `status` field provides visibility into the process. Two key fields are updated:
 
-*   **`resources`**: Shows the resources *allocated* to the Pod. After a successful in-place resize, this will reflect the new values.
-*   **`resize`**: Indicates the status of an in-place resize operation. It can be `InProgress`, `Pending`, or `Infeasible` if the node cannot accommodate the request.
+* **`resources`**: Shows the resources *allocated* to the Pod. After a successful in-place resize, this will reflect the new values.
+* **`resize`**: Indicates the status of an in-place resize operation. It can be `InProgress`, `Pending`, or `Infeasible` if the node cannot accommodate the request.
 
 The core of the operation relies on the Container Runtime Interface (CRI) supporting the `UpdateContainerResources` call. Runtimes like **containerd (v1.6.0+)** and **CRI-O (v1.28.0+)** implement this, allowing them to dynamically adjust the underlying cgroup configurations (`cpu.max`, `memory.high`, `memory.max`) for the running container.
 
@@ -103,9 +103,9 @@ Let's walk through resizing a hypothetical PostgreSQL Pod without causing a rest
 
 ### Prerequisites
 
-*   **Kubernetes Cluster:** Version 1.35 or newer.
-*   **Container Runtime:** A compatible version that supports in-place resize (e.g., containerd ≥ 1.6.0).
-*   **Feature Gate:** The `InPlacePodVerticalScaling` feature gate is enabled by default and stable since v1.35.
+* **Kubernetes Cluster:** Version 1.35 or newer.
+* **Container Runtime:** A compatible version that supports in-place resize (e.g., containerd ≥ 1.6.0).
+* **Feature Gate:** The `InPlacePodVerticalScaling` feature gate is enabled by default and stable since v1.35.
 
 ### Step 1: Define and Deploy the Pod
 
@@ -206,10 +206,10 @@ kubectl describe pod postgres-db
 
 You will notice several key changes in the output:
 
-1.  **No Restart:** The `Restarts` count remains `0`.
-2.  **Updated Resources:** The `Limits` and `Requests` sections now show the new values (`cpu: 1`, `memory: 2Gi`).
-3.  **New Status Field:** The `Allocated Resources` section shows the new values applied to the running container.
-4.  **Events:** A new event, `Resized`, confirms the operation was successful.
+1. **No Restart:** The `Restarts` count remains `0`.
+2. **Updated Resources:** The `Limits` and `Requests` sections now show the new values (`cpu: 1`, `memory: 2Gi`).
+3. **New Status Field:** The `Allocated Resources` section shows the new values applied to the running container.
+4. **Events:** A new event, `Resized`, confirms the operation was successful.
 
 ```
 ...
@@ -245,10 +245,10 @@ Success! The database pod now has double the resources without interrupting its 
 
 While powerful, in-place resizing isn't a silver bullet. Keep these points in mind:
 
-*   **Supported Resources:** Currently, only **CPU and memory** can be resized in-place. Other resources like ephemeral storage still require a restart.
-*   **Node Capacity:** The resize is only possible if the node has sufficient unallocated resources. If not, the resize will be in a `Pending` state until resources become available.
-*   **Resource Decreases:** While the mechanism supports decreasing resources, it can be risky for applications that don't handle memory reduction gracefully (e.g., JVM-based apps). The primary and safest use case is scaling *up*.
-*   **No VPA Automation:** The Vertical Pod Autoscaler (VPA) can *recommend* new resource sizes, but it does not yet use the in-place mechanism to apply them automatically. You can set VPA's `updateMode` to `"Off"` to get recommendations and then use a custom controller or manual script to apply them via `patch`.
+* **Supported Resources:** Currently, only **CPU and memory** can be resized in-place. Other resources like ephemeral storage still require a restart.
+* **Node Capacity:** The resize is only possible if the node has sufficient unallocated resources. If not, the resize will be in a `Pending` state until resources become available.
+* **Resource Decreases:** While the mechanism supports decreasing resources, it can be risky for applications that don't handle memory reduction gracefully (e.g., JVM-based apps). The primary and safest use case is scaling *up*.
+* **No VPA Automation:** The Vertical Pod Autoscaler (VPA) can *recommend* new resource sizes, but it does not yet use the in-place mechanism to apply them automatically. You can set VPA's `updateMode` to `"Off"` to get recommendations and then use a custom controller or manual script to apply them via `patch`.
 
 ## Comparison: In-Place vs. Traditional VPA
 
@@ -267,8 +267,7 @@ In-Place Pod Vertical Scaling is a significant step forward for running stateful
 
 While full automation with the VPA is still on the horizon, the ability to manually or programmatically trigger a restart-free resize is an invaluable tool for any platform engineer or SRE. As you adopt Kubernetes 1.35 and beyond, integrating this feature into your operational playbooks for stateful workloads is a clear win.
 
-
 ## Further Reading
 
-- [https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9](https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9)
-- [https://palark.com/blog/kubernetes-1-35-release-features/](https://palark.com/blog/kubernetes-1-35-release-features/)
+* [https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9](https://medium.com/@imranfosec/upgrades-everything-new-with-kubernetes-1-35-8a37fc7bcaa9)
+* [https://palark.com/blog/kubernetes-1-35-release-features/](https://palark.com/blog/kubernetes-1-35-release-features/)

@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -38,11 +38,11 @@ Enter Ansible. With the recent release of the **Ansible Content Collections for 
 
 ### What You’ll Get
 
-*   An overview of the new Ansible Content Collections for AI.
-*   A clear, repeatable pattern for automating NVIDIA driver and CUDA installations.
-*   Example playbooks for deploying standardized PyTorch environments.
-*   A high-level architecture for provisioning vector databases like Milvus.
-*   A comparison of automating self-hosted vs. SaaS vector DBs.
+* An overview of the new Ansible Content Collections for AI.
+* A clear, repeatable pattern for automating NVIDIA driver and CUDA installations.
+* Example playbooks for deploying standardized PyTorch environments.
+* A high-level architecture for provisioning vector databases like Milvus.
+* A comparison of automating self-hosted vs. SaaS vector DBs.
 
 ---
 
@@ -54,9 +54,9 @@ This is where Ansible's new AI-focused collections shine. They abstract away the
 
 **Key Collections introduced in 2025 include:**
 
-*   `nvidia.gpu`: For managing NVIDIA drivers, CUDA toolkits, and container runtimes.
-*   `community.ml_frameworks`: For deploying environments with PyTorch, TensorFlow, and JAX.
-*   `community.vector_db`: Roles for deploying and managing vector databases like Milvus, Weaviate, and interacting with SaaS APIs like Pinecone.
+* `nvidia.gpu`: For managing NVIDIA drivers, CUDA toolkits, and container runtimes.
+* `community.ml_frameworks`: For deploying environments with PyTorch, TensorFlow, and JAX.
+* `community.vector_db`: Roles for deploying and managing vector databases like Milvus, Weaviate, and interacting with SaaS APIs like Pinecone.
 
 These collections enable teams to build a single, version-controlled source of truth for their entire AI platform.
 
@@ -230,13 +230,12 @@ This structure makes the entire platform definition easy to read, manage, and ve
 
 The complexity of AI infrastructure demands a mature Infrastructure as Code (IaC) solution. The 2025 Ansible Content Collections for AI provide the specialized tools needed to manage the modern AI stack effectively.
 
-*   **Standardization is Key:** By codifying your setup, you eliminate configuration drift and ensure every environment, from development to production, is identical.
-*   **Speed and Agility:** Ansible allows you to provision entire GPU clusters and their software stacks in minutes, not days.
-*   **Reliability:** Idempotent playbooks ensure that your infrastructure always converges to the desired state, reducing errors and increasing uptime.
+* **Standardization is Key:** By codifying your setup, you eliminate configuration drift and ensure every environment, from development to production, is identical.
+* **Speed and Agility:** Ansible allows you to provision entire GPU clusters and their software stacks in minutes, not days.
+* **Reliability:** Idempotent playbooks ensure that your infrastructure always converges to the desired state, reducing errors and increasing uptime.
 
 Ansible is no longer just for configuring web servers and databases. It has evolved into an essential orchestration tool for MLOps, enabling teams to build, scale, and manage the powerful infrastructure that drives the next generation of artificial intelligence. ✨
 
-
 ## Further Reading
 
-- https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content
+* <https://www.redhat.com/en/blog/whats-new-ansible-automation-platform-content>

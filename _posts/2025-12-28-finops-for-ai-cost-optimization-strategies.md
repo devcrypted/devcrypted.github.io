@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ Traditional FinOps practices, built for predictable web servers and databases, a
 
 ### What You'll Get
 
-*   **Understand the Cost Profile:** A clear breakdown of why AI workloads, especially agents, differ from traditional cloud services.
-*   **Actionable Strategies:** Practical methods for tracking and controlling agent-related costs using unit economics.
-*   **Tooling Landscape:** An overview of new and emerging tools, including AWS Q for Cost Optimization, that can help.
-*   **Cultural Blueprint:** Guidance on fostering collaboration between engineering and finance to build cost-aware AI systems.
+* **Understand the Cost Profile:** A clear breakdown of why AI workloads, especially agents, differ from traditional cloud services.
+* **Actionable Strategies:** Practical methods for tracking and controlling agent-related costs using unit economics.
+* **Tooling Landscape:** An overview of new and emerging tools, including AWS Q for Cost Optimization, that can help.
+* **Cultural Blueprint:** Guidance on fostering collaboration between engineering and finance to build cost-aware AI systems.
 
 ---
 
@@ -48,9 +48,9 @@ Traditional FinOps practices, built for predictable web servers and databases, a
 
 The cost signature of AI workloads is fundamentally different from that of standard applications. Traditional workloads often scale predictably with user traffic, while AI introduces two new, volatile patterns: training and inference.
 
-*   **Traditional Workloads:** Costs are often stable and grow linearly with usage. Think of a web application server; more users mean more servers, but the cost-per-user is relatively constant.
-*   **AI Training:** This involves massive, short-lived spikes in compute and GPU usage. It's expensive but temporary and often planned, making it somewhat easier to budget for.
-*   **AI Inference:** This is the "long tail" of AI cost. It's the ongoing cost of running the model for users. For simple applications, it can be predictable. For AI agents, it's anything but.
+* **Traditional Workloads:** Costs are often stable and grow linearly with usage. Think of a web application server; more users mean more servers, but the cost-per-user is relatively constant.
+* **AI Training:** This involves massive, short-lived spikes in compute and GPU usage. It's expensive but temporary and often planned, making it somewhat easier to budget for.
+* **AI Inference:** This is the "long tail" of AI cost. It's the ongoing cost of running the model for users. For simple applications, it can be predictable. For AI agents, it's anything but.
 
 This diagram illustrates the different cost profiles:
 
@@ -84,11 +84,12 @@ AI agents live in the third profile: a series of unpredictable bursts, where the
 An AI agent's core feature is its autonomy. You don't give it a script; you give it a *goal*. The agent then decides which tools to use and how many LLM calls to make to achieve that goal. This autonomy is also its biggest financial risk.
 
 Consider a simple "research agent" tasked with answering the question, "What are the latest trends in FinOps for AI?" The agent might:
-1.  Perform a web search (Tool Call 1).
-2.  Analyze search results and identify key articles (LLM Call 1).
-3.  Visit and scrape the top 3 articles (Tool Calls 2, 3, 4).
-4.  Summarize the content from each article (LLM Calls 2, 3, 4).
-5.  Synthesize a final answer based on the summaries (LLM Call 5).
+
+1. Perform a web search (Tool Call 1).
+2. Analyze search results and identify key articles (LLM Call 1).
+3. Visit and scrape the top 3 articles (Tool Calls 2, 3, 4).
+4. Summarize the content from each article (LLM Calls 2, 3, 4).
+5. Synthesize a final answer based on the summaries (LLM Call 5).
 
 This single query resulted in **4 tool calls** and **5 expensive LLM calls**. A slightly different query might only require one of each. This variability makes traditional forecasting impossible. You are no longer billing per API call, but per *outcome*, and the cost of that outcome is dynamic.
 
@@ -102,9 +103,9 @@ You cannot control this variability with traditional budgets alone. Instead, you
 
 If you can't predict the cost of a task beforehand, you must measure it meticulously afterward. The goal is to determine your **cost per task** or **cost per outcome**.
 
-*   **Instrument Your Agent:** Every time an agent makes an LLM call or uses a tool, log it. Capture the model used, token counts (prompt and completion), and the tool invoked.
-*   **Assign a Unique ID:** Tag every action in a single agent run with a unique `trace_id`. This allows you to group all related costs to a single initial prompt.
-*   **Calculate Cost Post-Hoc:** After the agent run is complete, use the logged data and known pricing (e.g., cost per 1,000 tokens for GPT-4) to calculate the total cost for that `trace_id`.
+* **Instrument Your Agent:** Every time an agent makes an LLM call or uses a tool, log it. Capture the model used, token counts (prompt and completion), and the tool invoked.
+* **Assign a Unique ID:** Tag every action in a single agent run with a unique `trace_id`. This allows you to group all related costs to a single initial prompt.
+* **Calculate Cost Post-Hoc:** After the agent run is complete, use the logged data and known pricing (e.g., cost per 1,000 tokens for GPT-4) to calculate the total cost for that `trace_id`.
 
 Here is a simplified Python example of how you might log this data:
 
@@ -151,17 +152,18 @@ run_agent_task("Summarize the latest trends in FinOps for AI.")
 ```
 
 By aggregating this data, you can answer critical business questions like:
-*   What is the average cost of a successful user query?
-*   Which types of tasks are unexpectedly expensive?
-*   Is our `v2` agent more cost-efficient than our `v1` agent for the same task?
+
+* What is the average cost of a successful user query?
+* Which types of tasks are unexpectedly expensive?
+* Is our `v2` agent more cost-efficient than our `v1` agent for the same task?
 
 ### ### Implement Strict Guardrails
 
 Since agents can enter costly loops or take inefficient paths, you must implement automated guardrails to cap the financial blast radius.
 
-*   **Set Token/Step Limits:** Configure a maximum number of LLM calls or total tokens an agent can consume for a single task.
-*   **Implement Timeouts:** Kill any agent run that exceeds a reasonable time limit.
-*   **Budget-per-Query:** For multi-tenant systems, consider implementing a max budget per user or per API key, resetting over a given period.
+* **Set Token/Step Limits:** Configure a maximum number of LLM calls or total tokens an agent can consume for a single task.
+* **Implement Timeouts:** Kill any agent run that exceeds a reasonable time limit.
+* **Budget-per-Query:** For multi-tenant systems, consider implementing a max budget per user or per API key, resetting over a given period.
 
 The key is finding the balance. Overly aggressive guardrails can cripple the agent's effectiveness, while overly loose ones can lead to budget overruns.
 
@@ -187,9 +189,9 @@ Ultimately, tools are only part of the solution. Managing AI costs requires a cu
 
 > Engineers building agents must be empowered with real-time cost data. A model that is 2% more accurate but 200% more expensive may not be the right choice for production.
 
-*   **Shared Dashboards:** Create dashboards that show not just latency and error rates but also `cost_per_task` and `tokens_per_run`.
-*   **Include Cost in PRs:** Encourage engineers to estimate the cost impact of changes to an agent's logic or underlying model.
-*   **Regular Reviews:** Hold joint reviews with FinOps and Engineering to analyze the most expensive agent tasks and brainstorm optimizations.
+* **Shared Dashboards:** Create dashboards that show not just latency and error rates but also `cost_per_task` and `tokens_per_run`.
+* **Include Cost in PRs:** Encourage engineers to estimate the cost impact of changes to an agent's logic or underlying model.
+* **Regular Reviews:** Hold joint reviews with FinOps and Engineering to analyze the most expensive agent tasks and brainstorm optimizations.
 
 This collaborative approach, detailed in thought leadership from firms like [ProsperOps](https://www.prosperops.com/blog/finops-for-ai/), transforms cost from a financial constraint into an engineering metric—something to be optimized just like performance.
 
@@ -199,8 +201,7 @@ FinOps for AI is a nascent but critical discipline. The unpredictable, non-deter
 
 Success isn't about stopping AI spend; it's about maximizing the value derived from every token and every GPU cycle. This requires a new toolkit and, more importantly, a new mindset where cost is a shared responsibility and a key feature of building intelligent, sustainable systems.
 
-
 ## Further Reading
 
-- [https://www.prosperops.com/blog/finops-for-ai/](https://www.prosperops.com/blog/finops-for-ai/)
-- [https://www.finops.org/insights/finops-x-2025-cloud-announcements/](https://www.finops.org/insights/finops-x-2025-cloud-announcements/)
+* [https://www.prosperops.com/blog/finops-for-ai/](https://www.prosperops.com/blog/finops-for-ai/)
+* [https://www.finops.org/insights/finops-x-2025-cloud-announcements/](https://www.finops.org/insights/finops-x-2025-cloud-announcements/)

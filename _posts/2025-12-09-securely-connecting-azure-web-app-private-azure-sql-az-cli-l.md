@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -41,10 +41,10 @@ This guide provides a hands-on, practitioner-focused lab. We'll skip the portal 
 
 By the end of this article, you will have:
 
-*   **A Clear Architectural Understanding:** A visual diagram and explanation of how VNet Integration and Private Endpoints work together.
-*   **Step-by-Step AZ CLI Commands:** A complete, copy-paste-friendly script to build the entire solution.
-*   **A Secure, Private Infrastructure:** An Azure Web App that communicates with an Azure SQL Database over a private network backbone, with the database's public endpoint disabled.
-*   **Verification and Best Practices:** Knowledge on how to confirm your private connection is working and key considerations for production environments.
+* **A Clear Architectural Understanding:** A visual diagram and explanation of how VNet Integration and Private Endpoints work together.
+* **Step-by-Step AZ CLI Commands:** A complete, copy-paste-friendly script to build the entire solution.
+* **A Secure, Private Infrastructure:** An Azure Web App that communicates with an Azure SQL Database over a private network backbone, with the database's public endpoint disabled.
+* **Verification and Best Practices:** Knowledge on how to confirm your private connection is working and key considerations for production environments.
 
 ## The Architecture Explained
 
@@ -52,10 +52,10 @@ Before we write any code, let's visualize the goal. Our Web App needs to send ou
 
 Here’s how the pieces fit together:
 
-1.  **Azure Web App:** Our public-facing application.
-2.  **VNet Integration:** This feature "plugs" the Web App's backend into a dedicated subnet within our VNet. All outbound traffic from the Web App can now be routed into the VNet as if it originated there.
-3.  **Private Endpoint for Azure SQL:** This creates a network interface (NIC) with a private IP address in a different subnet of our VNet. This NIC is directly linked to our Azure SQL Server.
-4.  **Private DNS Zone:** This is the magic. When the VNet-integrated Web App tries to resolve the public DNS name of the SQL server (e.g., `myserver.database.windows.net`), the Private DNS Zone intercepts the request and returns the *private IP address* of the Private Endpoint, not the public one.
+1. **Azure Web App:** Our public-facing application.
+2. **VNet Integration:** This feature "plugs" the Web App's backend into a dedicated subnet within our VNet. All outbound traffic from the Web App can now be routed into the VNet as if it originated there.
+3. **Private Endpoint for Azure SQL:** This creates a network interface (NIC) with a private IP address in a different subnet of our VNet. This NIC is directly linked to our Azure SQL Server.
+4. **Private DNS Zone:** This is the magic. When the VNet-integrated Web App tries to resolve the public DNS name of the SQL server (e.g., `myserver.database.windows.net`), the Private DNS Zone intercepts the request and returns the *private IP address* of the Private Endpoint, not the public one.
 
 This ensures traffic never leaves the Microsoft Azure backbone.
 
@@ -91,9 +91,9 @@ graph TD
 
 To follow this lab, you’ll need:
 
-*   An active **Azure subscription** with permissions to create resources.
-*   **Azure CLI** installed and configured. You can verify with `az --version`.
-*   You are logged in via `az login`.
+* An active **Azure subscription** with permissions to create resources.
+* **Azure CLI** installed and configured. You can verify with `az --version`.
+* You are logged in via `az login`.
 
 ## Step-by-Step Lab Setup with AZ CLI
 
@@ -261,11 +261,11 @@ az sql server update \
 
 **How to Verify:**
 
-1.  **Add Connection String:** Go to your Web App's **Configuration** settings and add an application setting for your database connection string. Use the FQDN of your SQL server.
-    *   **Name:** `SQLAZURECONNSTR_DefaultConnection`
-    *   **Value:** `Server=tcp:${SQL_SERVER_NAME}.database.windows.net,1433;Initial Catalog=${SQL_DATABASE_NAME};User ID=${SQL_ADMIN_USER};Password=${SQL_ADMIN_PASS};`
+1. **Add Connection String:** Go to your Web App's **Configuration** settings and add an application setting for your database connection string. Use the FQDN of your SQL server.
+    * **Name:** `SQLAZURECONNSTR_DefaultConnection`
+    * **Value:** `Server=tcp:${SQL_SERVER_NAME}.database.windows.net,1433;Initial Catalog=${SQL_DATABASE_NAME};User ID=${SQL_ADMIN_USER};Password=${SQL_ADMIN_PASS};`
 
-2.  **Use Kudu Console:** Navigate to your Web App in the Azure portal, go to **Advanced Tools**, and open the Kudu console (SSH). From the terminal, test the connection to the SQL server's *public FQDN*.
+2. **Use Kudu Console:** Navigate to your Web App in the Azure portal, go to **Advanced Tools**, and open the Kudu console (SSH). From the terminal, test the connection to the SQL server's *public FQDN*.
 
     ```bash
     # From the Kudu SSH console inside the Web App

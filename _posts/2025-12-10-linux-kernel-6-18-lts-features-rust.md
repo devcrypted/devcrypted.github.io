@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,10 +39,10 @@ Kernel 6.18 moves beyond incremental updates, introducing foundational changes t
 
 This article breaks down the most impactful changes in Linux 6.18 LTS for practitioners. You will learn:
 
-*   **The State of Rust:** How Rust has moved from an experimental feature to a viable option for production-grade kernel drivers.
-*   **The New 'Prepatch' Cycle:** An inside look at the new development phase designed to catch bugs earlier and create more stable release candidates.
-*   **ARM's MTE Explained:** Why hardware-assisted memory tagging is a game-changer for securing cloud servers and edge devices.
-*   **Practical Implications:** What these changes mean for developers, system administrators, and security engineers.
+* **The State of Rust:** How Rust has moved from an experimental feature to a viable option for production-grade kernel drivers.
+* **The New 'Prepatch' Cycle:** An inside look at the new development phase designed to catch bugs earlier and create more stable release candidates.
+* **ARM's MTE Explained:** Why hardware-assisted memory tagging is a game-changer for securing cloud servers and edge devices.
+* **Practical Implications:** What these changes mean for developers, system administrators, and security engineers.
 
 ---
 
@@ -54,9 +54,9 @@ Since its introduction in kernel 6.1, the "Rust for Linux" initiative has been o
 
 The key milestone in this release is the stabilization of several core Rust abstractions and the inclusion of the first stable drivers written primarily in Rust. While C remains the dominant language, Rust now offers a compelling, safer alternative for new code.
 
-*   **Stable Drivers:** The 6.18 kernel includes stable Rust-based drivers for subsystems like **NVMe** and **GPIO**. These serve as a blueprint for future development.
-*   **Safer Abstractions:** The `kernel` crate and other low-level abstractions have been refined, providing safe wrappers around complex kernel APIs and reducing the need for `unsafe` blocks.
-*   **Toolchain Integration:** The build system integration is now seamless, making it straightforward to compile Rust modules alongside C code without complex manual configuration.
+* **Stable Drivers:** The 6.18 kernel includes stable Rust-based drivers for subsystems like **NVMe** and **GPIO**. These serve as a blueprint for future development.
+* **Safer Abstractions:** The `kernel` crate and other low-level abstractions have been refined, providing safe wrappers around complex kernel APIs and reducing the need for `unsafe` blocks.
+* **Toolchain Integration:** The build system integration is now seamless, making it straightforward to compile Rust modules alongside C code without complex manual configuration.
 
 A simplified example of a Rust driver's structure illustrates the focus on safety and clear interfaces.
 
@@ -137,9 +137,9 @@ graph TD;
 
 This change has clear benefits for everyone involved in the kernel ecosystem:
 
-*   **For Subsystem Maintainers:** Provides an earlier opportunity to see how their changes interact with the rest of the kernel.
-*   **For Automated Test Systems:** The prepatch tree (`-preN`) offers a clear target for heavy integration and regression testing.
-*   **For Enterprise Distributions:** A more stable `-rc1` means a higher quality baseline for their own testing, leading to more reliable final products.
+* **For Subsystem Maintainers:** Provides an earlier opportunity to see how their changes interact with the rest of the kernel.
+* **For Automated Test Systems:** The prepatch tree (`-preN`) offers a clear target for heavy integration and regression testing.
+* **For Enterprise Distributions:** A more stable `-rc1` means a higher quality baseline for their own testing, leading to more reliable final products.
 
 For more details on the kernel development process, the official documentation at [The Linux Kernel Archives](https://www.kernel.org/doc/html/latest/process/development-process.html) is an excellent resource.
 
@@ -153,9 +153,9 @@ With the rise of powerful ARM-based servers like AWS Graviton and Ampere Altra, 
 
 Here’s how MTE works at a high level:
 
-1.  **Tagging:** A small, 4-bit "tag" is associated with every 16 bytes of memory. The same tag is stored in the top bits of pointers that refer to that memory.
-2.  **Checking:** On every memory access (load or store), the CPU's hardware checks if the pointer's tag matches the memory's tag.
-3.  **Faulting:** If the tags do not match, the hardware raises an exception, allowing the kernel to terminate the offending process immediately. This stops buffer overflows and use-after-free attacks dead in their tracks.
+1. **Tagging:** A small, 4-bit "tag" is associated with every 16 bytes of memory. The same tag is stored in the top bits of pointers that refer to that memory.
+2. **Checking:** On every memory access (load or store), the CPU's hardware checks if the pointer's tag matches the memory's tag.
+3. **Faulting:** If the tags do not match, the hardware raises an exception, allowing the kernel to terminate the offending process immediately. This stops buffer overflows and use-after-free attacks dead in their tracks.
 
 ```mermaid
 flowchart LR
@@ -183,22 +183,22 @@ The performance overhead of MTE is significantly lower than software-based tools
 
 While Rust, MTE, and the new release cycle are headliners, 6.18 LTS also includes many other important updates:
 
-*   **Bcachefs Maturation:** The next-generation copy-on-write (CoW) filesystem continues to stabilize, with significant performance improvements and new features.
-*   **Improved CPU Scheduler:** Enhancements to the kernel scheduler provide better performance on systems with hybrid architectures (e.g., Intel P-cores and E-cores).
-*   **BPF Enhancements:** The Berkeley Packet Filter (BPF) subsystem, crucial for networking and observability, gains new helper functions and improved security controls.
-*   **IO_uring Optimizations:** The high-performance asynchronous I/O interface has been further optimized, reducing overhead and increasing throughput for demanding applications like databases.
+* **Bcachefs Maturation:** The next-generation copy-on-write (CoW) filesystem continues to stabilize, with significant performance improvements and new features.
+* **Improved CPU Scheduler:** Enhancements to the kernel scheduler provide better performance on systems with hybrid architectures (e.g., Intel P-cores and E-cores).
+* **BPF Enhancements:** The Berkeley Packet Filter (BPF) subsystem, crucial for networking and observability, gains new helper functions and improved security controls.
+* **IO_uring Optimizations:** The high-performance asynchronous I/O interface has been further optimized, reducing overhead and increasing throughput for demanding applications like databases.
 
 ## Summary: A Landmark LTS Release
 
 Linux Kernel 6.18 LTS is more than just another update; it's a strategic release that hardens the kernel's foundation.
-*   The maturity of **Rust** provides a path toward a more secure and robust driver ecosystem.
-*   The **'Prepatch' cycle** refines the world's largest collaborative software project, promising higher stability.
-*   The integration of **ARM MTE** marks a fundamental shift toward hardware-enforced security, making the entire platform more resilient.
+
+* The maturity of **Rust** provides a path toward a more secure and robust driver ecosystem.
+* The **'Prepatch' cycle** refines the world's largest collaborative software project, promising higher stability.
+* The integration of **ARM MTE** marks a fundamental shift toward hardware-enforced security, making the entire platform more resilient.
 
 For any organization running Linux on modern hardware, especially in security-sensitive cloud and edge environments, upgrading to 6.18 is not just recommended—it's essential for building a secure, stable, and future-proof infrastructure.
 
-
 ## Further Reading
 
-- https://www.theregister.com/2025/12/05/new_lts_kernel_and_alpine/
-- https://linuxsecurity.com/features/linux-kernel-security-2025
+* <https://www.theregister.com/2025/12/05/new_lts_kernel_and_alpine/>
+* <https://linuxsecurity.com/features/linux-kernel-security-2025>

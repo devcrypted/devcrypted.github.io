@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,11 +39,12 @@ This guide demonstrates how to build and deploy a professional, modern portfolio
 ### What You'll Get
 
 By following this guide, you will have:
-*   A fully functional, AI-generated portfolio website built with React and TypeScript.
-*   A repeatable workflow for generating and updating web applications using prompts.
-*   A live, publicly accessible URL for your portfolio, hosted for free.
-*   Knowledge of how to connect a contact form without needing a backend server.
-*   A clear, step-by-step process from idea to deployment.
+
+* A fully functional, AI-generated portfolio website built with React and TypeScript.
+* A repeatable workflow for generating and updating web applications using prompts.
+* A live, publicly accessible URL for your portfolio, hosted for free.
+* Knowledge of how to connect a contact form without needing a backend server.
+* A clear, step-by-step process from idea to deployment.
 
 ## The No-Code AI Stack
 
@@ -77,11 +78,11 @@ flowchart TD
 
 Gemini needs information about you to build your portfolio. The easiest way to provide this is with a document you already have. You have two primary options:
 
-1.  **Your Resume:** If you have a resume in PDF format, use that. It's concise and contains all the relevant professional information.
-2.  **Your LinkedIn Profile:** If your resume isn't handy, you can download your LinkedIn profile as a PDF.
-    *   Go to your LinkedIn profile.
-    *   Click the **More** button below your profile headline.
-    *   Select **Save to PDF**.
+1. **Your Resume:** If you have a resume in PDF format, use that. It's concise and contains all the relevant professional information.
+2. **Your LinkedIn Profile:** If your resume isn't handy, you can download your LinkedIn profile as a PDF.
+    * Go to your LinkedIn profile.
+    * Click the **More** button below your profile headline.
+    * Select **Save to PDF**.
 
 This downloaded PDF will serve as the knowledge base for the AI.
 
@@ -99,8 +100,8 @@ Before we start prompting, let's configure the environment for the best results.
 
 System instructions are persistent rules that the AI follows for every prompt you send. This ensures consistency and quality.
 
-1.  In the left panel, find **System instructions**.
-2.  Paste the following configuration. This tells the AI to create a clean, modern, and maintainable project structure.
+1. In the left panel, find **System instructions**.
+2. Paste the following configuration. This tells the AI to create a clean, modern, and maintainable project structure.
 
 ```txt
 - Keep data/config files separate from logic (JS/TS/CSS/HTML).
@@ -108,9 +109,10 @@ System instructions are persistent rules that the AI follows for every prompt yo
 - Use TypeScript (TS) only; do not use JavaScript (JS).
 - Prioritize using modern, well-established libraries for any complex features instead of writing them from scratch.
 ```
+
 > **Why these rules?** Separating data makes your site easier to update. Component-based architecture is a modern web development standard, and TypeScript adds safety and predictability to the code, even though we aren't writing it ourselves.
 
-3.  Under the prompt box, select the output format as **React (TypeScript)**.
+1. Under the prompt box, select the output format as **React (TypeScript)**.
 
 ### Craft the Initial Prompt
 
@@ -121,18 +123,20 @@ Here is a great starting prompt. You can customize the design keywords (`glassmo
 > Create a professional portfolio website for me using the information in the attached file.
 >
 > **Design & Layout:**
-> - Use a **glassmorphism** aesthetic for components.
-> - Organize content sections using **bento grids**.
-> - The site should have a **dark mode** theme by default.
-> - Ensure the design is clean, modern, and fully responsive.
+>
+> * Use a **glassmorphism** aesthetic for components.
+> * Organize content sections using **bento grids**.
+> * The site should have a **dark mode** theme by default.
+> * Ensure the design is clean, modern, and fully responsive.
 >
 > **Sections:**
-> - Home/Hero section
-> - Professional Experience
-> - Education
-> - Skills / Focus Areas
-> - Certifications
-> - A "Get in Touch" contact form.
+>
+> * Home/Hero section
+> * Professional Experience
+> * Education
+> * Skills / Focus Areas
+> * Certifications
+> * A "Get in Touch" contact form.
 
 After writing your prompt, click the **Upload files** button and select the PDF of your resume or LinkedIn profile. Click **Build**.
 
@@ -142,9 +146,9 @@ Gemini will generate a preview of your website on the right. It might not be per
 
 Treat the AI as your design partner. If you don't like something, tell it specifically what to change.
 
-*   **Example Feedback:** "The 'Focus Areas' section is too large and the text is exaggerated. Make it more compact and use a smaller font."
-*   **Example Feedback:** "The color scheme is too bright. Use a more subdued palette of blues and grays."
-*   **Example Feedback:** "Add a navigation bar at the top with links to each section."
+* **Example Feedback:** "The 'Focus Areas' section is too large and the text is exaggerated. Make it more compact and use a smaller font."
+* **Example Feedback:** "The color scheme is too bright. Use a more subdued palette of blues and grays."
+* **Example Feedback:** "Add a navigation bar at the top with links to each section."
 
 Continue providing feedback in the prompt box until you are happy with the result.
 
@@ -152,14 +156,14 @@ Continue providing feedback in the prompt box until you are happy with the resul
 
 Once you're satisfied with the design, you need a place to store the generated code. [GitHub](https://github.com/) is the industry standard for code storage and version control.
 
-1.  **Create a GitHub Account:** If you don't have one, sign up for a free account.
-2.  **Connect Gemini to GitHub:** In Gemini Studio, click the **GitHub icon** in the top right. You'll be prompted to authorize access to your GitHub account.
-3.  **Create a Repository:**
-    *   After connecting, you'll be prompted to create a new repository (think of it as a project folder).
-    *   Give it a name, like `my-ai-portfolio`.
-    *   Set the visibility to **Public**.
-    *   Click **Create Git Repo**.
-4.  **Commit Your Changes:** Gemini will show you all the files it has created. Click **Commit all changes**. This saves the first version of your website's code to your new GitHub repository.
+1. **Create a GitHub Account:** If you don't have one, sign up for a free account.
+2. **Connect Gemini to GitHub:** In Gemini Studio, click the **GitHub icon** in the top right. You'll be prompted to authorize access to your GitHub account.
+3. **Create a Repository:**
+    * After connecting, you'll be prompted to create a new repository (think of it as a project folder).
+    * Give it a name, like `my-ai-portfolio`.
+    * Set the visibility to **Public**.
+    * Click **Create Git Repo**.
+4. **Commit Your Changes:** Gemini will show you all the files it has created. Click **Commit all changes**. This saves the first version of your website's code to your new GitHub repository.
 
 ## Step 4: Deploy to the World with Vercel
 
@@ -167,17 +171,17 @@ Now it's time to make your portfolio live. We'll use [Vercel](https://vercel.com
 
 ### Connect Vercel to GitHub
 
-1.  Sign up for a free Vercel account, choosing to **Continue with GitHub**. This automatically links both services.
-2.  On your Vercel dashboard, click **Add New...** > **Project**.
-3.  Vercel will display your GitHub repositories. Find your `my-ai-portfolio` repository and click **Import**.
+1. Sign up for a free Vercel account, choosing to **Continue with GitHub**. This automatically links both services.
+2. On your Vercel dashboard, click **Add New...** > **Project**.
+3. Vercel will display your GitHub repositories. Find your `my-ai-portfolio` repository and click **Import**.
 
 ### Configure and Deploy
 
 Vercel is smart enough to recognize a React/TypeScript project and configure everything automatically.
 
-*   **Framework Preset:** Should be `Vite` or `Next.js`. Leave it as detected.
-*   **Root Directory:** Leave as is.
-*   **Build and Output Settings:** Leave the defaults.
+* **Framework Preset:** Should be `Vite` or `Next.js`. Leave it as detected.
+* **Root Directory:** Leave as is.
+* **Build and Output Settings:** Leave the defaults.
 
 You don't need to change anything. Just click **Deploy**.
 
@@ -200,10 +204,10 @@ Let's add a few final touches to make your portfolio truly professional.
 
 The default contact form doesn't actually send emails. We can fix this without a backend using a service called [Web3Forms](https://web3forms.com/).
 
-1.  Go to Web3Forms and click **Create Your Form**.
-2.  Enter your email address where you want to receive messages.
-3.  Complete the sign-up. You'll be given an **Access Key**. Copy it.
-4.  Return to Gemini Studio and use the following prompt:
+1. Go to Web3Forms and click **Create Your Form**.
+2. Enter your email address where you want to receive messages.
+3. Complete the sign-up. You'll be given an **Access Key**. Copy it.
+4. Return to Gemini Studio and use the following prompt:
 
 > Here is my Web3Forms access key: `YOUR_ACCESS_KEY_HERE`. Please integrate it with the "Get in Touch" form so that I can receive emails without a backend.
 
@@ -216,8 +220,9 @@ The little icon in the browser tab is called a favicon. You can ask Gemini to cr
 > Please add a simple SVG favicon to my website based on my initials.
 
 If you have your own logo or image, you can:
-1.  In Gemini Studio, click **Upload files** to add your image (e.g., `favicon.png`).
-2.  Prompt: "Use the uploaded `favicon.png` as the website's favicon."
+
+1. In Gemini Studio, click **Upload files** to add your image (e.g., `favicon.png`).
+2. Prompt: "Use the uploaded `favicon.png` as the website's favicon."
 
 Commit the changes, and your site will have a professional favicon.
 
@@ -225,9 +230,9 @@ Commit the changes, and your site will have a professional favicon.
 
 The best part about this workflow is how easy it is to maintain. Need to add a new job or project?
 
-1.  Go back to your Gemini Studio project.
-2.  Enter a prompt like, "Add a new role to my Professional Experience: Senior Gizmo Engineer at Acme Corp from 2023-Present."
-3.  Review the changes in the preview.
-4.  Commit the update to GitHub.
+1. Go back to your Gemini Studio project.
+2. Enter a prompt like, "Add a new role to my Professional Experience: Senior Gizmo Engineer at Acme Corp from 2023-Present."
+3. Review the changes in the preview.
+4. Commit the update to GitHub.
 
 Vercel will automatically redeploy your site with the new information. Your portfolio stays current with just a few sentences.

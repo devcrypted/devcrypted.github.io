@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-  - devcrypted
+  - kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -145,10 +145,10 @@ graph TD
 
 **Actionable Steps:**
 
-1.  **Audit Your Tasks:** List your daily and weekly tasks. Which ones are repetitive, data-driven, or formulaic? These are your AI automation targets.
-2.  **Learn Prompt Engineering:** Mastering how to communicate effectively with AI is becoming a fundamental digital literacy skill.
-3.  **Explore Adjacent Roles:** If you're a graphic designer, explore UI/UX strategy. If you're a copywriter, move into brand strategy or content marketing leadership. Move from _doing_ the task to _directing_ the strategy behind it.
-4.  **Invest in Certifications:** Look for credible programs in AI management, data science, or prompt engineering that align with your career goals.
+1. **Audit Your Tasks:** List your daily and weekly tasks. Which ones are repetitive, data-driven, or formulaic? These are your AI automation targets.
+2. **Learn Prompt Engineering:** Mastering how to communicate effectively with AI is becoming a fundamental digital literacy skill.
+3. **Explore Adjacent Roles:** If you're a graphic designer, explore UI/UX strategy. If you're a copywriter, move into brand strategy or content marketing leadership. Move from _doing_ the task to _directing_ the strategy behind it.
+4. **Invest in Certifications:** Look for credible programs in AI management, data science, or prompt engineering that align with your career goals.
 
 ---
 

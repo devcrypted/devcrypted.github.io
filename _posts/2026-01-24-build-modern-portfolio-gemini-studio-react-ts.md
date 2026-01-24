@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,11 +37,11 @@ We'll use Google AI Studio for rapid prompt engineering, the Gemini API for cont
 
 ### What You'll Get
 
-*   A step-by-step guide to integrate Google's Gemini API into a React app.
-*   Actionable code snippets for setting up a React TS project from scratch.
-*   A high-level architecture diagram to visualize the data flow.
-*   A proven strategy for prompting Gemini to generate structured JSON data.
-*   A clear breakdown of the pros and cons of this AI-driven approach.
+* A step-by-step guide to integrate Google's Gemini API into a React app.
+* Actionable code snippets for setting up a React TS project from scratch.
+* A high-level architecture diagram to visualize the data flow.
+* A proven strategy for prompting Gemini to generate structured JSON data.
+* A clear breakdown of the pros and cons of this AI-driven approach.
 
 ## The Core Idea: An AI-Powered Portfolio
 
@@ -71,9 +71,9 @@ graph TD
 
 Before we start coding, ensure you have the following tools installed and ready:
 
-*   **Node.js:** v18 or later.
-*   **A code editor:** Visual Studio Code is highly recommended.
-*   **A Google Account:** To access Google AI Studio and generate an API key.
+* **Node.js:** v18 or later.
+* **A code editor:** Visual Studio Code is highly recommended.
+* **A Google Account:** To access Google AI Studio and generate an API key.
 
 ### Setting Up Your React TS Project
 
@@ -96,11 +96,11 @@ Your project is now ready. You can start the development server with `npm run de
 
 Your application needs credentials to communicate with the Gemini API.
 
-1.  Navigate to [Google AI Studio](https://aistudio.google.com/).
-2.  Sign in with your Google account.
-3.  On the left-hand menu, click **"Get API key"**.
-4.  Click **"Create API key in new project"**.
-5.  Copy the generated key. **Treat this key like a password—do not commit it to your repository.**
+1. Navigate to [Google AI Studio](https://aistudio.google.com/).
+2. Sign in with your Google account.
+3. On the left-hand menu, click **"Get API key"**.
+4. Click **"Create API key in new project"**.
+5. Copy the generated key. **Treat this key like a password—do not commit it to your repository.**
 
 To use the key securely, we'll use environment variables. Create a file named `.env` in the root of your project:
 
@@ -357,9 +357,9 @@ This approach is powerful, but it's important to understand the trade-offs.
 
 This project is a fantastic starting point. Here are some ideas to take it further:
 
-*   **Caching:** Implement caching (e.g., using `localStorage` or a service like Vercel KV) to avoid hitting the Gemini API on every page load. This will improve speed and reduce costs.
-*   **Styling:** Use a modern CSS framework like Tailwind CSS or a component library like Chakra UI to make your portfolio visually stunning.
-*   **User-Driven Prompts:** Add a UI element that allows *you* to change the prompt directly from the portfolio and regenerate the content.
-*   **Deployment:** Deploy your application to a platform like Vercel or Netlify for easy, continuous deployment.
+* **Caching:** Implement caching (e.g., using `localStorage` or a service like Vercel KV) to avoid hitting the Gemini API on every page load. This will improve speed and reduce costs.
+* **Styling:** Use a modern CSS framework like Tailwind CSS or a component library like Chakra UI to make your portfolio visually stunning.
+* **User-Driven Prompts:** Add a UI element that allows *you* to change the prompt directly from the portfolio and regenerate the content.
+* **Deployment:** Deploy your application to a platform like Vercel or Netlify for easy, continuous deployment.
 
 By integrating a powerful LLM like Gemini, you’ve not only built a portfolio but also a testament to your skills as a forward-thinking developer. Happy coding

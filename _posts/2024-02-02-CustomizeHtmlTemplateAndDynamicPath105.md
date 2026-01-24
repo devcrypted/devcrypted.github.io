@@ -45,7 +45,7 @@ github_repo: flask-blog
 
 - The default HTML5 template includes too many menu options.
 - The goal is to simplify the menu and add branding.
-- Example: Changing the header from "HTML5 UP" to "DevCrypted".
+- Example: Changing the header from "HTML5 UP" to "Devcrypted".
 
 ## Menu Customization
 

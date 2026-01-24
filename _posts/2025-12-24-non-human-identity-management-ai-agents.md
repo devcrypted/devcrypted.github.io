@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ This article dives into the security challenges posed by autonomous agents and i
 
 ### What You'll Get
 
-*   **Threat Insight:** A clear understanding of the security risks unique to autonomous AI agents.
-*   **Concept Definition:** A breakdown of what Non-Human Identity Management (NHIM) is and why it's essential.
-*   **Actionable Strategy:** Practical best practices for scoping agent permissions using the Principle of Least Privilege.
-*   **Visual Architecture:** A conceptual diagram of an NHIM workflow to solidify your understanding.
+* **Threat Insight:** A clear understanding of the security risks unique to autonomous AI agents.
+* **Concept Definition:** A breakdown of what Non-Human Identity Management (NHIM) is and why it's essential.
+* **Actionable Strategy:** Practical best practices for scoping agent permissions using the Principle of Least Privilege.
+* **Visual Architecture:** A conceptual diagram of an NHIM workflow to solidify your understanding.
 
 ---
 
@@ -50,10 +50,10 @@ Unlike a traditional script or service account that executes a predefined, stati
 
 The primary risks include:
 
-*   **Credential Sprawl and Exposure:** Agents need credentials to function. If an agent's long-lived API key is hardcoded or improperly stored, a single leak can grant an attacker the agent's full capabilities.
-*   **Over-Privileged by Default:** It's often easier to grant an agent a broad role (e.g., `PowerUserAccess`) than to meticulously define the exact permissions it needs. This is a ticking time bomb.
-*   **Autonomous Amplification of Attacks:** A compromised agent doesn't just leak data; it can be weaponized. An attacker could subtly alter its goals, tricking it into deleting resources, exfiltrating data, or provisioning malicious infrastructure—all while appearing as legitimate activity.
-*   **Ambiguous Audit Trails:** When an agent performs a thousand actions, how do you distinguish between normal operation, a bug, or malicious influence? Traditional logs often lack the context to attribute intent, making forensics a nightmare.
+* **Credential Sprawl and Exposure:** Agents need credentials to function. If an agent's long-lived API key is hardcoded or improperly stored, a single leak can grant an attacker the agent's full capabilities.
+* **Over-Privileged by Default:** It's often easier to grant an agent a broad role (e.g., `PowerUserAccess`) than to meticulously define the exact permissions it needs. This is a ticking time bomb.
+* **Autonomous Amplification of Attacks:** A compromised agent doesn't just leak data; it can be weaponized. An attacker could subtly alter its goals, tricking it into deleting resources, exfiltrating data, or provisioning malicious infrastructure—all while appearing as legitimate activity.
+* **Ambiguous Audit Trails:** When an agent performs a thousand actions, how do you distinguish between normal operation, a bug, or malicious influence? Traditional logs often lack the context to attribute intent, making forensics a nightmare.
 
 > **Info:** The core difference is *autonomy*. A traditional CI/CD pipeline is a predictable, non-human actor. An AI agent designed to "optimize cloud costs" is not. It might decide to terminate instances or modify autoscaling groups based on a complex, internal model, making its behavior emergent and harder to secure.
 
@@ -129,8 +129,8 @@ This granular policy ensures the agent can only read from the source and write t
 
 Static API keys are a liability. The goal is to eliminate them entirely. Instead, agents should acquire temporary credentials dynamically. This drastically reduces the window of opportunity for an attacker if a credential is ever compromised.
 
-*   **Cloud IAM Roles:** Use mechanisms like AWS IAM Roles for EC2/ECS or Workload Identity Federation in GCP/Azure to grant temporary, role-based credentials to workloads without storing keys.
-*   **SPIFFE/SPIRE:** For service-to-service communication, projects like [SPIFFE](https://spiffe.io/) (Secure Production Identity Framework for Everyone) and its implementation SPIRE provide a standardized way for workloads to automatically prove their identity and receive short-lived cryptographic documents (SVIDs).
+* **Cloud IAM Roles:** Use mechanisms like AWS IAM Roles for EC2/ECS or Workload Identity Federation in GCP/Azure to grant temporary, role-based credentials to workloads without storing keys.
+* **SPIFFE/SPIRE:** For service-to-service communication, projects like [SPIFFE](https://spiffe.io/) (Secure Production Identity Framework for Everyone) and its implementation SPIRE provide a standardized way for workloads to automatically prove their identity and receive short-lived cryptographic documents (SVIDs).
 
 ### 3. Implement Just-in-Time (JIT) Access
 
@@ -161,9 +161,9 @@ This model ensures that the agent is powerless by default and only gains specifi
 
 You cannot secure what you cannot see. Robust logging is critical.
 
-*   **Log Agent Actions:** Track every API call and significant decision the agent makes.
-*   **Behavioral Baselines:** Establish a baseline of normal agent activity.
-*   **Alert on Deviation:** Use security analytics tools to detect anomalies, such as an agent trying to access a new service, operating at an unusual time, or performing actions outside its typical pattern.
+* **Log Agent Actions:** Track every API call and significant decision the agent makes.
+* **Behavioral Baselines:** Establish a baseline of normal agent activity.
+* **Alert on Deviation:** Use security analytics tools to detect anomalies, such as an agent trying to access a new service, operating at an unusual time, or performing actions outside its typical pattern.
 
 ## Conceptual NHIM Architecture
 
@@ -202,7 +202,6 @@ graph TD
 
 AI agents offer incredible potential for automation and efficiency, but they represent a paradigm shift for security. Treating them as just another "service account" is a recipe for disaster. By adopting an NHIM mindset—built on Zero Trust, the Principle of Least Privilege, and dynamic, just-in-time credentialing—we can unlock the power of autonomous systems without handing over the keys to the kingdom. The goal isn't to restrict innovation; it's to build a secure foundation upon which it can thrive.
 
-
 ## Further Reading
 
-- [https://www.appviewx.com/news/appviewx-post-quantum-readiness-tools-help-enterprises-future-proof-devops-and-secops-against-new-cryptographic-threats/](https://www.appviewx.com/news/appviewx-post-quantum-readiness-tools-help-enterprises-future-proof-devops-and-secops-against-new-cryptographic-threats/)
+* [https://www.appviewx.com/news/appviewx-post-quantum-readiness-tools-help-enterprises-future-proof-devops-and-secops-against-new-cryptographic-threats/](https://www.appviewx.com/news/appviewx-post-quantum-readiness-tools-help-enterprises-future-proof-devops-and-secops-against-new-cryptographic-threats/)

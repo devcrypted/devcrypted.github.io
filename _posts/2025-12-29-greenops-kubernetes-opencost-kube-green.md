@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,10 +39,10 @@ This practical guide moves beyond theory. We'll show you how to implement a Gree
 
 By the end of this article, you will have a clear, actionable strategy to:
 
-*   Understand the core principles of GreenOps and carbon efficiency.
-*   Install and use OpenCost to measure the carbon footprint of your Kubernetes workloads.
-*   Deploy Kube-green to automatically reduce energy consumption in non-production environments.
-*   Combine these tools into a continuous improvement loop for a greener, more efficient cluster.
+* Understand the core principles of GreenOps and carbon efficiency.
+* Install and use OpenCost to measure the carbon footprint of your Kubernetes workloads.
+* Deploy Kube-green to automatically reduce energy consumption in non-production environments.
+* Combine these tools into a continuous improvement loop for a greener, more efficient cluster.
 
 ## What is GreenOps?
 
@@ -147,6 +147,7 @@ helm install kube-green kube-green/kube-green --namespace kube-green --create-na
 Now, let's create a `SleepInfo` resource to put our `development` namespace to sleep on weeknights and weekends.
 
 Create a file named `dev-sleep-schedule.yaml`:
+
 ```yaml
 apiVersion: "kube-green.com/v1alpha1"
 kind: "SleepInfo"
@@ -165,9 +166,11 @@ spec:
   # Optional: To also put resources to sleep all day on weekends
   # excludeRefs: [] # Can be used to exclude specific resources
 ```
+
 *Note: A `SleepInfo` with `weekdays: "*"` would apply to every day. By specifying `1-5`, we ensure the namespace stays asleep all weekend because there is no `wakeUpAt` trigger on Saturday or Sunday.*
 
 Apply it to your cluster:
+
 ```bash
 kubectl apply -f dev-sleep-schedule.yaml
 ```
@@ -191,10 +194,11 @@ graph TD
 ```
 
 **Your workflow becomes:**
-1.  **Baseline:** Use OpenCost to measure the current cost and carbon footprint of your cluster, paying close attention to non-production namespaces.
-2.  **Act:** Identify idle namespaces and apply `SleepInfo` schedules with Kube-green.
-3.  **Verify:** After a week, return to your OpenCost reports. You should see a measurable drop in both the cost and carbon emissions for the targeted namespaces.
-4.  **Iterate:** Expand the strategy. Can other namespaces be put to sleep? Can you use OpenCost data to identify over-provisioned production workloads for right-sizing?
+
+1. **Baseline:** Use OpenCost to measure the current cost and carbon footprint of your cluster, paying close attention to non-production namespaces.
+2. **Act:** Identify idle namespaces and apply `SleepInfo` schedules with Kube-green.
+3. **Verify:** After a week, return to your OpenCost reports. You should see a measurable drop in both the cost and carbon emissions for the targeted namespaces.
+4. **Iterate:** Expand the strategy. Can other namespaces be put to sleep? Can you use OpenCost data to identify over-provisioned production workloads for right-sizing?
 
 ## Conclusion: A Greener Cloud
 
@@ -202,8 +206,7 @@ GreenOps is a powerful framework for building more sustainable and efficient clo
 
 You not only reduce your carbon footprint but also lower your cloud bill—a clear win for both the planet and your budget. This practical, tool-driven approach empowers engineering teams to take direct control over their environmental impact, transforming sustainability from an abstract goal into a daily engineering practice.
 
-
 ## Further Reading
 
-- [https://umbrellacost.com/blog/guide-to-greenops/](https://umbrellacost.com/blog/guide-to-greenops/)
-- [https://thenewstack.io/greenops-and-finops-a-dual-strategy-for-sustainable-ai/](https://thenewstack.io/greenops-and-finops-a-dual-strategy-for-sustainable-ai/)
+* [https://umbrellacost.com/blog/guide-to-greenops/](https://umbrellacost.com/blog/guide-to-greenops/)
+* [https://thenewstack.io/greenops-and-finops-a-dual-strategy-for-sustainable-ai/](https://thenewstack.io/greenops-and-finops-a-dual-strategy-for-sustainable-ai/)

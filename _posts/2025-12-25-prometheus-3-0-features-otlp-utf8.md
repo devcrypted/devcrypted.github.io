@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,10 +39,10 @@ This major release introduces a completely revamped user interface, native suppo
 
 This article breaks down the most impactful changes in Prometheus 3.0. Here’s what you can expect:
 
-*   **A deep dive into the new React-based UI**, highlighting usability improvements.
-*   An explanation of **native OTLP support** and how it simplifies your architecture.
-*   Insight into the importance of **strict UTF-8 validation** for data integrity.
-*   Practical examples, code snippets, and diagrams to illustrate the new features.
+* **A deep dive into the new React-based UI**, highlighting usability improvements.
+* An explanation of **native OTLP support** and how it simplifies your architecture.
+* Insight into the importance of **strict UTF-8 validation** for data integrity.
+* Practical examples, code snippets, and diagrams to illustrate the new features.
 
 ---
 
@@ -52,9 +52,9 @@ The classic Prometheus UI was functional but has long shown its age. Prometheus 
 
 ### Key UI Enhancements
 
-*   **Improved PromQL Experience:** The query editor is now a first-class component, offering superior syntax highlighting, multi-line editing, and more intelligent autocompletion for metrics and labels.
-*   **Streamlined Navigation:** A clean, persistent sidebar makes it easier to switch between alerts, targets, service discovery status, and configuration pages.
-*   **Enhanced Visualization:** Graphs are rendered more clearly, with better performance and more intuitive controls for time range selection and stacking.
+* **Improved PromQL Experience:** The query editor is now a first-class component, offering superior syntax highlighting, multi-line editing, and more intelligent autocompletion for metrics and labels.
+* **Streamlined Navigation:** A clean, persistent sidebar makes it easier to switch between alerts, targets, service discovery status, and configuration pages.
+* **Enhanced Visualization:** Graphs are rendered more clearly, with better performance and more intuitive controls for time range selection and stacking.
 
 The new interface significantly lowers the barrier to entry for new users while providing power users with the efficient tooling they need.
 
@@ -120,9 +120,9 @@ Prometheus 3.0 addresses this by enforcing **strict UTF-8 validation** on all in
 
 ### Why This Matters
 
-*   **Guaranteed Data Integrity:** It eliminates the possibility of "garbage" characters corrupting your time series data.
-*   **Reliable Internationalization:** You can now confidently use multi-language characters in your labels (e.g., `cluster="k8s-produção"`, `app="重要应用"`), and they will be stored and queried correctly.
-*   **Cross-System Consistency:** It aligns Prometheus with modern standards where UTF-8 is the default encoding for text data.
+* **Guaranteed Data Integrity:** It eliminates the possibility of "garbage" characters corrupting your time series data.
+* **Reliable Internationalization:** You can now confidently use multi-language characters in your labels (e.g., `cluster="k8s-produção"`, `app="重要应用"`), and they will be stored and queried correctly.
+* **Cross-System Consistency:** It aligns Prometheus with modern standards where UTF-8 is the default encoding for text data.
 
 This is a **breaking change**. If any of your applications, exporters, or push gateways send data that is not valid UTF-8, Prometheus 3.0 will reject those samples.
 
@@ -132,10 +132,10 @@ This is a **breaking change**. If any of your applications, exporters, or push g
 
 Beyond the headline features, Prometheus 3.0 includes several other valuable improvements:
 
-*   **Created Timestamps:** Full support for `created` timestamps is now available, which helps solve problems with counter resets after a target restart. This brings Prometheus closer to the [OpenMetrics specification](https://openmetrics.io/).
-*   **PromQL Optimizations:** The query engine has received performance tuning, resulting in faster execution for certain types of complex queries.
-*   **TSDB Enhancements:** The time-series database (TSDB) layer includes optimizations to reduce memory usage on startup and improve compaction efficiency.
-*   **Deprecations:** Several legacy flags and internal APIs have been removed, cleaning up the codebase and encouraging the use of current best practices.
+* **Created Timestamps:** Full support for `created` timestamps is now available, which helps solve problems with counter resets after a target restart. This brings Prometheus closer to the [OpenMetrics specification](https://openmetrics.io/).
+* **PromQL Optimizations:** The query engine has received performance tuning, resulting in faster execution for certain types of complex queries.
+* **TSDB Enhancements:** The time-series database (TSDB) layer includes optimizations to reduce memory usage on startup and improve compaction efficiency.
+* **Deprecations:** Several legacy flags and internal APIs have been removed, cleaning up the codebase and encouraging the use of current best practices.
 
 ## Summary
 
@@ -143,8 +143,7 @@ Prometheus 3.0 is a landmark release that modernizes the platform's core experie
 
 By focusing on user experience, interoperability, and correctness, Prometheus 3.0 is well-equipped to handle the future of cloud-native monitoring.
 
-
 ## Further Reading
 
-- [https://prometheus.io/blog/2024/11/14/prometheus-3-0/](https://prometheus.io/blog/2024/11/14/prometheus-3-0/)
-- [https://grafana.com/events/grafanacon/2025/prometheus-3.0-everything-you-need-to-know/](https://grafana.com/events/grafanacon/2025/prometheus-3.0-everything-you-need-to-know/)
+* [https://prometheus.io/blog/2024/11/14/prometheus-3-0/](https://prometheus.io/blog/2024/11/14/prometheus-3-0/)
+* [https://grafana.com/events/grafanacon/2025/prometheus-3.0-everything-you-need-to-know/](https://grafana.com/events/grafanacon/2025/prometheus-3.0-everything-you-need-to-know/)

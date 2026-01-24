@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,11 +37,11 @@ This guide provides a hands-on walkthrough of Docker Desktop's new AI Model Runn
 
 ### What You'll Get
 
-*   **Understanding the "Why":** Learn the key benefits of running LLMs locally with Docker, including privacy, cost, and developer experience.
-*   **Step-by-Step Instructions:** A clear, actionable guide to pulling and running your first open-weights model.
-*   **Practical Code Examples:** See the exact commands for interacting with a model via a simple API.
-*   **Workflow Visualization:** A Mermaid diagram illustrating the complete local development lifecycle.
-*   **Best Practices:** Tips on resource management and choosing the right model for your needs.
+* **Understanding the "Why":** Learn the key benefits of running LLMs locally with Docker, including privacy, cost, and developer experience.
+* **Step-by-Step Instructions:** A clear, actionable guide to pulling and running your first open-weights model.
+* **Practical Code Examples:** See the exact commands for interacting with a model via a simple API.
+* **Workflow Visualization:** A Mermaid diagram illustrating the complete local development lifecycle.
+* **Best Practices:** Tips on resource management and choosing the right model for your needs.
 
 ---
 
@@ -53,9 +53,9 @@ Before diving into the "how," it's essential to understand the "why." Integratin
 
 When you run a model locally, your data never leaves your machine. This is a game-changer for developing applications that handle sensitive, proprietary, or personally identifiable information (PII). You maintain full sovereignty over your data, eliminating the risks associated with sending it to external cloud services.
 
-*   No data is sent to third-party APIs.
-*   Ideal for prototyping with confidential code or documents.
-*   Ensures compliance with strict data privacy regulations like GDPR.
+* No data is sent to third-party APIs.
+* Ideal for prototyping with confidential code or documents.
+* Ensures compliance with strict data privacy regulations like GDPR.
 
 ### Significant Cost Savings
 
@@ -67,19 +67,19 @@ API calls to powerful models can become expensive, especially during the iterati
 
 Docker abstracts away the most painful parts of the setup process. It packages the model, its dependencies, the server, and the hardware acceleration configurations into a single, portable container.
 
-*   **No more dependency hell:** Forget managing complex Python environments, `pip` conflicts, or system libraries.
-*   **Simplified GPU access:** Docker Desktop handles the intricate setup for NVIDIA CUDA or Apple Metal, making GPU acceleration accessible with a simple command flag.
-*   **Consistency across environments:** A model that runs on your machine will run identically on a colleague's machine.
+* **No more dependency hell:** Forget managing complex Python environments, `pip` conflicts, or system libraries.
+* **Simplified GPU access:** Docker Desktop handles the intricate setup for NVIDIA CUDA or Apple Metal, making GPU acceleration accessible with a simple command flag.
+* **Consistency across environments:** A model that runs on your machine will run identically on a colleague's machine.
 
 ## Getting Started: Prerequisites
 
 Getting started is remarkably straightforward. You just need a recent version of Docker Desktop and a machine with sufficient resources.
 
-1.  **Docker Desktop 4.28 or newer:** The AI/ML features are part of recent releases. You can [download it from the official Docker website](https://www.docker.com/products/docker-desktop/).
-2.  **System Resources:**
-    *   **RAM:** At least 16 GB is recommended, as models are loaded into memory.
-    *   **Storage:** Ensure you have enough disk space for the model files (can range from 4 GB to over 70 GB).
-    *   **GPU (Recommended):** An NVIDIA GPU (with CUDA drivers) or an Apple Silicon Mac will provide a significant performance boost for faster inference.
+1. **Docker Desktop 4.28 or newer:** The AI/ML features are part of recent releases. You can [download it from the official Docker website](https://www.docker.com/products/docker-desktop/).
+2. **System Resources:**
+    * **RAM:** At least 16 GB is recommended, as models are loaded into memory.
+    * **Storage:** Ensure you have enough disk space for the model files (can range from 4 GB to over 70 GB).
+    * **GPU (Recommended):** An NVIDIA GPU (with CUDA drivers) or an Apple Silicon Mac will provide a significant performance boost for faster inference.
 
 ## Pulling Your First AI Model
 
@@ -104,11 +104,12 @@ docker run -d --gpus all -p 8080:8080 docker.io/codellama/codellama-7b-instruct-
 ```
 
 Let's break down that command:
-*   `docker run`: The standard command to create and start a container.
-*   `-d`: Runs the container in detached mode (in the background).
-*   `--gpus all`: **Crucial for performance.** This flag tells Docker to grant the container access to all available GPUs.
-*   `-p 8080:8080`: Maps port 8080 on your host machine to port 8080 inside the container.
-*   `docker.io/codellama/...`: The name of the model image you just pulled.
+
+* `docker run`: The standard command to create and start a container.
+* `-d`: Runs the container in detached mode (in the background).
+* `--gpus all`: **Crucial for performance.** This flag tells Docker to grant the container access to all available GPUs.
+* `-p 8080:8080`: Maps port 8080 on your host machine to port 8080 inside the container.
+* `docker.io/codellama/...`: The name of the model image you just pulled.
 
 The container is now running and hosting an API endpoint compatible with the OpenAI API standard. You can interact with it using a simple `curl` command.
 
@@ -190,12 +191,15 @@ For more advanced use cases, Docker provides guidance on how to package your own
 ## Key Considerations and Best Practices
 
 ### Resource Management
+
 LLMs are resource-intensive. A 7-billion parameter model can easily consume 8-12 GB of RAM and VRAM. Monitor your system's resource usage via the Docker Desktop dashboard or system tools to avoid performance bottlenecks.
 
 ### Model Selection
+
 Start with smaller models (like 7B or 8B parameter variants) as they offer a great balance of performance and resource consumption. Only move to larger models if your task requires more nuance and your hardware can support it.
 
 ### GPU Acceleration
+
 While the models can run on a CPU, the experience will be slow. For any serious development, using the `--gpus all` flag with a supported GPU is non-negotiable. It can make inference speed 10-20x faster, transforming the experience from sluggish to interactive.
 
 ## Conclusion
@@ -204,8 +208,7 @@ Docker Desktop's AI Model Runner represents a significant leap forward in making
 
 Whether you're a solo developer prototyping a new feature, a researcher experimenting with different architectures, or a team building privacy-first AI tools, this new capability provides a powerful and secure foundation. The barrier to entry for hands-on LLM development has never been lower. It's time to start pulling and running.
 
-
 ## Further Reading
 
-- [https://www.docker.com/blog/how-we-designed-model-runner-and-whats-next/](https://www.docker.com/blog/how-we-designed-model-runner-and-whats-next/)
-- [https://www.docker.com/solutions/docker-ai/](https://www.docker.com/solutions/docker-ai/)
+* [https://www.docker.com/blog/how-we-designed-model-runner-and-whats-next/](https://www.docker.com/blog/how-we-designed-model-runner-and-whats-next/)
+* [https://www.docker.com/solutions/docker-ai/](https://www.docker.com/solutions/docker-ai/)

@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -39,11 +39,11 @@ This article dives into what the "no-GIL" world means for developers, especially
 
 Here’s a breakdown of what we'll cover:
 
-*   **A Clear Explanation:** What the Global Interpreter Lock (GIL) is and why it has been a bottleneck.
-*   **The No-GIL Revolution:** How free-threading in Python 3.14 changes the game for multi-core processors.
-*   **Performance Deep Dive:** Understanding the difference between CPU-bound and I/O-bound workloads and which ones benefit.
-*   **Key Features Rundown:** A look at PEP 649 (Deferred Annotations) and JIT compiler enhancements.
-*   **Practical Guidance:** A balanced view on when you should (and shouldn't) consider using the new no-GIL build.
+* **A Clear Explanation:** What the Global Interpreter Lock (GIL) is and why it has been a bottleneck.
+* **The No-GIL Revolution:** How free-threading in Python 3.14 changes the game for multi-core processors.
+* **Performance Deep Dive:** Understanding the difference between CPU-bound and I/O-bound workloads and which ones benefit.
+* **Key Features Rundown:** A look at PEP 649 (Deferred Annotations) and JIT compiler enhancements.
+* **Practical Guidance:** A balanced view on when you should (and shouldn't) consider using the new no-GIL build.
 
 ## The Elephant in the Room: Free-Threading and the End of the GIL
 
@@ -53,8 +53,8 @@ For years, the Global Interpreter Lock has been a topic of intense debate. Pytho
 
 The GIL is a mutex (a lock) that protects access to Python objects, preventing multiple native threads from executing Python bytecode at the same time within a single process.
 
-*   **Its Purpose:** The GIL simplifies memory management and makes writing C extensions easier by preventing race conditions at the C level.
-*   **Its Limitation:** On a multi-core CPU, only one thread can run Python code at any given moment. This effectively makes multi-threaded Python programs single-threaded for CPU-bound operations.
+* **Its Purpose:** The GIL simplifies memory management and makes writing C extensions easier by preventing race conditions at the C level.
+* **Its Limitation:** On a multi-core CPU, only one thread can run Python code at any given moment. This effectively makes multi-threaded Python programs single-threaded for CPU-bound operations.
 
 Think of it as a single-lane bridge into a city. No matter how many cars (threads) are waiting, only one can cross at a time, creating a major bottleneck if the work involves heavy lifting (CPU tasks) within the city.
 
@@ -109,6 +109,7 @@ graph TD
         D --> E;
     end
 ```
+
 *Jekyll-safe Mermaid syntax has been used for compatibility.*
 
 ### Code Example: A CPU-Bound Task
@@ -143,8 +144,8 @@ end_time = time.time()
 print(f"Execution time: {end_time - start_time:.2f} seconds")
 ```
 
-*   **With the GIL:** Running this code with 4 threads on a 4+ core machine will take roughly the same time as running it with 1 thread. The threads compete for the GIL and cannot execute in parallel.
-*   **Without the GIL:** On a free-threaded build, this same code could theoretically run up to 4x faster on a 4-core machine, as each thread would get its own core.
+* **With the GIL:** Running this code with 4 threads on a 4+ core machine will take roughly the same time as running it with 1 thread. The threads compete for the GIL and cannot execute in parallel.
+* **Without the GIL:** On a free-threaded build, this same code could theoretically run up to 4x faster on a 4-core machine, as each thread would get its own core.
 
 ## Beyond the GIL: Other Noteworthy Features
 
@@ -170,9 +171,9 @@ class User:
 
 Python 3.13 introduced an experimental JIT (Just-In-Time) compiler using a "copy-and-patch" technique. Python 3.14 continues to build on this foundation.
 
-*   **What it does:** A JIT compiler can selectively translate hot paths of your Python bytecode into optimized machine code at runtime.
-*   **The goal:** This reduces interpreter overhead and can provide significant speedups for certain types of long-running, stable code, complementing the gains from free-threading.
-*   **Current status:** It is still experimental but signals a clear direction for Python's core performance strategy.
+* **What it does:** A JIT compiler can selectively translate hot paths of your Python bytecode into optimized machine code at runtime.
+* **The goal:** This reduces interpreter overhead and can provide significant speedups for certain types of long-running, stable code, complementing the gains from free-threading.
+* **Current status:** It is still experimental but signals a clear direction for Python's core performance strategy.
 
 ## The Big Picture: Should You Switch?
 
@@ -182,29 +183,28 @@ The no-GIL build is a monumental step, but it comes with trade-offs. It's not a 
 
 ### When to Consider the No-GIL Build
 
-*   You have a pure Python, CPU-bound application that can be parallelized with threads.
-*   You are starting a new project in a domain like scientific computing or data processing and can ensure your dependencies are compatible.
-*   You want to experiment with the future of Python performance and are willing to navigate a developing ecosystem.
+* You have a pure Python, CPU-bound application that can be parallelized with threads.
+* You are starting a new project in a domain like scientific computing or data processing and can ensure your dependencies are compatible.
+* You want to experiment with the future of Python performance and are willing to navigate a developing ecosystem.
 
 ### When to Stick with the Standard GIL Build
 
-*   Your application is primarily I/O-bound (e.g., a web server). The standard build with `asyncio` is already highly optimized for this.
-*   You rely heavily on a complex stack of C extensions that have not yet been updated for the no-GIL world.
-*   You prioritize stability and the vast, mature ecosystem over cutting-edge parallel performance.
+* Your application is primarily I/O-bound (e.g., a web server). The standard build with `asyncio` is already highly optimized for this.
+* You rely heavily on a complex stack of C extensions that have not yet been updated for the no-GIL world.
+* You prioritize stability and the vast, mature ecosystem over cutting-edge parallel performance.
 
 ## Summary
 
 Python 3.14 is a landmark release that directly addresses one of Python's longest-standing performance limitations.
 
-*   **Free-Threading is Here:** The optional no-GIL build unlocks true parallelism, a game-changer for CPU-intensive scientific and AI workloads.
-*   **It's a Trade-Off:** The benefits are workload-specific, and the ecosystem of C extensions will take time to adapt. Use it judiciously.
-*   **Quality of Life Improves:** Features like Deferred Annotations (PEP 649) streamline modern Python development practices.
-*   **The Future is Faster:** Continued work on the JIT compiler shows a multi-pronged strategy to make Python faster, both for parallel and single-threaded code.
+* **Free-Threading is Here:** The optional no-GIL build unlocks true parallelism, a game-changer for CPU-intensive scientific and AI workloads.
+* **It's a Trade-Off:** The benefits are workload-specific, and the ecosystem of C extensions will take time to adapt. Use it judiciously.
+* **Quality of Life Improves:** Features like Deferred Annotations (PEP 649) streamline modern Python development practices.
+* **The Future is Faster:** Continued work on the JIT compiler shows a multi-pronged strategy to make Python faster, both for parallel and single-threaded code.
 
 The move towards a GIL-free option is a bold step, positioning Python for the next decade of multi-core computing. While the transition will be gradual, the path to a more parallel Python is now clearer than ever.
 
-
 ## Further Reading
 
-- [https://docs.python.org/3/whatsnew/3.14.html](https://docs.python.org/3/whatsnew/3.14.html)
-- [https://www.python.org/downloads/release/python-3140/](https://www.python.org/downloads/release/python-3140/)
+* [https://docs.python.org/3/whatsnew/3.14.html](https://docs.python.org/3/whatsnew/3.14.html)
+* [https://www.python.org/downloads/release/python-3140/](https://www.python.org/downloads/release/python-3140/)

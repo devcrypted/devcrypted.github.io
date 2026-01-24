@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -37,10 +37,10 @@ Forget thinking of Wasm as just a browser feature. By 2025, it's a critical tool
 
 ### What You'll Get
 
-*   **Core Advantages:** A clear breakdown of why Wasm is a game-changer on the server.
-*   **Practical Use Cases:** Deep dives into serverless functions, edge computing, and universal plugin architectures.
-*   **Wasm vs. Containers:** An analysis of how Wasm complements, not replaces, technologies like Docker.
-*   **Code & Diagrams:** Concrete examples and architectural flows to illustrate key concepts.
+* **Core Advantages:** A clear breakdown of why Wasm is a game-changer on the server.
+* **Practical Use Cases:** Deep dives into serverless functions, edge computing, and universal plugin architectures.
+* **Wasm vs. Containers:** An analysis of how Wasm complements, not replaces, technologies like Docker.
+* **Code & Diagrams:** Concrete examples and architectural flows to illustrate key concepts.
 
 ---
 
@@ -50,10 +50,10 @@ Wasm's value on the server stems from its fundamental design principles, which a
 
 Here’s why developers are adopting it:
 
-*   **Sandboxed Security:** Every Wasm module runs in a memory-safe sandbox. It has no access to the host system, network, or file system by default. Capabilities must be explicitly granted, drastically reducing the attack surface for untrusted code.
-*   **Near-Native Performance:** Wasm is a binary instruction format designed for a compact size and efficient execution. It's compiled ahead-of-time (AOT), allowing it to run at speeds that rival native code, far surpassing interpreted languages.
-*   **True Polyglotism:** You can compile code from a growing list of languages—including Rust, Go, C/C++, and Python—into a single, portable `.wasm` binary. This allows teams to use the best language for the job without worrying about runtime compatibility.
-*   **Blazing-Fast Cold Starts:** While containers can take seconds to spin up, Wasm modules can be instantiated in microseconds. This is a revolutionary improvement for on-demand computing models.
+* **Sandboxed Security:** Every Wasm module runs in a memory-safe sandbox. It has no access to the host system, network, or file system by default. Capabilities must be explicitly granted, drastically reducing the attack surface for untrusted code.
+* **Near-Native Performance:** Wasm is a binary instruction format designed for a compact size and efficient execution. It's compiled ahead-of-time (AOT), allowing it to run at speeds that rival native code, far surpassing interpreted languages.
+* **True Polyglotism:** You can compile code from a growing list of languages—including Rust, Go, C/C++, and Python—into a single, portable `.wasm` binary. This allows teams to use the best language for the job without worrying about runtime compatibility.
+* **Blazing-Fast Cold Starts:** While containers can take seconds to spin up, Wasm modules can be instantiated in microseconds. This is a revolutionary improvement for on-demand computing models.
 
 > **Quote:** "WebAssembly on the server is the future. Its sandboxed nature and near-native performance make it a great alternative to containers." - Solomon Hykes, Co-founder of Docker.
 
@@ -113,6 +113,7 @@ fn handle_api(req: Request) -> Result<Response> {
 ```
 
 To compile this for Wasm, you'd use the `wasm32-wasi` target:
+
 ```bash
 # This command compiles the Rust code into a Wasm module
 cargo build --target wasm32-wasi --release
@@ -127,10 +128,11 @@ Edge computing requires running logic on resource-constrained devices, close to 
 At the edge, you need to deploy small, fast, and secure code. Wasm modules are often less than a megabyte, making them easy to distribute and load on edge nodes. Their sandbox is critical for running multi-tenant or third-party code without compromising the host system.
 
 Common edge use cases include:
-*   **A/B Testing:** Dynamically route users to different backends.
-*   **Request/Response Modification:** Add or remove HTTP headers.
-*   **Authentication:** Validate tokens or API keys at the edge before passing requests to the origin.
-*   **Image Optimization:** Resize or reformat images on the fly.
+
+* **A/B Testing:** Dynamically route users to different backends.
+* **Request/Response Modification:** Add or remove HTTP headers.
+* **Authentication:** Validate tokens or API keys at the edge before passing requests to the origin.
+* **Image Optimization:** Resize or reformat images on the fly.
 
 Platforms like [Fastly Compute](https://www.fastly.com/products/edge-compute) and Vercel Edge Functions leverage Wasm to provide developers with a powerful, low-latency platform for deploying custom logic globally.
 
@@ -143,9 +145,10 @@ Software has always relied on plugins for extensibility, but this often meant de
 A host application can embed a Wasm runtime (like [Wasmtime](https://wasmtime.dev/) or [Wasmer](https://wasmer.io/)) and safely execute plugins compiled from any language. The host defines a set of functions (e.g., `get_data`, `log_message`) that the Wasm module can import, giving the plugin controlled access to host capabilities.
 
 This model is being adopted across the industry:
-*   **Service Meshes:** The [Proxy-Wasm](https://github.com/proxy-wasm/spec) standard allows developers to write custom filters for proxies like Envoy and Istio in their language of choice.
-*   **SaaS Platforms:** Shopify uses Wasm to let developers safely extend checkout logic with [Shopify Functions](https://shopify.dev/docs/api/functions).
-*   **Databases:** Several databases are exploring Wasm for sandboxed User-Defined Functions (UDFs).
+
+* **Service Meshes:** The [Proxy-Wasm](https://github.com/proxy-wasm/spec) standard allows developers to write custom filters for proxies like Envoy and Istio in their language of choice.
+* **SaaS Platforms:** Shopify uses Wasm to let developers safely extend checkout logic with [Shopify Functions](https://shopify.dev/docs/api/functions).
+* **Databases:** Several databases are exploring Wasm for sandboxed User-Defined Functions (UDFs).
 
 Here's a conceptual diagram of a host application loading polyglot Wasm plugins:
 
@@ -197,8 +200,7 @@ WebAssembly on the server is no longer a future-looking experiment; it's a produ
 
 As you design your next application, don't just ask, "Should I use a container?" Instead, ask, "What's the right level of isolation for this workload?" Increasingly, the answer for functions, plugins, and edge logic will be WebAssembly—a powerful, lightweight companion in a container-first world.
 
-
 ## Further Reading
 
-- [https://www.atakinteractive.com/blog/webassembly-in-2025-the-future-of-high-performance-web-applications](https://www.atakinteractive.com/blog/webassembly-in-2025-the-future-of-high-performance-web-applications)
-- [https://medium.com/@technologicinnovation/in-2025-cloud-native-and-edge-native-apps-will-be-built-with-webassembly-beyond-the-browser-b8a2f086f679](https://medium.com/@technologicinnovation/in-2025-cloud-native-and-edge-native-apps-will-be-built-with-webassembly-beyond-the-browser-b8a2f086f679)
+* [https://www.atakinteractive.com/blog/webassembly-in-2025-the-future-of-high-performance-web-applications](https://www.atakinteractive.com/blog/webassembly-in-2025-the-future-of-high-performance-web-applications)
+* [https://medium.com/@technologicinnovation/in-2025-cloud-native-and-edge-native-apps-will-be-built-with-webassembly-beyond-the-browser-b8a2f086f679](https://medium.com/@technologicinnovation/in-2025-cloud-native-and-edge-native-apps-will-be-built-with-webassembly-beyond-the-browser-b8a2f086f679)

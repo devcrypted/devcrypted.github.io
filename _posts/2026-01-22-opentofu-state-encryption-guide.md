@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -35,11 +35,11 @@ Protecting this file isn't optional; it's a critical security measure. This guid
 
 ### What You'll Get
 
-*   **Understand the Risk:** A clear explanation of why plaintext state files are dangerous.
-*   **The Encryption Model:** A high-level view of how OpenTofu's client-side encryption works.
-*   **Step-by-Step Tutorial:** A practical example using AWS S3 and KMS for state encryption.
-*   **Multi-Cloud Reference:** Quick reference for configuring encryption on Azure and GCP.
-*   **Actionable Best Practices:** Hardened security practices to protect your state beyond just encryption.
+* **Understand the Risk:** A clear explanation of why plaintext state files are dangerous.
+* **The Encryption Model:** A high-level view of how OpenTofu's client-side encryption works.
+* **Step-by-Step Tutorial:** A practical example using AWS S3 and KMS for state encryption.
+* **Multi-Cloud Reference:** Quick reference for configuring encryption on Azure and GCP.
+* **Actionable Best Practices:** Hardened security practices to protect your state beyond just encryption.
 
 ---
 
@@ -68,9 +68,9 @@ output "access_key_secret" {
 
 Even if `db_password` is marked as sensitive, its value will be stored in the state file in clear text. The `sensitive` flag only prevents it from being shown in the CLI output. Anyone who gains access to the `terraform.tfstate` file can read:
 
-*   The database password.
-*   The generated IAM user's secret access key.
-*   Any other secrets required to build your infrastructure.
+* The database password.
+* The generated IAM user's secret access key.
+* Any other secrets required to build your infrastructure.
 
 > **Security First:** A leaked state file can be a catastrophic event, giving an attacker the keys to your kingdom. Storing state in a remote, encrypted, and access-controlled backend is a non-negotiable practice for all production environments.
 
@@ -103,9 +103,10 @@ graph TD
 ```
 
 The key takeaway is the separation of concerns:
-*   **Storage Backend (S3):** Stores the encrypted blob. It has no knowledge of the encryption key.
-*   **Key Management Service (KMS):** Manages the encryption key and access policies. It never sees the state file data.
-*   **OpenTofu CLI:** Orchestrates the process, temporarily handling the plaintext state in memory before encrypting it for transit and rest.
+
+* **Storage Backend (S3):** Stores the encrypted blob. It has no knowledge of the encryption key.
+* **Key Management Service (KMS):** Manages the encryption key and access policies. It never sees the state file data.
+* **OpenTofu CLI:** Orchestrates the process, temporarily handling the plaintext state in memory before encrypting it for transit and rest.
 
 ## Practical Implementation: Encrypting State with AWS S3 and KMS
 
@@ -113,10 +114,10 @@ Let's walk through the most common setup: an S3 bucket for storage and AWS Key M
 
 ### Prerequisites
 
-1.  **AWS Account:** With permissions to manage S3, DynamoDB, and KMS.
-2.  **S3 Bucket:** A dedicated, private S3 bucket to store the state.
-3.  **DynamoDB Table (Recommended):** For [state locking](https://opentofu.org/docs/language/settings/backends/s3/), to prevent concurrent runs from corrupting the state.
-4.  **KMS Key:** A customer-managed KMS key for encryption.
+1. **AWS Account:** With permissions to manage S3, DynamoDB, and KMS.
+2. **S3 Bucket:** A dedicated, private S3 bucket to store the state.
+3. **DynamoDB Table (Recommended):** For [state locking](https://opentofu.org/docs/language/settings/backends/s3/), to prevent concurrent runs from corrupting the state.
+4. **KMS Key:** A customer-managed KMS key for encryption.
 
 ### Step 1: Create the KMS Key
 
@@ -150,8 +151,9 @@ terraform {
 ```
 
 Let's break down the crucial encryption arguments:
-*   `encrypt = true`: This is the master switch. It tells OpenTofu to expect the state file to be encrypted.
-*   `kms_key_id`: This is the ARN of the KMS key you created in the previous step. This tells OpenTofu *which* key to use for the encrypt/decrypt operations.
+
+* `encrypt = true`: This is the master switch. It tells OpenTofu to expect the state file to be encrypted.
+* `kms_key_id`: This is the ARN of the KMS key you created in the previous step. This tells OpenTofu *which* key to use for the encrypt/decrypt operations.
 
 ### Step 3: Initialize and Apply
 
@@ -181,11 +183,11 @@ What if your backend doesn't support encryption? The `local` backend, for exampl
 
 Encryption is the core of state security, but it's not the whole story. Harden your setup with these practices:
 
-*   **Use Least Privilege IAM:** The role or user running OpenTofu should have *only* the permissions it needs: `s3:GetObject`, `s3:PutObject` on the state file, `dynamodb:*` on the lock table, and `kms:Decrypt`, `kms:Encrypt`, `kms:GenerateDataKey` on the specific KMS key.
-*   **Enable Bucket Versioning:** On your S3 bucket, enable versioning. This acts as a safety net against accidental state deletion or corruption.
-*   **Block Public Access:** Ensure your S3 bucket is configured to block all public access. This should be the default, but it's crucial to verify.
-*   **Never Commit State to Git:** Add `*.tfstate` and `*.tfstate.*` to your project's `.gitignore` file immediately. Git is not a secure or appropriate place for state files.
-*   **Audit Access:** Use cloud-native logging (like CloudTrail) to monitor who is accessing the state file and the KMS key. Set up alerts for suspicious activity.
+* **Use Least Privilege IAM:** The role or user running OpenTofu should have *only* the permissions it needs: `s3:GetObject`, `s3:PutObject` on the state file, `dynamodb:*` on the lock table, and `kms:Decrypt`, `kms:Encrypt`, `kms:GenerateDataKey` on the specific KMS key.
+* **Enable Bucket Versioning:** On your S3 bucket, enable versioning. This acts as a safety net against accidental state deletion or corruption.
+* **Block Public Access:** Ensure your S3 bucket is configured to block all public access. This should be the default, but it's crucial to verify.
+* **Never Commit State to Git:** Add `*.tfstate` and `*.tfstate.*` to your project's `.gitignore` file immediately. Git is not a secure or appropriate place for state files.
+* **Audit Access:** Use cloud-native logging (like CloudTrail) to monitor who is accessing the state file and the KMS key. Set up alerts for suspicious activity.
 
 ## Summary
 
@@ -193,8 +195,7 @@ Treating your OpenTofu state file as a high-value asset is fundamental to secure
 
 Implementing state encryption isn't just a best practice—it's an essential step in building a robust and secure automated infrastructure pipeline.
 
-
 ## Further Reading
 
-- [https://www.harness.io/blog/late-to-opentofu](https://www.harness.io/blog/late-to-opentofu)
-- [https://opentofu.org/](https://opentofu.org/)
+* [https://www.harness.io/blog/late-to-opentofu](https://www.harness.io/blog/late-to-opentofu)
+* [https://opentofu.org/](https://opentofu.org/)

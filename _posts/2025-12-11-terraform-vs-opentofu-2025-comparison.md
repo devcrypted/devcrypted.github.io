@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-  - devcrypted
+  - kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -145,14 +145,14 @@ The divergence is in the details. HashiCorp has focused CLI improvements on enha
 
 The decision is no longer about just a license. It’s about aligning your technical strategy and organizational philosophy with the tool's ecosystem.
 
-### Choose Terraform if...
+### Choose Terraform if
 
 - ✅ You are deeply integrated with the HashiCorp ecosystem (Vault, Consul, Packer, Terraform Cloud).
 - ✅ You require a single commercial vendor for support, SLAs, and enterprise features.
 - ✅ Your organization's legal and business teams have approved the BUSL 1.1 license and its constraints.
 - ✅ A tightly integrated, all-in-one platform is more valuable to your team than a composable, open-source toolchain.
 
-### Choose OpenTofu if...
+### Choose OpenTofu if
 
 - ✅ A guarantee of an OSI-approved, open-source license (MPL 2.0) is a strict requirement.
 - ✅ You value community-driven governance and want a say in the tool's future direction.
@@ -167,5 +167,5 @@ Terraform offers a polished, stable, and vertically integrated solution for the 
 
 ## Further Reading
 
-- https://spacelift.io/blog/opentofu-vs-terraform
-- https://medium.com/@averageguymedianow/terraform-vs-opentofu-the-complete-guide-to-infrastructure-as-code-tools-in-2025-7f1b9dccd9e7
+- <https://spacelift.io/blog/opentofu-vs-terraform>
+- <https://medium.com/@averageguymedianow/terraform-vs-opentofu-the-complete-guide-to-infrastructure-as-code-tools-in-2025-7f1b9dccd9e7>

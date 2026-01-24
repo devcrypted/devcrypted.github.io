@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -41,11 +41,11 @@ This article provides a hands-on guide to implementing native state encryption i
 
 By the end of this tutorial, you will:
 
-*   **Understand the Risks:** Grasp the security implications of an unencrypted OpenTofu state file.
-*   **Implement Native Encryption:** Learn the step-by-step process to configure and enable state encryption.
-*   **Visualize the Workflow:** See a clear diagram of the encryption and decryption process.
-*   **Learn Best Practices:** Discover tips for managing encryption keys and migrating existing states.
-*   **Compare Approaches:** Understand how native encryption stacks up against other methods.
+* **Understand the Risks:** Grasp the security implications of an unencrypted OpenTofu state file.
+* **Implement Native Encryption:** Learn the step-by-step process to configure and enable state encryption.
+* **Visualize the Workflow:** See a clear diagram of the encryption and decryption process.
+* **Learn Best Practices:** Discover tips for managing encryption keys and migrating existing states.
+* **Compare Approaches:** Understand how native encryption stacks up against other methods.
 
 ## The Silent Risk: Why Unencrypted State is a Security Blind Spot
 
@@ -53,11 +53,11 @@ The OpenTofu state file (`.tfstate`) is a JSON file that stores a mapping betwee
 
 **What sensitive data can be found in a state file?**
 
-*   Database root passwords from a `random_password` resource.
-*   Private keys for virtual machines.
-*   API keys for third-party services.
-*   Initial secrets for services like AWS Secrets Manager.
-*   Private IP addresses and network topology details.
+* Database root passwords from a `random_password` resource.
+* Private keys for virtual machines.
+* API keys for third-party services.
+* Initial secrets for services like AWS Secrets Manager.
+* Private IP addresses and network topology details.
 
 > **Note:** A compromised state file not only leaks secrets but also gives an attacker a complete, queryable map of your infrastructure, accelerating their ability to move laterally and cause damage.
 
@@ -69,9 +69,9 @@ Introduced in OpenTofu 1.9, native state encryption allows you to encrypt the st
 
 The mechanism is straightforward and robust:
 
-*   **Algorithm:** It uses AES-GCM, a widely trusted authenticated encryption standard.
-*   **Key Management:** The encryption key is provided via an environment variable, making it easy to integrate with CI/CD systems and secret managers.
-*   **Transparency:** The encryption and decryption process is handled transparently by the OpenTofu CLI during operations like `plan`, `apply`, and `refresh`.
+* **Algorithm:** It uses AES-GCM, a widely trusted authenticated encryption standard.
+* **Key Management:** The encryption key is provided via an environment variable, making it easy to integrate with CI/CD systems and secret managers.
+* **Transparency:** The encryption and decryption process is handled transparently by the OpenTofu CLI during operations like `plan`, `apply`, and `refresh`.
 
 ## Step-by-Step Implementation Guide
 
@@ -135,11 +135,14 @@ In a CI/CD environment (like GitHub Actions or GitLab CI), you would inject this
 
 Now, you're ready to run OpenTofu.
 
-1.  **Initialize the backend:** OpenTofu will recognize the new encryption configuration.
+1. **Initialize the backend:** OpenTofu will recognize the new encryption configuration.
+
     ```bash
     tofu init
     ```
-2.  **Apply your changes:**
+
+2. **Apply your changes:**
+
     ```bash
     tofu apply
     ```
@@ -170,14 +173,14 @@ graph TD
 
 ## Best Practices and Considerations
 
-*   **Key Rotation:** Regularly rotate your encryption key to limit the "blast radius" if a key is ever compromised. To rotate, generate a new key, update your secret manager, and re-initialize your project with the new key in the environment (`tofu init -reconfigure`). OpenTofu will be able to decrypt the old state with the old key and will write the new state with the new key. *Ensure both old and new keys are available during the transition.*
-*   **Secret Management is Paramount:** The security of this system depends entirely on the security of your encryption key. Use a robust secret management tool and grant access on a need-to-know basis.
-*   **Migrating Existing State:** If you have an unencrypted state file, you can migrate it by:
-    1.  Pulling the state locally: `tofu state pull > current.tfstate`
-    2.  Adding the `encryption` block to your backend configuration.
-    3.  Re-initializing: `tofu init -reconfigure`
-    4.  Pushing the state back up: `tofu state push current.tfstate`
-*   **Team Collaboration:** Ensure all team members have a secure way to access the required `OPENTOFU_ENCRYPTION_KEY` for their work. Automated credential-fetching tools are ideal.
+* **Key Rotation:** Regularly rotate your encryption key to limit the "blast radius" if a key is ever compromised. To rotate, generate a new key, update your secret manager, and re-initialize your project with the new key in the environment (`tofu init -reconfigure`). OpenTofu will be able to decrypt the old state with the old key and will write the new state with the new key. *Ensure both old and new keys are available during the transition.*
+* **Secret Management is Paramount:** The security of this system depends entirely on the security of your encryption key. Use a robust secret management tool and grant access on a need-to-know basis.
+* **Migrating Existing State:** If you have an unencrypted state file, you can migrate it by:
+    1. Pulling the state locally: `tofu state pull > current.tfstate`
+    2. Adding the `encryption` block to your backend configuration.
+    3. Re-initializing: `tofu init -reconfigure`
+    4. Pushing the state back up: `tofu state push current.tfstate`
+* **Team Collaboration:** Ensure all team members have a secure way to access the required `OPENTOFU_ENCRYPTION_KEY` for their work. Automated credential-fetching tools are ideal.
 
 ## Comparing Encryption Approaches
 
@@ -197,8 +200,7 @@ The native state encryption feature in OpenTofu 1.9 is a monumental step forward
 
 Don't wait for a security incident to highlight the importance of your state file. Take control of your infrastructure's secrets today by enabling native state encryption. For more details, consult the official [OpenTofu documentation on backend configuration](https://opentofu.org/docs/language/settings/backends/configuration/).
 
-
 ## Further Reading
 
-- https://infisical.com/blog/terraform-vs-opentofu
-- https://spacelift.io/blog/opentofu-vs-terraform
+* <https://infisical.com/blog/terraform-vs-opentofu>
+* <https://spacelift.io/blog/opentofu-vs-terraform>

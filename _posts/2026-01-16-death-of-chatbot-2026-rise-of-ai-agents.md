@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-- devcrypted
+- kamal
 pin: false
 mermaid: true
 video_prefix: https://youtu.be/
@@ -36,11 +36,11 @@ A seismic shift is underway, moving from passive conversation to proactive actio
 
 ### What You'll Get
 
-*   **Clear Distinction:** A breakdown of why AI Agents are fundamentally different from chatbots.
-*   **Technical Anatomy:** An under-the-hood look at the components that power a modern AI Agent.
-*   **The 2026 Tipping Point:** Key technological and economic drivers making this shift inevitable.
-*   **Architectural Diagrams:** Mermaid diagrams illustrating core agentic loops and multi-agent systems.
-*   **Actionable Insights:** How to prepare for a future where software is defined by autonomous agents.
+* **Clear Distinction:** A breakdown of why AI Agents are fundamentally different from chatbots.
+* **Technical Anatomy:** An under-the-hood look at the components that power a modern AI Agent.
+* **The 2026 Tipping Point:** Key technological and economic drivers making this shift inevitable.
+* **Architectural Diagrams:** Mermaid diagrams illustrating core agentic loops and multi-agent systems.
+* **Actionable Insights:** How to prepare for a future where software is defined by autonomous agents.
 
 ---
 
@@ -51,9 +51,10 @@ A traditional chatbot operates on a simple loop: listen, understand, and respond
 Think of a typical customer service chatbot. You ask, "What is your return policy?" It recognizes the "return-policy" intent and provides a pre-written answer. It's a conversational search engine.
 
 However, its limitations become clear when tasks require multi-step reasoning or interaction with the outside world.
-*   **Stateless by Nature:** Most chatbots have limited memory, treating each interaction as a new puzzle.
-*   **Narrow Domain:** They are brittle and fail when conversations stray from their trained domain.
-*   **Inability to Act:** A chatbot can *tell* you the return policy, but it can't *initiate the return for you* by interacting with the shipping, inventory, and finance APIs.
+
+* **Stateless by Nature:** Most chatbots have limited memory, treating each interaction as a new puzzle.
+* **Narrow Domain:** They are brittle and fail when conversations stray from their trained domain.
+* **Inability to Act:** A chatbot can *tell* you the return policy, but it can't *initiate the return for you* by interacting with the shipping, inventory, and finance APIs.
 
 > This inability to perform actions in the digital world is the chatbot's glass ceiling. It's a helpful guide, but it can't walk the path for you.
 
@@ -71,10 +72,11 @@ graph TD
 ```
 
 Unlike a chatbot that waits for your next query, an AI Agent can be given a high-level goal like, "Find the best-priced flight to Tokyo for the first week of December, book it using my saved credit card, add it to my calendar, and notify me." The agent will then autonomously:
-1.  **Decompose the goal** into smaller steps.
-2.  **Select and use tools** (e.g., Google Flights API, a calendar API).
-3.  **Reason through obstacles** (e.g., a flight is sold out, so it looks for the next best option).
-4.  **Execute the plan** until the goal is complete.
+
+1. **Decompose the goal** into smaller steps.
+2. **Select and use tools** (e.g., Google Flights API, a calendar API).
+3. **Reason through obstacles** (e.g., a flight is sold out, so it looks for the next best option).
+4. **Execute the plan** until the goal is complete.
 
 ## The Anatomy of a Modern AI Agent
 
@@ -115,8 +117,9 @@ class TravelAgent:
 ### Memory (The "Context")
 
 Memory allows an agent to maintain context and learn over time.
-*   **Short-Term Memory:** The context of the current conversation or task (the "prompt window").
-*   **Long-Term Memory:** A vector database or other storage mechanism where the agent can store and retrieve information from past interactions, documents, or successful task completions. This allows it to improve over time.
+
+* **Short-Term Memory:** The context of the current conversation or task (the "prompt window").
+* **Long-Term Memory:** A vector database or other storage mechanism where the agent can store and retrieve information from past interactions, documents, or successful task completions. This allows it to improve over time.
 
 ### Planning & Reasoning Engine
 
@@ -140,10 +143,11 @@ The transition from chatbot to agent isn't happening overnight, but several conv
 | **User Interaction** | Asks questions | Given objectives |
 
 Here are the key drivers:
-1.  **LLM Reasoning Power:** Models are rapidly improving at complex reasoning, planning, and tool use. By 2026, these capabilities will be more reliable, faster, and cheaper.
-2.  **Agentic Framework Maturity:** Frameworks like [CrewAI](https://www.crewai.com/) and Microsoft's [AutoGen](https://microsoft.github.io/autogen/) are standardizing the patterns for building single and multi-agent systems, drastically lowering the barrier to entry.
-3.  **Ubiquitous API Access:** The world runs on APIs. This "API-ification" of services provides the digital environment for agents to perceive and act upon.
-4.  **Economic Viability:** As the cost of high-quality LLM inference drops, running persistent, autonomous agents that perform complex tasks becomes economically feasible for businesses.
+
+1. **LLM Reasoning Power:** Models are rapidly improving at complex reasoning, planning, and tool use. By 2026, these capabilities will be more reliable, faster, and cheaper.
+2. **Agentic Framework Maturity:** Frameworks like [CrewAI](https://www.crewai.com/) and Microsoft's [AutoGen](https://microsoft.github.io/autogen/) are standardizing the patterns for building single and multi-agent systems, drastically lowering the barrier to entry.
+3. **Ubiquitous API Access:** The world runs on APIs. This "API-ification" of services provides the digital environment for agents to perceive and act upon.
+4. **Economic Viability:** As the cost of high-quality LLM inference drops, running persistent, autonomous agents that perform complex tasks becomes economically feasible for businesses.
 
 ## The Future is Agentic: What to Expect
 

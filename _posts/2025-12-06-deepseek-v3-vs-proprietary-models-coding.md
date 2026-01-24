@@ -1,7 +1,7 @@
 ---
 layout: post
 authors:
-  - devcrypted
+  - kamal
 pin: false
 video_prefix: https://youtu.be/
 playlist_prefix: https://youtube.com/playlist?list=
