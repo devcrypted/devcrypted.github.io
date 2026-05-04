@@ -433,7 +433,7 @@ def build_front_matter(
 ) -> Dict[str, Any]:
     return {
         "layout": "post",
-        "authors": ["devcrypted"],
+        "authors": ["kamal"],
         "pin": False,
         "mermaid": True,
         "video_prefix": "https://youtu.be/",
