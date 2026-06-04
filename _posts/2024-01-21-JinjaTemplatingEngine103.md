@@ -16,9 +16,7 @@ date: 2024-01-21 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask", "Jinja"]
 image: https://img.youtube.com/vi/yva5oUk4gTw/maxresdefault.jpg
-description: Python basics, including variable assignment, lists, loops, conditionals, and integrating Python with HTML to dynamically generate web content
-
-# Variables
+description: "This tutorial walks you through creating a project with Poetry to manage dependencies and introduces Jinja2 for templating in Flask."
 video_id: yva5oUk4gTw
 playlist_id: PL2JBbPWIA_TqArc5Iqc6v6Y9ggL598llV
 github_repo: flask-blog

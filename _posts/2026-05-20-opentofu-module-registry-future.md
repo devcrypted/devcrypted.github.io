@@ -24,9 +24,8 @@ tags:
 - devops
 - multi-cloud
 image: opentofu-module-registry-future.webp
-description: Instruct Gemini to create a blog post discussing the anticipated evolution
-  and impact of the OpenTofu Module Registry by May 2026. Compare its growth and features
-  with the HashiCor
+description: "The rise of OpenTofu as a fork of Terraform marked a pivotal moment for the Infrastructure as Code (IaC) community. At the heart of this new ecosystem is a critical component: the OpenTofu Module Registry."
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

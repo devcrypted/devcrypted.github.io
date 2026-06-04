@@ -23,9 +23,8 @@ tags:
 - infrastructure
 - cloud automation
 image: terraform-opentofu-navigating-fork-2026.webp
-description: Guide Gemini to analyze the state of Terraform and OpenTofu in February
-  2026. Discuss the implications of the open-source fork for infrastructure as code
-  (IaC) practitioners, focus
+description: 'It''s February 2026, and the dust from HashiCorp''s 2023 license change has long since settled.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

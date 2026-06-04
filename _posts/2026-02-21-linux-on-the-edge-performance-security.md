@@ -23,9 +23,8 @@ tags:
 - resource optimization
 - embedded linux
 image: linux-on-the-edge-performance-security.webp
-description: Guide Gemini to write a blog post discussing the optimization strategies
-  for deploying Linux-based systems at the edge in 2026. Focus on kernel-level optimizations,
-  containerizatio
+description: 'By 2026, edge computing has moved from a buzzword to the bedrock of our connected infrastructure.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

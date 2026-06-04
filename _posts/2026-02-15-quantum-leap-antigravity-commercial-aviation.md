@@ -23,9 +23,8 @@ tags:
 - new technology
 - speculative science
 image: quantum-leap-antigravity-commercial-aviation.webp
-description: Guide Gemini to write a speculative but grounded blog post exploring
-  the theoretical and nascent developments in antigravity or propulsion technologies
-  that *could* potentially inf
+description: 'For over a century, commercial aviation has been a story of refining a single principle: Newtonian action-reaction.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

@@ -16,9 +16,7 @@ date: 2024-01-17 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask"]
 image: https://img.youtube.com/vi/jSiWuY24Ho8/maxresdefault.jpg
-description: How to get started with Flask web framework to develop modern web applications
-
-# Variables
+description: "Python is a versatile, high-level programming language known for its readability and simplicity. Pip"
 video_id: jSiWuY24Ho8
 playlist_id: PL2JBbPWIA_TqArc5Iqc6v6Y9ggL598llV
 github_repo: flask-blog

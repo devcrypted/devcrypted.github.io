@@ -23,9 +23,8 @@ tags:
 - edge computing
 - developer tools
 image: docker-2026-webassembly-integration.webp
-description: Guide Gemini to write a blog post discussing the evolution of Docker
-  in 2026, particularly its integration with WebAssembly (Wasm) for new application
-  deployment paradigms. Explain
+description: 'For over a decade, Docker has been the undisputed standard for containerization, revolutionizing how we build, ship, and run applications.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

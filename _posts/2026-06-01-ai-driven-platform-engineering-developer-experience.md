@@ -23,9 +23,7 @@ tags:
 - observability
 - future tech
 image: ai-driven-platform-engineering-developer-experience.webp
-description: Explain how AI is revolutionizing platform engineering, focusing on automating
-  self-service portals, intelligent observability, and proactive incident management.
-  Discuss how it em
+description: "Platform Engineering and Internal Developer Platforms (IDPs) are revolutionizing developer productivity in 2026. Learn how golden paths, self-service, and unified control planes are eliminating cognitive load and accelerating delivery. Explore the shift towards treating internal platforms as products, with practical examples of IDP-powered workflows and a look at the key components shaping the future of DevOps."
 video_id: ''
 playlist_id: ''
 github_repo: ''

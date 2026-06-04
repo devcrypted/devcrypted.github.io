@@ -16,9 +16,7 @@ date: 2024-01-20 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask", "Jinja", "Poetry"]
 image: https://img.youtube.com/vi/O2u_7E-XKkU/maxresdefault.jpg
-description: Learn Poetry for package management in Python, separating HTML from Python code using templates, and structuring projects for cleaner, more maintainable code.
-
-# Variables
+description: "This tutorial walks you through creating a project with Poetry to manage dependencies and introduces Jinja2 for templating in Flask."
 video_id: O2u_7E-XKkU
 playlist_id: PL2JBbPWIA_TqArc5Iqc6v6Y9ggL598llV
 github_repo: flask-blog

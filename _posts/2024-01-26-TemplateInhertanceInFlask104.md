@@ -16,9 +16,7 @@ date: 2024-01-26 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask", "Jinja"]
 image: https://img.youtube.com/vi/8OOH_uKnW6U/maxresdefault.jpg
-description: Setting up a Flask project, organizing files, using template inheritance for reusable layouts, and linking static assets, with plans to add more features in future tutorials.
-
-# Variables
+description: "This tutorial walks you through creating a project with Poetry to manage dependencies and introduces Jinja2 for templating in Flask."
 video_id: 8OOH_uKnW6U
 playlist_id: PL2JBbPWIA_TqArc5Iqc6v6Y9ggL598llV
 github_repo: flask-blog

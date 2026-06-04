@@ -23,9 +23,8 @@ tags:
 - future tech
 - developer tools
 image: multimodal-ai-agents-2026-rise-applications.webp
-description: Guide Gemini to write a blog post discussing the significant advancements
-  and practical applications of multimodal AI agents (combining text, image, audio,
-  video) expected to domin
+description: 'The conversation around AI is shifting.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

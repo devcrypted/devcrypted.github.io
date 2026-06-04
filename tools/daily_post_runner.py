@@ -270,7 +270,7 @@ def suggest_metadata(title: str, description: str) -> Dict[str, Any]:
         "You generate concise metadata for a tech blog post."
         f"\nTitle: {title if title else 'Not provided'}"
         f"\nDescription: {description}"
-        "\nRespond as JSON with keys: title (catchy, professional blog title if not provided), category (one short word), tags (3-6 items, kebab-case), permalink_slug (kebab-case), image_prompt (concise), description (<=180 chars)."
+        "\nRespond as JSON with keys: title (catchy, professional blog title if not provided), category (one short word), tags (3-6 items, kebab-case), permalink_slug (kebab-case), image_prompt (concise), description (highly SEO-optimized for Google and AI search, engaging, <=160 chars)."
     )
     try:
         resp = operations_client.models.generate_content(
@@ -576,10 +576,13 @@ def main() -> None:
             topic.get("description_prompt") or "Concise overview."
         ).strip()
 
-        # Try to generate a better meta description if possible, or just use a truncated instruction
-        # Ideally, we should suggest metadata here too if we want better descriptions, but for now fallback to truncation
-        # to match previous behavior, but we could improve this later.
-        meta_description = body_instructions[:180]
+        # Use the suggest_metadata function to get a clean description instead of the raw instruction prompt.
+        try:
+            suggested = suggest_metadata(title, body_instructions)
+            meta_description = suggested.get("description") or body_instructions[:180]
+        except Exception as e:
+            print(f"Failed to generate metadata for description: {e}")
+            meta_description = body_instructions[:180]
 
         image_prompt_base = str(
             topic.get("image_prompt") or f"Hero image for {title}"

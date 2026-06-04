@@ -23,9 +23,8 @@ tags:
 - vulnerability management
 - ml security
 image: shift-left-ai-devsecops-automation-future.webp
-description: Instruct Gemini to write a blog post detailing how AI and machine learning
-  are revolutionizing DevSecOps by enabling more effective 'shift left' security practices.
-  Focus on AI-pow
+description: 'In DevSecOps, the mantra has always been "shift left"—addressing security as early as possible in the development lifecycle.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

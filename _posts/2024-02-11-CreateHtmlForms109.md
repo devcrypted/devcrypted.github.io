@@ -16,7 +16,7 @@ date: 2024-01-17 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask"]
 image: https://img.youtube.com/vi/jSiWuY24Ho8/maxresdefault.jpg
-description: How to get started with Flask web framework to develop modern web applications
+description: "In this tutorial, we'll explore how to create and handle HTML forms in Flask, covering essential form handling techniques."
 
 # Variables
 video_id: jSiWuY24Ho8

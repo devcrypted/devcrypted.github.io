@@ -24,9 +24,8 @@ tags:
 - aiops
 - microsoft
 image: azure-ai-copilot-cloud-architects-2026.webp
-description: 'Guide Gemini to write a blog post discussing how Azure''s integrated
-  AI Co-Pilot services are transforming cloud architecture design in 2026. Cover topics
-  like intelligent resource '
+description: 'The year is 2026, and the role of the Cloud Architect has fundamentally evolved.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

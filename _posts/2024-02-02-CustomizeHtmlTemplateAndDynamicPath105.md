@@ -16,9 +16,7 @@ date: 2024-02-02 00:00 +0530
 categories: ["Python Web Development"]
 tags: ["Python", "Flask", "HTML"]
 image: https://img.youtube.com/vi/GQ1uh-ffHms/maxresdefault.jpg
-description: How to get started with Flask web framework to develop modern web applications
-
-# Variables
+description: "This tutorial focuses on customizing an HTML5 template used within a Python Flask application. Previous videos included downloading and using the template; this video will customize it further."
 video_id: GQ1uh-ffHms
 playlist_id: PL2JBbPWIA_TqArc5Iqc6v6Y9ggL598llV
 github_repo: flask-blog

@@ -23,9 +23,8 @@ tags:
 - open source security
 - cybersecurity
 image: securing-software-supply-chain-2026.webp
-description: Instruct Gemini to create a blog post reflecting on significant software
-  supply chain attacks from 2025 and outlining best practices for securing the supply
-  chain in 2026. Focus on
+description: 'As we look back from the start of 2026, last year was a watershed moment for software supply chain security.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

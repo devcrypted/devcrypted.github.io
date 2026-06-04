@@ -22,9 +22,8 @@ tags:
 - data analytics
 - cloud strategy
 image: aws-reinvent-2025-game-changing-services.webp
-description: Guide Gemini to recap the most impactful announcements from AWS re:Invent
-  2025 that are shaping cloud strategies in early 2026. Focus on 2-3 specific game-changing
-  services or feat
+description: 'As the dust settles from Las Vegas, we''re now in early 2026, and the impact of AWS re:Invent 2025 is becoming clear.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

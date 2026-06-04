@@ -24,9 +24,8 @@ tags:
 - azure
 - infrastructure
 image: mastering-hybrid-cloud-networking-sdwan-sase.webp
-description: Instruct Gemini to create a blog post on the complexities and best practices
-  of hybrid cloud networking in 2026, with a strong focus on SD-WAN and SASE (Secure
-  Access Service Edge)
+description: 'The year is 2026.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

@@ -24,9 +24,8 @@ tags:
 - iac
 - terraform cloud
 image: terraform-cloud-enterprise-policy-as-code.webp
-description: Guide Gemini to write a blog post focusing on the importance and practical
-  implementation of Policy as Code (PaC) within Terraform Cloud and Terraform Enterprise
-  in 2026. Explain h
+description: 'In the world of Infrastructure as Code (IaC), speed and agility are paramount.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

@@ -24,9 +24,7 @@ tags:
 - internal tools
 - productivity
 image: platform-engineering-idps-developer-experience.webp
-description: Instruct Gemini to create a blog post focusing on the symbiotic relationship
-  between Platform Engineering and Internal Developer Platforms (IDPs) in accelerating
-  developer experien
+description: "Platform Engineering and Internal Developer Platforms (IDPs) are revolutionizing developer productivity in 2026. Learn how golden paths, self-service, and unified control planes are eliminating cognitive load and accelerating delivery. Explore the shift towards treating internal platforms as products, with practical examples of IDP-powered workflows and a look at the key components shaping the future of DevOps."
 video_id: ''
 playlist_id: ''
 github_repo: ''

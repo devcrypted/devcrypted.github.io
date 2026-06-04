@@ -23,9 +23,8 @@ tags:
 - network as code
 - cloud architecture
 image: next-gen-cloud-networking-ai-ops-2026.webp
-description: Instruct Gemini to create a blog post exploring the future of cloud networking
-  in 2026, focusing on programmable infrastructure and the role of AI Ops. Discuss
-  how network as code,
+description: 'Cloud networking is no longer about manually configuring routers and firewalls through a command-line interface.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

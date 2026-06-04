@@ -24,9 +24,8 @@ tags:
 - it automation
 - infrastructure
 image: ansible-automation-platform-scaling-clouds.webp
-description: Guide Gemini to write a blog post on the capabilities of Ansible Automation
-  Platform 2.X (or the latest version in 2026) for enterprise-grade automation. Focus
-  on how it enables sc
+description: 'The modern IT landscape is no longer confined to a single data center.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

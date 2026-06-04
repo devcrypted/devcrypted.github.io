@@ -24,9 +24,8 @@ tags:
 - network observability
 - devsecops
 image: cloud-networking-2-0-speed-security-2026.webp
-description: Guide Gemini to write a blog post on the evolution of cloud networking
-  by May 2026. Focus on 'Cloud Networking 2.0' concepts, including software-defined
-  wide area networking (SD-WA
+description: 'The era of simple, centralized cloud networking is over.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

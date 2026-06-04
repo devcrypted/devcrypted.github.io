@@ -23,9 +23,8 @@ tags:
 - azure
 - infrastructure
 image: platform-engineering-developer-velocity-2026.webp
-description: Instruct Gemini to create a blog post exploring how platform engineering
-  is evolving to empower developer teams in 2026. Focus on key principles like self-service
-  infrastructure, g
+description: 'In modern software development, speed is a competitive advantage.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

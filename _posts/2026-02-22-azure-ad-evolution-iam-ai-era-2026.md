@@ -24,9 +24,8 @@ tags:
 - ai security
 - hybrid cloud
 image: azure-ad-evolution-iam-ai-era-2026.webp
-description: Instruct Gemini to write a blog post about the ongoing evolution of Azure
-  Active Directory (or its successor) in 2026, focusing on how it adapts to identity
-  and access management (
+description: 'Welcome to 2026.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''

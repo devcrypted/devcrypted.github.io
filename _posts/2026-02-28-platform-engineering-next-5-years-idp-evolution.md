@@ -24,9 +24,8 @@ tags:
 - security
 - developer experience
 image: platform-engineering-next-5-years-idp-evolution.webp
-description: Instruct Gemini to create a forward-looking blog post, predicting the
-  major trends and evolutions in platform engineering and Internal Developer Platforms
-  (IDPs) over the next five
+description: 'Platform engineering has moved from a niche concept to a mainstream strategy for enabling developer productivity and operational excellence.'
+
 video_id: ''
 playlist_id: ''
 github_repo: ''
