@@ -23,8 +23,8 @@ tags:
 - cloud development
 - productivity
 - windows
-image: vscode-remote-dev-wsl-ultimate-2026.webp
-description: Welcome to May 2026. For years, developers sought the holy grail: the power and tooling of a native Linux environment combined with the polish and hardware support of a mainstream desktop OS. That search is over. The combination of Visual Studio Code's Remote Development extensions and the Windows Subsystem for Linux (WSL) has matured into an undisputed, best-in-class development environment that offers unparalleled flexibility, performance, and power.
+image: "vscode-remote-dev-wsl-ultimate-2026.webp"
+description: "Welcome to May 2026. For years, developers sought the holy grail: the power and tooling of a native Linux environment combined with the polish and hardware support of a mainstream desktop OS. That search is over. The combination of Visual Studio Code's Remote Development extensions and the Windows Subsystem for Linux (WSL) has matured into an undisputed, best-in-class development environment that offers unparalleled flexibility, performance, and power."
 
 video_id: ''
 playlist_id: ''
