@@ -22,7 +22,7 @@ from google import genai
 from PIL import Image
 from google.genai import types
 
-BLOG_MODEL_PRIMARY = os.environ.get("GEMINI_BLOG_MODEL_PRIMARY", "gemini-3-pro")
+BLOG_MODEL_PRIMARY = os.environ.get("GEMINI_BLOG_MODEL_PRIMARY", "gemini-3.1-pro")
 BLOG_MODEL_FALLBACK = os.environ.get("GEMINI_BLOG_MODEL_FALLBACK", "gemini-2.5-pro")
 KEYWORD_MODEL = os.environ.get("GEMINI_KEYWORD_MODEL", "gemini-2.5-flash")
 POSTS_DIR = Path(__file__).resolve().parent.parent / "_posts"
@@ -353,24 +353,29 @@ def build_body_prompt(topic: Dict[str, Any]) -> str:
 
 
 def request_markdown(client: genai.Client, prompt: str) -> str:
-    try:
-        response = client.models.generate_content(
-            model=BLOG_MODEL_PRIMARY,
-            contents=prompt,
-            config={"response_mime_type": "text/plain"},
-        )
-    except Exception as primary_exc:
-        print(
-            f"Primary blog model '{BLOG_MODEL_PRIMARY}' failed ({primary_exc}); using fallback '{BLOG_MODEL_FALLBACK}'."
-        )
-        response = client.models.generate_content(
-            model=BLOG_MODEL_FALLBACK,
-            contents=prompt,
-            config={"response_mime_type": "text/plain"},
-        )
-    if hasattr(response, "text") and response.text:
-        return str(response.text)
-    raise RuntimeError("No text response from model.")
+    models_to_try = [
+        BLOG_MODEL_PRIMARY,
+        BLOG_MODEL_FALLBACK,
+        "gemini-2.5-flash",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash"
+    ]
+    
+    last_exc = None
+    for model_name in models_to_try:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config={"response_mime_type": "text/plain"},
+            )
+            if hasattr(response, "text") and response.text:
+                return str(response.text)
+        except Exception as exc:
+            print(f"Model '{model_name}' failed ({exc}). Trying next...")
+            last_exc = exc
+            
+    raise RuntimeError(f"All text models failed. Last error: {last_exc}")
 
 
 def process_image_url(url: str, target_kb: int = IMAGE_MAX_KB) -> bytes:

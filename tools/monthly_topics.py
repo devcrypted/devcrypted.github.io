@@ -18,7 +18,7 @@ from typing import Any, List
 
 from google import genai
 
-DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3-pro")
+DEFAULT_MODEL = os.environ.get("GEMINI_TEXT_MODEL", "gemini-3.1-pro")
 FALLBACK_MODEL = os.environ.get("GEMINI_BLOG_MODEL_FALLBACK", "gemini-2.5-flash")
 TOPICS_DIR = Path(__file__).resolve().parent.parent / "topics"
 
@@ -80,27 +80,29 @@ def build_prompt(month_name: str, year: int, days: int, last_month_name: str) ->
 
 
 def request_topics(client: genai.Client, prompt: str) -> list[Any]:
-    try:
-        response = client.models.generate_content(
-            model=DEFAULT_MODEL,
-            contents=prompt,
-            config={"response_mime_type": "application/json"},
-        )
-    except Exception as exc:
-        print(
-            f"Primary model {DEFAULT_MODEL} failed: {exc}. Trying fallback {FALLBACK_MODEL}...",
-            file=sys.stderr,
-        )
-        response = client.models.generate_content(
-            model=FALLBACK_MODEL,
-            contents=prompt,
-            config={"response_mime_type": "application/json"},
-        )
+    models_to_try = [
+        DEFAULT_MODEL,
+        FALLBACK_MODEL,
+        "gemini-2.0-flash",
+        "gemini-1.5-flash"
+    ]
+    
+    last_exc = None
+    for model_name in models_to_try:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config={"response_mime_type": "application/json"},
+            )
+            raw = response.text if hasattr(response, "text") else None
+            if raw:
+                return json.loads(raw)
+        except Exception as exc:
+            print(f"Model '{model_name}' failed: {exc}. Trying next...", file=sys.stderr)
+            last_exc = exc
 
-    raw = response.text if hasattr(response, "text") else None
-    if not raw:
-        raise RuntimeError("No response from model.")
-    return json.loads(raw)
+    raise RuntimeError(f"All models failed. Last error: {last_exc}")
 
 
 def normalize_topic(entry: Any) -> Topic:
