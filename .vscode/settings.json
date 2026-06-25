@@ -84,5 +84,6 @@
         "vpngw",
         "webp",
         "winget"
-    ]
+    ],
+    "sarif-viewer.connectToGithubCodeScanning": "off"
 }
